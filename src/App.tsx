@@ -13,6 +13,7 @@ const About = lazy(() => import('./components/About').then((m) => ({ default: m.
 const Skills = lazy(() => import('./components/Skills').then((m) => ({ default: m.Skills })))
 const Projects = lazy(() => import('./components/Projects').then((m) => ({ default: m.Projects })))
 const Journey = lazy(() => import('./components/Journey').then((m) => ({ default: m.Journey })))
+const Posts = lazy(() => import('./components/Posts').then((m) => ({ default: m.Posts })))
 const Github = lazy(() => import('./components/Github').then((m) => ({ default: m.Github })))
 const Contact = lazy(() => import('./components/Contact').then((m) => ({ default: m.Contact })))
 const Footer = lazy(() => import('./components/Footer').then((m) => ({ default: m.Footer })))
@@ -73,6 +74,7 @@ export default function App() {
           <Skills />
           <Projects />
           <Journey />
+          <Posts />
           <Github />
           <Contact />
         </Suspense>

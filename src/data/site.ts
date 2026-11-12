@@ -498,6 +498,21 @@ export type Achievement = {
 
 export const achievements: Achievement[] = [
   {
+    title: 'My Bharat — Hack for Social Cause',
+    detail: 'State level · Team Lead · VBYLD 2027',
+    emoji: '🇮🇳',
+  },
+  {
+    title: 'My Bharat Budget Quest 2026',
+    detail: 'National level quiz participant',
+    emoji: '📊',
+  },
+  {
+    title: 'AIML Dashers — Team Lead',
+    detail: 'Healthcare & Wellbeing · MoYAS + IIT Bombay',
+    emoji: '🏅',
+  },
+  {
     title: 'Infosys Springboard',
     detail: 'Deep Learning — Virtual Internship 2025',
     emoji: '🧠',
@@ -518,16 +533,89 @@ export const achievements: Achievement[] = [
     emoji: '🛡️',
   },
   {
-    title: 'Pull Shark',
-    detail: 'GitHub achievement — 200+ merged PRs',
-    emoji: '🦈',
+    title: 'GeeksforGeeks Connect',
+    detail: 'Community contributor',
+    emoji: '💻',
   },
   {
-    title: 'AIML Dashers',
-    detail: 'Builder community — Bhongir, India',
-    emoji: '🚀',
+    title: 'Pull Shark',
+    detail: 'GitHub achievement — merged PRs',
+    emoji: '🦈',
   },
 ]
+
+/** Posts published on LinkedIn — surfaced as a writing feed. */
+export type Post = {
+  title: string
+  excerpt: string
+  tags: string[]
+  platform: 'LinkedIn'
+  date?: string
+}
+
+export const posts: Post[] = [
+  {
+    title: 'My Bharat Budget Quest 2026',
+    excerpt:
+      'Budget insights were already on my radar from 1st February, and recently I had the opportunity to participate in two national-level quizzes by MY — a deep dive into fiscal policy, allocations and what they mean on the ground.',
+    tags: ['#MyBharatBudget2026', '#LearningNeverStops', '#Budget2026'],
+    platform: 'LinkedIn',
+    date: '2026',
+  },
+  {
+    title: 'Moving from Localhost to the Cloud',
+    excerpt:
+      'My 1:1 session with a GfG Expert. As an AI/ML student I know that building a model is only 50% of the work — the real challenge is making that model survive deployment, costs and real users.',
+    tags: ['#GeeksForGeeks', '#GfGConnect', '#AWSLambda', '#CloudComputing', '#AIML'],
+    platform: 'LinkedIn',
+    date: '2026',
+  },
+  {
+    title: 'Infosys Springboard — Deep Learning',
+    excerpt:
+      'Feeling proud of my progress, and thankful to Infosys for making this journey free and valuable. A full Deep Learning track — neural networks, training, evaluation — and a confirmed virtual internship along the way.',
+    tags: ['#DeepLearning', '#InfosysSpringboard', '#NeuralNetworks', '#Internship2025'],
+    platform: 'LinkedIn',
+    date: '2025',
+  },
+  {
+    title: 'Infosys Foundation SkillUp — Centum Foundation',
+    excerpt:
+      'Selected for the Centum Foundation SkillUp track as an AI & ML diploma student — job-ready applied technology skills, funded end to end.',
+    tags: ['#SkillUp', '#InfosysFoundation', '#CentumFoundation', '#AIML'],
+    platform: 'LinkedIn',
+    date: '2025',
+  },
+  {
+    title: 'Turning Ideas Into Impactful Startup Plans',
+    excerpt:
+      'As an AI & ML diploma student at Samskruti College, Ghatkesar, my focus is on turning innovative ideas into startup plans that survive contact with real users.',
+    tags: ['#PassionateCoder', '#Startup', '#AIML'],
+    platform: 'LinkedIn',
+    date: '2026',
+  },
+  {
+    title: 'ESG Internship — Officially Confirmed',
+    excerpt:
+      'Officially confirmed on the virtual internship track — learning by shipping, one commit at a time.',
+    tags: ['#Internship', '#VirtualInternship', '#ESG', '#AI'],
+    platform: 'LinkedIn',
+    date: '2025',
+  },
+]
+
+/** My Bharat submission details. */
+export const myBharat = {
+  teamId: 'HSEITS100059',
+  teamName: 'AIML Dashers',
+  state: 'Telangana',
+  theme: 'Healthcare & Wellbeing',
+  role: 'Team Lead',
+  partners: 'Ministry of Youth Affairs & Sports + IIT Bombay',
+  programme: 'Hack for Social Cause — VBYLD 2027',
+  team: ['Chavan Srikar', 'Bodagay Karthik', 'Gorramula Manideep'],
+  link: 'https://www.linkedin.com/in/chavansrikar/',
+} as const
 
 export type GitHubRepo = {
   name: string
@@ -696,6 +784,7 @@ export const navLinks = [
   { id: 'skills', label: 'Skills' },
   { id: 'work', label: 'Work' },
   { id: 'journey', label: 'Journey' },
+  { id: 'posts', label: 'Posts' },
   { id: 'github', label: 'GitHub' },
   { id: 'contact', label: 'Contact' },
 ] as const

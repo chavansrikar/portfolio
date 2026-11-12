@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { profile } from '@/data/site'
+import { asset } from '@/lib/assets'
 import { AsciiPortrait } from './AsciiPortrait'
 import { GithubIcon, LinkedinIcon, LocationIcon } from './ui/icons'
 
@@ -40,11 +41,11 @@ export function ProfileCard() {
       {/* Orbit ring */}
       <div className="pointer-events-none absolute -inset-4 rounded-[2rem] border border-dashed border-amber-300/15 animate-spin-slower" />
 
-      {/* Orbiting tech tags */}
-      <OrbitTag className="-top-3 left-1/2 -translate-x-1/2" text="python" delay={0} />
-      <OrbitTag className="-right-2 top-1/3" text="mediapipe" delay={0.6} />
-      <OrbitTag className="-bottom-3 left-1/2 -translate-x-1/2" text="next.js" delay={1.2} />
-      <OrbitTag className="-left-2 top-1/3" text="tensorflow" delay={1.8} />
+      {/* Orbiting recognition tags */}
+      <OrbitTag className="-top-4 left-1/2 -translate-x-1/2" text="my bharat · state level" delay={0} />
+      <OrbitTag className="-right-3 top-[26%]" text="team lead" delay={0.6} />
+      <OrbitTag className="-bottom-4 left-1/2 -translate-x-1/2" text="budget quest 2026" delay={1.2} />
+      <OrbitTag className="-left-3 top-[26%]" text="AIML Dashers" delay={1.8} />
 
       <motion.div
         ref={ref}
@@ -55,7 +56,7 @@ export function ProfileCard() {
         <div className="preserve-3d relative overflow-hidden rounded-[1.75rem] border border-white/12 bg-abyss shadow-[0_40px_90px_-30px_rgba(0,0,0,0.95)]">
           {/* Photo with ASCII hover */}
           <AsciiPortrait
-            src="/profile-full.jpg"
+            src={asset('/profile-full.jpg')}
             alt={`${profile.name}, AI generalist and full-stack builder`}
             className="aspect-[3/4] w-full"
             cols={48}
@@ -131,9 +132,9 @@ function OrbitTag({ className, text, delay }: { className: string; text: string;
       <motion.div
         animate={{ y: [0, -7, 0] }}
         transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut', delay }}
-        className="ascii rounded-lg border border-white/12 bg-abyss/90 px-2.5 py-1 text-[9px] text-amber-200/90 shadow-lg backdrop-blur-md"
+        className="ascii whitespace-nowrap rounded-lg border border-amber-400/25 bg-abyss/95 px-2.5 py-1 text-[9px] text-amber-200/90 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.95)] backdrop-blur-md"
       >
-        [{text}]
+        {text}
       </motion.div>
     </motion.div>
   )

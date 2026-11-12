@@ -104,6 +104,7 @@ export function Footer() {
                 ['Skills', 'skills'],
                 ['Work', 'work'],
                 ['Journey', 'journey'],
+                ['Posts', 'posts'],
                 ['GitHub', 'github'],
                 ['Contact', 'contact'],
               ].map(([label, id]) => (
