@@ -1,12 +1,20 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { myBharat, posts } from '@/data/site'
+import { postArt, postGlyph, posts } from '@/data/site'
 import { Section } from './ui/Section'
 import { Reveal } from './ui/Reveal'
-import { LinkedinIcon, ArrowUpRightIcon } from './ui/icons'
+import { Button } from './ui/Button'
+import { AsciiArt } from './ui/AsciiArt'
+import {
+  ArrowUpRightIcon,
+  ExternalLinkIcon,
+  LinkedinIcon,
+} from './ui/icons'
 
 export function Posts() {
   const [active, setActive] = useState(0)
+  const post = posts[active]
+  const art = postArt[post.title] ?? ['•']
 
   return (
     <Section
@@ -20,160 +28,175 @@ export function Posts() {
       }
       description="Posts published on LinkedIn — field notes on the AI/ML track, the hackathon circuit and shipping things that matter."
     >
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.25fr] lg:gap-10">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.3fr] lg:gap-10">
         {/* Post list */}
         <Reveal>
           <ul className="space-y-1.5">
-            {posts.map((post, i) => (
-              <li key={post.title}>
+            {posts.map((p, i) => (
+              <li key={p.title} className="relative">
                 <button
                   onClick={() => setActive(i)}
                   onMouseEnter={() => setActive(i)}
-                  className={`group relative w-full rounded-xl border px-4 py-3.5 text-left transition-all duration-400 ${
+                  className={`group relative flex w-full items-center gap-3.5 rounded-xl border px-4 py-3 text-left transition-all duration-400 ${
                     active === i
                       ? 'border-amber-400/35 bg-amber-400/[0.05]'
                       : 'border-white/[0.07] bg-white/[0.02] hover:border-white/15'
                   }`}
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="min-w-0">
-                      <div className="flex items-center gap-2">
-                        <LinkedinIcon className="h-3 w-3 shrink-0 text-indigo-400/80" />
-                        <span className="truncate font-display text-[13.5px] font-semibold tracking-tight text-chalk">
-                          {post.title}
-                        </span>
-                      </div>
-                      <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.16em] text-mist/50">
-                        {post.date} · {post.tags.slice(0, 2).join(' ')}
-                      </div>
+                >                  {/* Mini ASCII mark */}
+                  <span
+                    className={`ascii grid h-11 w-12 shrink-0 place-items-center overflow-hidden rounded-lg border text-[15px] leading-none transition-all duration-400 ${
+                      active === i
+                        ? 'border-amber-400/40 bg-amber-400/[0.08] text-amber-200'
+                        : 'border-white/10 bg-white/[0.03] text-mist/60 group-hover:text-mist'
+                    }`}
+                  >
+                    {postGlyph[p.title] ?? '·'}
+                  </span>
+
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-1.5">
+                      <LinkedinIcon className="h-3 w-3 shrink-0 text-indigo-400/70" />
+                      <span className="truncate font-display text-[13.5px] font-semibold tracking-tight text-chalk">
+                        {p.title}
+                      </span>
                     </div>
-                    <ArrowUpRightIcon
-                      className={`mt-0.5 h-3.5 w-3.5 shrink-0 transition-all duration-300 ${
-                        active === i
-                          ? 'text-amber-300'
-                          : 'text-mist/25 group-hover:text-mist/60'
-                      }`}
-                    />
+                    <div className="mt-0.5 truncate font-mono text-[9px] uppercase tracking-[0.14em] text-mist/50">
+                      {p.date} · {p.tags[0]}
+                    </div>
                   </div>
+
+                  <ArrowUpRightIcon
+                    className={`h-3.5 w-3.5 shrink-0 transition-all duration-300 ${
+                      active === i
+                        ? 'text-amber-300'
+                        : 'text-mist/25 group-hover:text-mist/60'
+                    }`}
+                  />
                 </button>
+
+                {/* Animated connector to the detail panel */}
+                {i < posts.length - 1 && (
+                  <div
+                    aria-hidden
+                    className="absolute -bottom-1 left-[2.35rem] h-1.5 w-px bg-gradient-to-b from-amber-400/50 to-transparent"
+                  />
+                )}
               </li>
             ))}
           </ul>
         </Reveal>
 
-        {/* Active post + My Bharat card */}
-        <div className="flex flex-col gap-5">
-          <Reveal delay={0.08}>
-            <div className="glass relative min-h-[15rem] overflow-hidden rounded-2xl p-6 sm:p-7">
-              <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-amber-500/10 blur-3xl" />
+        {/* Active post */}
+        <Reveal delay={0.08}>
+          <div className="glass glow-ring scanline relative flex h-full min-h-[21rem] flex-col overflow-hidden rounded-2xl">
+            {/* Warm glow */}
+            <div className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full bg-amber-500/12 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-16 -left-10 h-44 w-44 rounded-full bg-violet-600/12 blur-3xl" />
+
+            {/* Animated ASCII art */}
+            <div className="relative flex min-h-[13rem] items-center justify-center overflow-hidden border-b border-white/8 bg-void/35 px-4 py-8">
+              {/* Faint grid behind the art */}
+              <div
+                aria-hidden
+                className="absolute inset-0 opacity-30"
+                style={{
+                  backgroundImage:
+                    'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)',
+                  backgroundSize: '28px 28px',
+                  maskImage:
+                    'radial-gradient(ellipse at center, #000 10%, transparent 72%)',
+                }}
+              />
 
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative"
+                  initial={{ opacity: 0, scale: 0.88, filter: 'blur(8px)' }}
+                  animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, scale: 1.08, filter: 'blur(8px)' }}
+                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <div className="mb-4 flex items-center gap-2">
-                    <LinkedinIcon className="h-4 w-4 text-indigo-400" />
-                    <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-mist/70">
-                      {posts[active].date} · LinkedIn
-                    </span>
-                  </div>
-
-                  <h3 className="font-display text-xl font-bold leading-tight tracking-tight text-chalk sm:text-2xl">
-                    {posts[active].title}
-                  </h3>
-
-                  <p className="mt-3 text-[14px] leading-relaxed text-mist">
-                    {posts[active].excerpt}
-                  </p>
-
-                  <div className="mt-5 flex flex-wrap gap-1.5">
-                    {posts[active].tags.map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-md border border-indigo-400/20 bg-indigo-400/[0.07] px-2 py-0.5 font-mono text-[9.5px] text-indigo-200/85"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
+                  <AsciiArt
+                    art={art}
+                    trigger={active}
+                    fontSize={10}
+                    className="text-center text-amber-300/85 drop-shadow-[0_0_16px_rgba(251,191,36,0.4)] transition-colors duration-300 hover:text-amber-200"
+                  />
                 </motion.div>
               </AnimatePresence>
+
+              {/* Corner ticks */}
+              {[
+                'left-3 top-3 border-l border-t',
+                'right-3 top-3 border-r border-t',
+                'left-3 bottom-3 border-l border-b',
+                'right-3 bottom-3 border-r border-b',
+              ].map((c) => (
+                <span
+                  key={c}
+                  className={`pointer-events-none absolute h-3.5 w-3.5 border-amber-400/35 ${c}`}
+                />
+              ))}
+
+              {/* Readout */}
+              <span className="pointer-events-none absolute bottom-2 left-4 font-mono text-[8px] uppercase tracking-[0.2em] text-mist/35">
+                post.{String(active + 1).padStart(2, '0')}
+              </span>
             </div>
-          </Reveal>
 
-          {/* My Bharat feature card */}
-          <Reveal delay={0.14}>
-            <div className="glass glow-ring relative overflow-hidden rounded-2xl p-6 sm:p-7">
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-400/70 to-transparent" />
-              <div className="pointer-events-none absolute -bottom-16 -left-10 h-44 w-44 rounded-full bg-coral-500/12 blur-3xl" />
-
-              <div className="relative">
-                <div className="mb-1 flex flex-wrap items-center gap-2.5">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-amber-300/90">
-                    {myBharat.programme}
+            {/* Body */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`body-${active}`}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="relative flex flex-1 flex-col p-6 sm:p-7"
+              >
+                <div className="mb-3 flex items-center gap-2">
+                  <LinkedinIcon className="h-4 w-4 text-indigo-400" />
+                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-mist/70">
+                    {post.date} · LinkedIn
                   </span>
                 </div>
 
-                <h3 className="font-display text-lg font-bold tracking-tight text-chalk sm:text-xl">
-                  {myBharat.teamName} — {myBharat.theme}
+                <h3 className="font-display text-xl font-bold leading-tight tracking-tight text-chalk sm:text-2xl">
+                  {post.title}
                 </h3>
 
-                <p className="mt-1.5 font-mono text-[11px] text-mist/75">
-                  Team ID {myBharat.teamId} · {myBharat.state} ·{' '}
-                  <span className="text-amber-300">{myBharat.role}</span>
+                <p className="mt-3 flex-1 text-[14px] leading-relaxed text-mist">
+                  {post.excerpt}
                 </p>
 
-                <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
-                  <div className="rounded-xl border border-white/8 bg-white/[0.03] px-3 py-2.5">
-                    <div className="font-mono text-[9px] uppercase tracking-[0.16em] text-mist/60">
-                      Level
-                    </div>
-                    <div className="mt-0.5 font-display text-sm font-bold text-amber-300">
-                      State level
-                    </div>
-                  </div>
-                  <div className="rounded-xl border border-white/8 bg-white/[0.03] px-3 py-2.5">
-                    <div className="font-mono text-[9px] uppercase tracking-[0.16em] text-mist/60">
-                      Team role
-                    </div>
-                    <div className="mt-0.5 font-display text-sm font-bold text-coral-300">
-                      Team Lead
-                    </div>
-                  </div>
-                  <div className="rounded-xl border border-white/8 bg-white/[0.03] px-3 py-2.5">
-                    <div className="font-mono text-[9px] uppercase tracking-[0.16em] text-mist/60">
-                      Partners
-                    </div>
-                    <div className="mt-0.5 font-display text-sm font-bold text-violet-300">
-                      MoYAS + IITB
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-5 flex flex-wrap items-center gap-2">
-                  {myBharat.team.map((m, i) => (
+                <div className="mt-5 flex flex-wrap gap-1.5">
+                  {post.tags.map((t) => (
                     <span
-                      key={m}
-                      className={`rounded-lg border px-2.5 py-1 font-mono text-[10px] ${
-                        i === 0
-                          ? 'border-amber-400/30 bg-amber-400/[0.07] text-amber-200'
-                          : 'border-white/10 bg-white/[0.03] text-mist/80'
-                      }`}
+                      key={t}
+                      className="rounded-md border border-indigo-400/20 bg-indigo-400/[0.07] px-2 py-0.5 font-mono text-[9.5px] text-indigo-200/85"
                     >
-                      {m}
-                      {i === 0 && ' · lead'}
+                      {t}
                     </span>
                   ))}
                 </div>
-              </div>
-            </div>
-          </Reveal>
-        </div>
+
+                <div className="mt-6 border-t border-white/8 pt-5">
+                  <Button
+                    href={post.url}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    variant="ghost"
+                    className="!px-5 !py-2.5 !text-[12.5px]"
+                  >
+                    <LinkedinIcon className="h-4 w-4" />
+                    Read on LinkedIn
+                    <ExternalLinkIcon className="h-3.5 w-3.5 opacity-60" />
+                  </Button>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </Reveal>
       </div>
     </Section>
   )

@@ -509,6 +509,18 @@ export const timeline: TimelineEntry[] = [
   },
   {
     period: '2026',
+    title: 'My Bharat — Hack for Social Cause (VBYLD 2027)',
+    org: 'Team AIML Dashers — Team Lead',
+    location: 'Telangana · MoYAS + IIT Bombay',
+    points: [
+      'Team ID HSEITS100059 — thematic area: Healthcare & Wellbeing.',
+      'Selected the team for the state-level stage of the Hack for Social Cause track.',
+      'Team: Chavan Srikar (lead), Bodagay Karthik, Gorramula Manideep.',
+    ],
+    type: 'achievement',
+  },
+  {
+    period: '2026',
     title: 'My Bharat Budget — National Quiz',
     org: 'Ministry of Finance, Govt. of India',
     location: 'National Level',
@@ -591,6 +603,77 @@ export type Post = {
   tags: string[]
   platform: 'LinkedIn'
   date?: string
+  url: string
+}
+
+/** Where the LinkedIn post lives. */
+const POST_URL = 'https://www.linkedin.com/in/chavansrikar/recent-activity/all/'
+
+/** ASCII illustration per post, shown in the feed panel. */
+export const postArt: Record<string, string[]> = {
+  'My Bharat Budget Quest 2026': [
+    '  ╭───────╮',
+    '  │ ███▓▓░ │',
+    '  │ ▓▓░░░░ │',
+    '  ╰───┬───╯',
+    '    ₹ │ ₹   ',
+    '  ┌───┴───┐ ',
+    '  │ budget │ ',
+  ],
+  'Moving from Localhost to the Cloud': [
+    '      ╭────╮',
+    '      │  ↓  │',
+    '   ╭──┴────┴──╮',
+    '   │  λ deploy │',
+    '   ╰──┬────┬──╯',
+    '      │    │',
+    '  local     prod',
+  ],
+  'Infosys Springboard — Deep Learning': [
+    '   ●───●───●',
+    '   │╲  │  ╱│',
+    '   │ ╲ │ ╱ │',
+    '   ●───●───●',
+    '   │╱  │  ╲│',
+    '   │╱  │  ╲│',
+    '   ●───●───●',
+  ],
+  'Infosys Foundation SkillUp — Centum Foundation': [
+    '            ╱▔╲',
+    '         ╱▔▔▔▔╲',
+    '      ╱▔▔▔▔▔▔▔▔╲',
+    '   ╱▔▔▔▔▔▔▔▔▔▔▔▔▔╲',
+    '  ╱▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔╲',
+    ' ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔',
+    '        ▲ skill',
+  ],
+  'Turning Ideas Into Impactful Startup Plans': [
+    '      ▲',
+    '     ▄█▄',
+    '    ▀███▀',
+    '   ▄█████▄',
+    '  ▀███████▀',
+    ' ░░░░░░░░░░',
+    '    ╱    ╲',
+  ],
+  'ESG Internship — Officially Confirmed': [
+    '   ╭────────╮',
+    '   │  ✓✓✓   │',
+    '   │ ▓▓▓▓▓▓ │',
+    '   │ ░░░░░░░ │',
+    '   ╰────────╯',
+    '    verified',
+  ],
+}
+
+/** Small single-character mark per post, shown in the feed list. */
+export const postGlyph: Record<string, string> = {
+  'My Bharat Budget Quest 2026': '$',
+  'Moving from Localhost to the Cloud': '~',
+  'Infosys Springboard — Deep Learning': '*',
+  'Infosys Foundation SkillUp — Centum Foundation': '^',
+  'Turning Ideas Into Impactful Startup Plans': '>',
+  'ESG Internship — Officially Confirmed': '+',
 }
 
 export const posts: Post[] = [
@@ -601,6 +684,7 @@ export const posts: Post[] = [
     tags: ['#MyBharatBudget2026', '#LearningNeverStops', '#Budget2026'],
     platform: 'LinkedIn',
     date: '2026',
+    url: 'https://lnkd.in/p5VwF7Dm',
   },
   {
     title: 'Moving from Localhost to the Cloud',
@@ -609,6 +693,7 @@ export const posts: Post[] = [
     tags: ['#GeeksForGeeks', '#GfGConnect', '#AWSLambda', '#CloudComputing', '#AIML'],
     platform: 'LinkedIn',
     date: '2026',
+    url: POST_URL,
   },
   {
     title: 'Infosys Springboard — Deep Learning',
@@ -617,6 +702,7 @@ export const posts: Post[] = [
     tags: ['#DeepLearning', '#InfosysSpringboard', '#NeuralNetworks', '#Internship2025'],
     platform: 'LinkedIn',
     date: '2025',
+    url: POST_URL,
   },
   {
     title: 'Infosys Foundation SkillUp — Centum Foundation',
@@ -625,6 +711,7 @@ export const posts: Post[] = [
     tags: ['#SkillUp', '#InfosysFoundation', '#CentumFoundation', '#AIML'],
     platform: 'LinkedIn',
     date: '2025',
+    url: POST_URL,
   },
   {
     title: 'Turning Ideas Into Impactful Startup Plans',
@@ -633,6 +720,7 @@ export const posts: Post[] = [
     tags: ['#PassionateCoder', '#Startup', '#AIML'],
     platform: 'LinkedIn',
     date: '2026',
+    url: POST_URL,
   },
   {
     title: 'ESG Internship — Officially Confirmed',
@@ -641,6 +729,7 @@ export const posts: Post[] = [
     tags: ['#Internship', '#VirtualInternship', '#ESG', '#AI'],
     platform: 'LinkedIn',
     date: '2025',
+    url: POST_URL,
   },
 ]
 
