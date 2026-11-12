@@ -13,6 +13,7 @@ GitHub profile (`github.com/chavansrikar`) and LinkedIn profile
 | Feature | Detail |
 |---|---|
 | **ASCII art engine** | Custom 5×6 block font renders the name, headings and decorative panels as real characters. |
+| **ASCII skill tiles** | Every technology has its own hand-drawn ASCII illustration. Hovering scrambles the glyphs, draws a progress arc and sprays characters outward — driven by `anime.js`. |
 | **ASCII photo portrait** | The profile photo is sampled into a character grid on a `<canvas>`. Hovering the portrait desaturates the photo and sweeps a live ASCII rendering over it, with a scan bar and a character trail following the cursor. |
 | **ASCII hover panels** | Decorative panels glitch-scramble their glyphs on hover, driven by `anime.js`. |
 | **Anime.js** | Every counter, reveal, cross-fade and hover tween runs through `anime.js` v4. |
@@ -109,8 +110,9 @@ Every push to `main` triggers a fresh deploy — the live URL stays
 ```
 portfolio/
 ├── public/
-│   ├── avatar.jpg          # profile photo (square, colour-graded)
-│   ├── profile-full.jpg    # portrait crop
+│   ├── avatar.jpg          # square crop (social / fallback)
+│   ├── profile-full.jpg    # main portrait (3:4)
+│   ├── portrait-alt.jpg    # outdoor shot used in the About section
 │   ├── og-image.jpg        # social share card
 │   ├── 404.html            # GitHub Pages fallback
 │   └── favicon.svg

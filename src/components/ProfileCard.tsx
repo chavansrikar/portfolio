@@ -34,7 +34,7 @@ export function ProfileCard() {
   }, [])
 
   return (
-    <div className="relative mx-auto w-full max-w-[19rem] lg:max-w-none">
+    <div className="relative mx-auto w-full max-w-[18rem] sm:max-w-[19rem] lg:max-w-[21rem]">
       {/* Glow halo */}
       <div className="pointer-events-none absolute -inset-8 rounded-full bg-gradient-to-br from-amber-500/25 via-coral-500/15 to-violet-600/20 blur-3xl" />
 

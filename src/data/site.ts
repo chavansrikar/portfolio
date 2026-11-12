@@ -72,9 +72,7 @@ export type Skill = {
   name: string
   level: number
   category: 'AI / ML' | 'Computer Vision' | 'Languages' | 'Frontend' | 'Backend & Data' | 'DevOps'
-  ascii: string
 }
-
 export const skillCategories = [
   'AI / ML',
   'Computer Vision',
@@ -84,48 +82,90 @@ export const skillCategories = [
   'DevOps',
 ] as const
 
+/**
+ * Compact ASCII illustrations for every technology.
+ * These render inside the skill tiles and glitch on hover.
+ */
+export const skillArt: Record<string, string[]> = {
+  Python: ['╔═╗', '║ ║', '╚═╝'],
+  'TensorFlow / Keras': ['●──●', '│╲ │', '●─●─●'],
+  PyTorch: [' ▄█ ', ' ███ ', '█▀█▀█', ' ▀▀▀ '],
+  'scikit-learn': ['╭───╮', '│◉◉◉│', '╰───╯'],
+  'LSTM / Time-Series': ['╭─╮ ╭─', '│ │ │ ╰', '╰─╯ ╰─'],
+  'Isolation Forest': ['  ╱╲  ', ' ╱▓▓╲ ', '╱▓▓▓▓╲'],
+  'Pandas / NumPy': ['┌─┬─┐', '├─┼─┤', '└─┴─┘'],
+  'LLM Tool Orchestration': ['╭────╮', '│••••│', '╰──┬─╯'],
+  OpenCV: [' ╭──╮ ', '╱ ◉◉ ╲', ' ╰──╯ '],
+  'MediaPipe Pose': ['  ●  ', ' ╱│╲ ', '● ● ●', '  │  '],
+  YOLOv8: ['┌─────┐', '│  ●  │', '└─────┘'],
+  'Image Processing': ['▲   ▲', '▲▲ ▲ ▲', '───────'],
+  'ffmpeg / Video IO': ['┌─┬─┬─┐', '│ │ │ │', '└─┴─┴─┘'],
+  JavaScript: ['╔═╗', '║J║', '╚═╝'],
+  Java: ['( (', ' ) )', '‿‿'],
+  TypeScript: ['╔═╗', '║T║', '╚═╝'],
+  SQL: ['╭──╮', '│▓▓│', '╰──╯'],
+  'C / C++': ['$_', ' |', '‾'],
+  'React / Next.js': [' ╭╮ ', '─╯╰─', ' ╰╯ '],
+  'Tailwind CSS': ['≈≈≈≈', '~~~~'],
+  Gradio: ['●─●─●', ' │ ║ │', ' ●─●─●'],
+  Streamlit: ['▁▂▃▅▇', '▁▂▃▅▇'],
+  'HTML / CSS': ['</', ' >', '   '],
+  'Framer Motion': ['→ →', '  →', '→ →'],
+  'Node.js / Express': ['╱╲', '╱ ╲', '╲ ╱'],
+  SQLite: ['═══', '▓▓▓', '═══'],
+  SQLAlchemy: ['╔═╗', '║║║', '╚═╝'],
+  Pydantic: ['╱▔▔╲', '╲__╱'],
+  'Plotly / Matplotlib': ['•  •', '   ••'],
+  'REST APIs': ['→  →', '←  ←'],
+  'Git / GitHub': ['╭─╮', '│ ╰╮', '╰─╯'],
+  Docker: ['▄▄▄▄▄', '▟█████', '▔▔▔▔▔'],
+  'Hugging Face Spaces': [' ◕‿◕ ', ' ‾‿‾ '],
+  'Vercel / Render': [' ▲ ', '▲▲▲'],
+  'Linux / Bash': ['$_', ' ║ '],
+}
+
 export const skills: Skill[] = [
   // AI / ML
-  { name: 'Python', level: 92, category: 'AI / ML', ascii: '>>>' },
-  { name: 'TensorFlow / Keras', level: 88, category: 'AI / ML', ascii: 'TF' },
-  { name: 'PyTorch', level: 78, category: 'AI / ML', ascii: 'PT' },
-  { name: 'scikit-learn', level: 85, category: 'AI / ML', ascii: 'SKL' },
-  { name: 'LSTM / Time-Series', level: 82, category: 'AI / ML', ascii: 'LSTM' },
-  { name: 'Isolation Forest', level: 84, category: 'AI / ML', ascii: 'IF' },
-  { name: 'Pandas / NumPy', level: 90, category: 'AI / ML', ascii: 'PD' },
-  { name: 'LLM Tool Orchestration', level: 80, category: 'AI / ML', ascii: 'LLM' },
+  { name: 'Python', level: 92, category: 'AI / ML' },
+  { name: 'TensorFlow / Keras', level: 88, category: 'AI / ML' },
+  { name: 'PyTorch', level: 78, category: 'AI / ML' },
+  { name: 'scikit-learn', level: 85, category: 'AI / ML' },
+  { name: 'LSTM / Time-Series', level: 82, category: 'AI / ML' },
+  { name: 'Isolation Forest', level: 84, category: 'AI / ML' },
+  { name: 'Pandas / NumPy', level: 90, category: 'AI / ML' },
+  { name: 'LLM Tool Orchestration', level: 80, category: 'AI / ML' },
   // CV
-  { name: 'OpenCV', level: 87, category: 'Computer Vision', ascii: 'CV' },
-  { name: 'MediaPipe Pose', level: 89, category: 'Computer Vision', ascii: 'MP' },
-  { name: 'YOLOv8', level: 84, category: 'Computer Vision', ascii: 'YOLO' },
-  { name: 'Image Processing', level: 83, category: 'Computer Vision', ascii: 'IMG' },
-  { name: 'ffmpeg / Video IO', level: 76, category: 'Computer Vision', ascii: 'FF' },
+  { name: 'OpenCV', level: 87, category: 'Computer Vision' },
+  { name: 'MediaPipe Pose', level: 89, category: 'Computer Vision' },
+  { name: 'YOLOv8', level: 84, category: 'Computer Vision' },
+  { name: 'Image Processing', level: 83, category: 'Computer Vision' },
+  { name: 'ffmpeg / Video IO', level: 76, category: 'Computer Vision' },
   // Languages
-  { name: 'JavaScript', level: 82, category: 'Languages', ascii: 'JS' },
-  { name: 'Java', level: 80, category: 'Languages', ascii: 'JV' },
-  { name: 'TypeScript', level: 76, category: 'Languages', ascii: 'TS' },
-  { name: 'SQL', level: 79, category: 'Languages', ascii: 'SQL' },
-  { name: 'C / C++', level: 68, category: 'Languages', ascii: 'C' },
+  { name: 'JavaScript', level: 82, category: 'Languages' },
+  { name: 'Java', level: 80, category: 'Languages' },
+  { name: 'TypeScript', level: 76, category: 'Languages' },
+  { name: 'SQL', level: 79, category: 'Languages' },
+  { name: 'C / C++', level: 68, category: 'Languages' },
   // Frontend
-  { name: 'React / Next.js', level: 80, category: 'Frontend', ascii: 'RX' },
-  { name: 'Tailwind CSS', level: 84, category: 'Frontend', ascii: 'TW' },
-  { name: 'Gradio', level: 92, category: 'Frontend', ascii: 'GR' },
-  { name: 'Streamlit', level: 88, category: 'Frontend', ascii: 'ST' },
-  { name: 'HTML / CSS', level: 85, category: 'Frontend', ascii: 'HTML' },
-  { name: 'Framer Motion', level: 72, category: 'Frontend', ascii: 'FM' },
+  { name: 'React / Next.js', level: 80, category: 'Frontend' },
+  { name: 'Tailwind CSS', level: 84, category: 'Frontend' },
+  { name: 'Gradio', level: 92, category: 'Frontend' },
+  { name: 'Streamlit', level: 88, category: 'Frontend' },
+  { name: 'HTML / CSS', level: 85, category: 'Frontend' },
+  { name: 'Framer Motion', level: 72, category: 'Frontend' },
   // Backend & Data
-  { name: 'Node.js / Express', level: 83, category: 'Backend & Data', ascii: 'ND' },
-  { name: 'SQLite', level: 88, category: 'Backend & Data', ascii: 'SQLITE' },
-  { name: 'SQLAlchemy', level: 78, category: 'Backend & Data', ascii: 'SA' },
-  { name: 'Pydantic', level: 80, category: 'Backend & Data', ascii: 'PD' },
-  { name: 'Plotly / Matplotlib', level: 86, category: 'Backend & Data', ascii: 'PLOT' },
-  { name: 'REST APIs', level: 82, category: 'Backend & Data', ascii: 'API' },
+  { name: 'Node.js / Express', level: 83, category: 'Backend & Data' },
+  { name: 'SQLite', level: 88, category: 'Backend & Data' },
+  { name: 'SQLAlchemy', level: 78, category: 'Backend & Data' },
+  { name: 'Pydantic', level: 80, category: 'Backend & Data' },
+  { name: 'Plotly / Matplotlib', level: 86, category: 'Backend & Data' },
+  { name: 'REST APIs', level: 82, category: 'Backend & Data' },
   // DevOps
-  { name: 'Git / GitHub', level: 90, category: 'DevOps', ascii: 'GIT' },
-  { name: 'Docker', level: 70, category: 'DevOps', ascii: 'DOCK' },
-  { name: 'Hugging Face Spaces', level: 85, category: 'DevOps', ascii: 'HF' },
-  { name: 'Vercel / Render', level: 75, category: 'DevOps', ascii: 'VER' },
-  { name: 'Linux / Bash', level: 72, category: 'DevOps', ascii: 'UX' },
+  { name: 'Git / GitHub', level: 90, category: 'DevOps' },
+  { name: 'Docker', level: 70, category: 'DevOps' },
+  { name: 'Hugging Face Spaces', level: 85, category: 'DevOps' },
+  { name: 'Vercel / Render', level: 75, category: 'DevOps' },
+  { name: 'Linux / Bash', level: 72, category: 'DevOps' },
 ]
 
 export type Project = {

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { focusAreas, profile } from '@/data/site'
+import { asset } from '@/lib/assets'
 import { Section } from './ui/Section'
 import { Reveal, RevealGroup, RevealItem } from './ui/Reveal'
 import { Counter } from './ui/Counter'
@@ -89,8 +90,8 @@ export function About() {
                 return (
                   <RevealItem key={area.title}>
                     <div className="group glass card-hover shine h-full rounded-xl p-4">
-                      <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-400/20 to-violet-500/20 ring-1 ring-white/10 transition-transform duration-500 group-hover:scale-110">
-                        <Icon className="h-4.5 w-4.5 text-cyan-300" />
+                      <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-amber-400/20 to-coral-500/20 ring-1 ring-white/10 transition-transform duration-500 group-hover:scale-110">
+                        <Icon className="h-4.5 w-4.5 text-amber-300" />
                       </div>
                       <h3 className="mb-1.5 font-display text-sm font-semibold tracking-tight text-chalk">
                         {area.title}
@@ -103,6 +104,22 @@ export function About() {
                 )
               })}
             </RevealGroup>
+
+            {/* Outdoor shot */}
+            <Reveal delay={0.18}>
+              <figure className="group relative mt-4 overflow-hidden rounded-2xl border border-white/8">
+                <img
+                  src={asset('/portrait-alt.jpg')}
+                  alt={`${profile.name} outdoors in Bhongir`}
+                  loading="lazy"
+                  className="h-56 w-full object-cover object-top transition-transform duration-[1200ms] ease-out group-hover:scale-105 sm:h-64"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent" />
+                <figcaption className="absolute bottom-3 left-4 font-mono text-[10px] uppercase tracking-[0.18em] text-mist/80">
+                  Bhongir, Telangana
+                </figcaption>
+              </figure>
+            </Reveal>
           </div>
         </Reveal>
 

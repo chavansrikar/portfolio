@@ -232,7 +232,7 @@ export function AsciiPortrait({ src, alt, className = '', cols = 56 }: Props) {
       onPointerLeave={() => setHovered(false)}
       onPointerMove={handleMove}
       className={`group relative overflow-hidden ${className}`}
-      data-cursor="ASCII"
+      data-cursor="none"
     >
       <motion.img
         ref={imgRef}

@@ -1,48 +1,9 @@
 import { useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { skillCategories, skills } from '@/data/site'
+import { skillArt, skillCategories, skills } from '@/data/site'
 import { Section } from './ui/Section'
 import { Reveal } from './ui/Reveal'
 import { SkillTile } from './ui/SkillTile'
-
-/** Compact ASCII marks for each technology. */
-const GLYPHS: Record<string, string> = {
-  Python: '>>>',
-  'TensorFlow / Keras': 'TF',
-  PyTorch: 'PT',
-  'scikit-learn': 'SKL',
-  'LSTM / Time-Series': 'LSTM',
-  'Isolation Forest': 'IF',
-  'Pandas / NumPy': 'PD',
-  'LLM Tool Orchestration': 'LLM',
-  OpenCV: 'CV',
-  'MediaPipe Pose': 'MP',
-  YOLOv8: 'YOLO',
-  'Image Processing': 'IMG',
-  'ffmpeg / Video IO': 'FF',
-  JavaScript: 'JS',
-  Java: 'JV',
-  TypeScript: 'TS',
-  SQL: 'SQL',
-  'C / C++': 'C',
-  'React / Next.js': 'RX',
-  'Tailwind CSS': 'TW',
-  Gradio: 'GR',
-  Streamlit: 'ST',
-  'HTML / CSS': 'HTML',
-  'Framer Motion': 'FM',
-  'Node.js / Express': 'ND',
-  SQLite: 'SQLITE',
-  SQLAlchemy: 'SA',
-  Pydantic: 'PD',
-  'Plotly / Matplotlib': 'PLOT',
-  'REST APIs': 'API',
-  'Git / GitHub': 'GIT',
-  Docker: 'DOCK',
-  'Hugging Face Spaces': 'HF',
-  'Vercel / Render': 'VER',
-  'Linux / Bash': 'UX',
-}
 
 export function Skills() {
   const [cat, setCat] = useState<string>('All')
@@ -105,7 +66,7 @@ export function Skills() {
           {filtered.map((s, i) => (
             <SkillTile
               key={s.name}
-              glyph={GLYPHS[s.name] ?? s.ascii}
+              art={skillArt[s.name] ?? ['•']}
               label={s.name}
               percent={s.level}
               category={s.category}
