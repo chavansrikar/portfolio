@@ -14,14 +14,16 @@ GitHub profile (`github.com/chavansrikar`) and LinkedIn profile
 |---|---|
 | **ASCII art engine** | Custom 5×6 block font renders the name, headings and decorative panels as real characters. |
 | **ASCII skill tiles** | Every technology has its own hand-drawn ASCII illustration. Hovering scrambles the glyphs, draws a progress arc and sprays characters outward — driven by `anime.js`. |
-| **ASCII photo portrait** | The profile photo is sampled into a character grid on a `<canvas>`. Hovering the portrait desaturates the photo and sweeps a live ASCII rendering over it, with a scan bar and a character trail following the cursor. |
+| **ASCII photo portrait** | The profile photo is sampled into a character grid on a `<canvas>`. Hovering (or tapping) the portrait desaturates the photo and sweeps a live ASCII rendering over it, with a scan bar and a character trail following the cursor. |
 | **ASCII hover panels** | Decorative panels glitch-scramble their glyphs on hover, driven by `anime.js`. |
+| **ASCII posts feed** | Every LinkedIn post has its own hand-drawn ASCII illustration that scrambles and re-settles when you switch to it. |
 | **Anime.js** | Every counter, reveal, cross-fade and hover tween runs through `anime.js` v4. |
 | **Framer Motion** | Scroll-linked reveals, layout animations, spring physics and 3D tilt. |
 | **Lenis** | Smooth inertial scrolling. |
 | **Canvas backgrounds** | A drifting particle constellation with mouse repulsion, plus a scrolling ASCII rain. |
 | **Live GitHub feed** | The open-source section fetches the GitHub REST API at runtime and falls back to a bundled snapshot when offline. |
-| **Theme** | Molten palette — amber → coral → violet, with lime signal accents. |
+| **Theme** | ASCII Motion palette — pure black canvas, purple glyphs with a teal extrusion shadow, dot-matrix grid. |
+| **Mobile-first** | Every hover effect also works on touch via tap. 44 px tap targets, 16 px inputs (no iOS zoom), safe-area insets, landscape handling, lighter canvases on phones. |
 | **Accessibility** | Semantic landmarks, focus-visible rings, `prefers-reduced-motion` support, ARIA labels and a keyboard-friendly mobile drawer. |
 
 ---
