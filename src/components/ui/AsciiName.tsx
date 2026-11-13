@@ -58,9 +58,9 @@ export function AsciiName({
         {lines.map((line, i) => (
           <div
             key={i}
-            className="ascii-line whitespace-pre"
+            className="ascii-line whitespace-pre will-change-transform"
             style={{
-              animation: `asciiLineIn 0.6s cubic-bezier(0.22,1,0.36,1) ${i * stagger}s both`,
+              animation: `asciiLineIn 0.6s cubic-bezier(0.22,1,0.36,1) ${i * stagger}s both, ascii-wave ${3.2 + (i % 3) * 0.4}s ease-in-out ${0.9 + i * 0.18}s infinite`,
             }}
           >
             {line}

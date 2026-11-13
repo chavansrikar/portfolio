@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react'
+import { motion } from 'framer-motion'
 import { Reveal } from './Reveal'
+import { ScrambleText } from './ScrambleText'
 
 type Props = {
   id: string
@@ -27,24 +29,34 @@ export function Section({
         <Reveal>
           <div className="mb-14 flex flex-col gap-5 sm:mb-20">
             <div className="flex items-center gap-4">
-              <span className="font-mono text-xs tracking-[0.3em] text-cyan-400/80">
+              <span className="font-mono text-xs tracking-[0.3em] text-purple-400/80">
                 {index}
               </span>
-              <span className="h-px w-10 bg-gradient-to-r from-cyan-400/60 to-transparent" />
+              <span className="h-px w-10 bg-gradient-to-r from-purple-400/60 to-transparent" />
               <span className="font-mono text-xs uppercase tracking-[0.3em] text-mist">
-                {eyebrow}
+                <ScrambleText text={eyebrow} duration={620} />
               </span>
             </div>
 
-            <h2 className="max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-              {title}
-            </h2>
+            {/* Masked heading reveal */}
+            <div className="overflow-hidden">
+              <motion.h2
+                className="max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
+                initial={{ y: '0.28em', opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {title}
+              </motion.h2>
+            </div>
 
             {description && (
               <p className="max-w-2xl text-base leading-relaxed text-mist sm:text-lg">
                 {description}
               </p>
-            )}          </div>
+            )}
+          </div>
         </Reveal>
         {children}
       </div>

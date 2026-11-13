@@ -683,14 +683,6 @@ export const postArt: Record<string, string[]> = {
     ' ░░░░░░░░░░',
     '    ╱    ╲',
   ],
-  'ESG Internship — Officially Confirmed': [
-    '   ╭────────╮',
-    '   │  ✓✓✓   │',
-    '   │ ▓▓▓▓▓▓ │',
-    '   │ ░░░░░░░ │',
-    '   ╰────────╯',
-    '    verified',
-  ],
 }
 
 /** Small single-character mark per post, shown in the feed list. */
@@ -700,7 +692,6 @@ export const postGlyph: Record<string, string> = {
   'Infosys Springboard — Deep Learning': '*',
   'Infosys Foundation SkillUp — Centum Foundation': '^',
   'Turning Ideas Into Impactful Startup Plans': '>',
-  'ESG Internship — Officially Confirmed': '+',
 }
 
 export const posts: Post[] = [
@@ -747,15 +738,6 @@ export const posts: Post[] = [
     tags: ['#PassionateCoder', '#Startup', '#AIML'],
     platform: 'LinkedIn',
     date: '2026',
-    url: POST_URL,
-  },
-  {
-    title: 'ESG Internship — Officially Confirmed',
-    excerpt:
-      'Officially confirmed on the virtual internship track — learning by shipping, one commit at a time.',
-    tags: ['#Internship', '#VirtualInternship', '#ESG', '#AI'],
-    platform: 'LinkedIn',
-    date: '2025',
     url: POST_URL,
   },
 ]

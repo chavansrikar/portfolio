@@ -4,7 +4,7 @@ import { profile, roles } from '@/data/site'
 import { asciiArt } from '@/lib/ascii'
 import { AsciiName } from './ui/AsciiName'
 import { AsciiHoverPanel } from './AsciiHoverPanel'
-import { AsciiRain } from './AsciiRain'
+import { AsciiGridField } from './AsciiGridField'
 import { ParticleField } from './ParticleField'
 import { ProfileCard } from './ProfileCard'
 import { Button } from './ui/Button'
@@ -73,19 +73,18 @@ export function Hero() {
       {/* Background layers */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-void" />
-        <div className="absolute inset-0 grid-bg opacity-70 [mask-image:radial-gradient(ellipse_at_center,#000_10%,transparent_72%)]" />
+        <AsciiGridField />
         <motion.div
           style={{ y: artY }}
           className="absolute -left-32 top-[-10%] h-[34rem] w-[34rem] rounded-full bg-purple-600/20 blur-[130px]"
         />
         <motion.div
           style={{ y: artY }}
-          className="absolute -right-24 top-[18%] h-[30rem] w-[30rem] rounded-full bg-teal-500/14 blur-[130px]"
+          className="absolute -right-24 top-[18%] h-[30rem] w-[30rem] rounded-full bg-teal-500/12 blur-[130px]"
         />
         <div className="absolute bottom-[-12%] left-1/3 h-[26rem] w-[26rem] rounded-full bg-violet-600/16 blur-[130px]" />
         <ParticleField />
-        <AsciiRain />
-        <div className="absolute inset-0 noise opacity-[0.14] mix-blend-overlay" />
+        <div className="absolute inset-0 noise opacity-[0.12] mix-blend-overlay" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-void" />
       </div>
 
@@ -115,7 +114,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.9 }}
-            className="ascii ascii-3d mb-6 w-full text-purple-400"
+            className="ascii ascii-3d ascii-glitch mb-6 w-full text-purple-400"
           >
             <AsciiName text={profile.name} max={13} min={2.4} />
           </motion.div>

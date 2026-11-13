@@ -331,16 +331,80 @@
  */
 @utility ascii-3d {
   text-shadow:
-    1px 1px 0 rgb(45 212 191 / 0.55),
-    2px 2px 0 rgb(45 212 191 / 0.38),
-    3px 3px 0 rgb(45 212 191 / 0.24),
-    4px 4px 0 rgb(45 212 191 / 0.12);
+    1px 1px 0 #2dd4bf,
+    2px 2px 0 #2dd4bf,
+    3px 3px 0 rgb(45 212 191 / 0.5),
+    4px 4px 0 rgb(45 212 191 / 0.24);
 }
 
 @utility ascii-3d-sm {
   text-shadow:
-    1px 1px 0 rgb(45 212 191 / 0.5),
-    2px 2px 0 rgb(45 212 191 / 0.25);
+    1px 1px 0 #2dd4bf,
+    2px 2px 0 rgb(45 212 191 / 0.3);
+}
+
+/**
+ * Occasional RGB split — the signature ASCII Motion glitch.
+ * Pure CSS, so it costs nothing on the main thread.
+ */
+@utility ascii-glitch {
+  animation: ascii-glitch 5.5s steps(1, end) infinite;
+}
+
+@keyframes ascii-glitch {
+  0%,
+  86%,
+  100% {
+    text-shadow:
+      1px 1px 0 #2dd4bf,
+      2px 2px 0 #2dd4bf,
+      3px 3px 0 rgb(45 212 191 / 0.5),
+      4px 4px 0 rgb(45 212 191 / 0.24);
+  }
+  88% {
+    text-shadow:
+      -2px 0 #f472b6,
+      2px 0 #2dd4bf,
+      2px 2px 0 #2dd4bf;
+  }
+  91% {
+    text-shadow:
+      3px 0 #22d3ee,
+      -3px 0 #f472b6,
+      2px 2px 0 #2dd4bf;
+  }
+  94% {
+    text-shadow:
+      -1px 0 #f472b6,
+      1px 0 #22d3ee,
+      1px 1px 0 #2dd4bf,
+      2px 2px 0 #2dd4bf;
+  }
+  97% {
+    text-shadow:
+      1px 1px 0 #2dd4bf,
+      2px 2px 0 #2dd4bf,
+      3px 3px 0 rgb(45 212 191 / 0.5),
+      4px 4px 0 rgb(45 212 191 / 0.24);
+  }
+}
+
+/**
+ * A gentle per-line vertical wave. Each line is its own element with a
+ * staggered delay, so the whole thing runs on the compositor.
+ */
+@keyframes ascii-wave {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.22em);
+  }
+}
+
+@utility ascii-wave {
+  animation: ascii-wave 3.2s ease-in-out infinite;
 }
 
 @utility noise {

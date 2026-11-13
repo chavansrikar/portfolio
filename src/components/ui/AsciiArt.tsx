@@ -95,7 +95,17 @@ export function AsciiArt({
       className={`ascii whitespace-pre leading-[1.1] ${className}`}
       style={{ fontSize: `${fontSize}px` }}
     >
-      {display.join('\n')}
+      {display.map((line, i) => (
+        <span
+          key={i}
+          className="block will-change-transform"
+          style={{
+            animation: `ascii-wave ${2.8 + (i % 3) * 0.35}s ease-in-out ${i * 0.14}s infinite`,
+          }}
+        >
+          {line}
+        </span>
+      ))}
     </pre>
   )
 }
