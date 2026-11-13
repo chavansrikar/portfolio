@@ -529,10 +529,9 @@ export const timeline: TimelineEntry[] = [
     org: 'Government of Telangana · Dept. of Youth Services',
     location: 'Vidyas Nagar, Hyderabad',
     points: [
-      'Participation certificate for the Viksit Bharat Challenge — State Championship, 19–20 December 2025.',
+      'Participation certificate for the Viksit Bharat Challenge — Telangana, 19–20 December 2025.',
       'Entered as an individual participant representing Yadadri Bhuvanagiri, with the theme #AatmanirbharBharat — how AI and ML can solve real-world challenges.',
-      'Pitched the idea to a panel and reached the final interview round — 8 of 13 participants in the theme advanced.',
-      'Awaiting the national selection round in New Delhi.',
+      'Presented the pitch to a panel at the state-level championship in Hyderabad.',
     ],
     type: 'achievement',
   },
@@ -567,7 +566,7 @@ export type Achievement = {
 
 export const achievements: Achievement[] = [
   {
-    title: 'VBYLD 2026 — State Championship',
+    title: 'VBYLD 2026 — Participation Certificate',
     detail: 'Viksit Bharat Young Leaders Dialogue · Solo participant',
     emoji: '🏆',
     href: 'https://lnkd.in/p/d5VwF7Dm',
@@ -708,7 +707,7 @@ export const posts: Post[] = [
   {
     title: 'From State-Level to National Aspirations — My VBYLD 2026 Journey',
     excerpt:
-      'Representing Yadadri Bhuvanagiri at the Viksit Bharat Young Leaders Dialogue 2026 state championship in Hyderabad, as an individual participant. I pitched #AatmanirbharBharat — how AI and ML can solve real-world challenges — and reached the final interview round, with 8 of 13 participants in my theme advancing. Now awaiting the national selection in New Delhi.',
+      'Representing Yadadri Bhuvanagiri at the Viksit Bharat Young Leaders Dialogue 2026 state championship in Hyderabad, as an individual participant. I pitched #AatmanirbharBharat — how AI and ML can solve real-world challenges — and am now awaiting the results for the national selection in New Delhi.',
     tags: [
       '#VBYLD2026',
       '#AatmanirbharBharat',
@@ -718,7 +717,7 @@ export const posts: Post[] = [
       '#AIML',
     ],
     platform: 'LinkedIn',
-    date: '2025',
+    date: 'Dec 2025',
     url: POST_LINKS['From State-Level to National Aspirations — My VBYLD 2026 Journey'],
   },
   {

@@ -90,6 +90,7 @@ export function AnsiNoise({
     let raf = 0
     let last = 0
     let bandY = 0
+    const visible = { current: true }
 
     const base = document.createElement('canvas')
     const bctx = base.getContext('2d')
@@ -196,6 +197,8 @@ export function AnsiNoise({
 
     const draw = (time: number) => {
       raf = requestAnimationFrame(draw)
+      // Only animate while the panel is on screen.
+      if (!visible.current) return
       if (time - last < 40) return
       last = time
       const t = time / 1000 / speed
@@ -259,10 +262,21 @@ export function AnsiNoise({
 
     start()
     raf = requestAnimationFrame(draw)
+
+    // Pause the loop when the panel scrolls out of view.
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        visible.current = entry.isIntersecting
+      },
+      { threshold: 0.02 }
+    )
+    io.observe(canvas)
+
     window.addEventListener('resize', onResize)
 
     return () => {
       cancelAnimationFrame(raf)
+      io.disconnect()
       window.removeEventListener('resize', onResize)
     }
   }, [src, cols, speed, reduced])

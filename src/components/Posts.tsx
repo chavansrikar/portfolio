@@ -221,7 +221,7 @@ export function Posts() {
                     rel="noreferrer noopener"
                     variant="ghost"
                     className="!px-5 !py-2.5 !text-[12.5px]"
-                    data-cursor="OPEN"
+                    dataCursor="OPEN"
                   >
                     <LinkedinIcon className="h-4 w-4" />
                     Read on LinkedIn

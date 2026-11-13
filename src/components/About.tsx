@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { focusAreas, myBharat, profile } from '@/data/site'
+import { focusAreas, profile } from '@/data/site'
 import { asset } from '@/lib/assets'
 import { AnsiPhoto } from './AnsiPhoto'
 import { Section } from './ui/Section'
@@ -7,7 +7,6 @@ import { Reveal, RevealGroup, RevealItem } from './ui/Reveal'
 import { Counter } from './ui/Counter'
 import { TiltCard } from './ui/TiltCard'
 import {
-  ArrowUpRightIcon,
   BrainIcon,
   CameraIcon,
   LayersIcon,
@@ -237,10 +236,10 @@ export function About() {
                   <span className="h-px flex-1 bg-gradient-to-r from-amber-400/50 to-transparent" />
                 </div>
                 <h3 className="font-display text-sm font-bold leading-tight tracking-tight text-chalk">
-                  State Championship — Solo Participant
+                  Participation Certificate
                 </h3>
                 <p className="mt-1 font-mono text-[10px] text-mist/80">
-                  Govt. of Telangana · Dept. of Youth Services
+                  VBYLD 2026 · Govt. of Telangana, Youth Services
                 </p>
                 <span className="ascii mt-2 inline-block rounded border border-white/10 bg-void/80 px-1.5 py-0.5 text-[8px] text-mist/70 opacity-0 transition-opacity duration-400 group-hover:opacity-100">
                   hover → venue photo
@@ -285,62 +284,55 @@ export function About() {
           </div>
         </RevealItem>
 
-        {/* VBYLD 2026 — state level, solo */}
+        {/* VBYLD 2026 — event photo */}
         <RevealItem className="lg:col-span-4">
-          <div className="glass relative flex h-full flex-col overflow-hidden rounded-2xl p-6">
-            <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-amber-500/12 blur-3xl" />
+          <a
+            href="https://lnkd.in/p/d5VwF7Dm"
+            target="_blank"
+            rel="noreferrer noopener"
+            data-cursor="OPEN"
+            className="group relative block h-full overflow-hidden rounded-2xl border border-white/10 bg-black"
+          >
+            <div className="relative aspect-[4/5] w-full overflow-hidden">
+              <img
+                src={asset('/my-bharat-event.jpg')}
+                alt="VBYLD 2026 Viksit Bharat Youth Leaders Dialogue — state championship venue"
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-void via-void/30 to-transparent" />
 
-            <div className="relative mb-4">
-              <span className="font-mono text-[9px] uppercase tracking-[0.24em] text-amber-300/90">
-                {myBharat.programme}
-              </span>
-              <h3 className="mt-1.5 font-display text-lg font-bold tracking-tight text-chalk">
-                {myBharat.theme}
-              </h3>
-              <p className="mt-0.5 font-mono text-[10px] text-mist/70">
-                State Level Championship · Hyderabad
-              </p>
-            </div>
-
-            <div className="relative space-y-2.5">
-              {[
-                { k: 'Theme', v: '#AatmanirbharBharat' },
-                { k: 'Entry', v: 'Individual — solo participant' },
-                { k: 'District', v: myBharat.district },
-                { k: 'Organiser', v: myBharat.organiser },
-                { k: 'Status', v: 'Awaiting national selection' },
-              ].map((row) => (
+              {/* Scanline */}
+              <div className="pointer-events-none absolute inset-0 opacity-40 mix-blend-overlay">
                 <div
-                  key={row.k}
-                  className="flex items-baseline justify-between gap-3 border-b border-white/6 pb-2"
-                >
-                  <span className="shrink-0 font-mono text-[9px] uppercase tracking-[0.18em] text-mist/55">
-                    {row.k}
+                  className="h-full w-full"
+                  style={{
+                    background:
+                      'repeating-linear-gradient(0deg, rgba(0,0,0,0.35) 0px, rgba(0,0,0,0.35) 1px, transparent 1px, transparent 3px)',
+                  }}
+                />
+              </div>
+
+              <div className="absolute inset-x-0 bottom-0 p-4">
+                <div className="mb-1.5 flex items-center gap-2">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-amber-300">
+                    VBYLD 2026
                   </span>
-                  <span className="text-right text-[12px] text-chalk/90">
-                    {row.v}
-                  </span>
+                  <span className="h-px flex-1 bg-gradient-to-r from-amber-400/50 to-transparent" />
                 </div>
-              ))}
+                <h3 className="font-display text-sm font-bold leading-tight tracking-tight text-chalk">
+                  Viksit Bharat Youth Leaders Dialogue
+                </h3>
+                <p className="mt-1 font-mono text-[10px] text-mist/80">
+                  Vidyas Nagar · Hyderabad · Telangana
+                </p>
+              </div>
             </div>
 
-            <div className="relative mt-4 rounded-xl border border-amber-400/20 bg-amber-400/[0.05] px-3.5 py-3">
-              <p className="font-mono text-[10px] leading-relaxed text-amber-100/85">
-                Pitched how AI &amp; ML can solve real-world challenges — 8 of 13
-                participants in the theme advanced to the final interview round.
-              </p>
-            </div>
-
-            <a
-              href="https://lnkd.in/p/d5VwF7Dm"
-              target="_blank"
-              rel="noreferrer noopener"
-              className="relative mt-5 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-amber-300 transition-colors hover:text-amber-200"
-            >
-              Read the VBYLD 2026 journey
-              <ArrowUpRightIcon className="h-3.5 w-3.5" />
-            </a>
-          </div>
+            <span className="ascii pointer-events-none absolute left-3 top-3 text-[10px] text-amber-300/70">
+              ╔══╗
+            </span>
+          </a>
         </RevealItem>
       </RevealGroup>
 
