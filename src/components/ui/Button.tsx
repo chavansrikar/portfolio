@@ -12,6 +12,8 @@ type Props = {
   rel?: string
   type?: 'button' | 'submit'
   ariaLabel?: string
+  /** Text shown in the custom-cursor pill on hover. */
+  dataCursor?: string
 }
 
 const base =
@@ -36,6 +38,7 @@ export function Button({
   rel,
   type = 'button',
   ariaLabel,
+  dataCursor,
 }: Props) {
   const cls = `${base} ${variants[variant]} ${className}`
 
@@ -58,6 +61,7 @@ export function Button({
         aria-label={ariaLabel}
         className={cls}
         onClick={onClick}
+        data-cursor={dataCursor}
       >
         {inner}
       </a>
@@ -65,7 +69,13 @@ export function Button({
   }
 
   return (
-    <button type={type} onClick={onClick} aria-label={ariaLabel} className={cls}>
+    <button
+      type={type}
+      onClick={onClick}
+      aria-label={ariaLabel}
+      className={cls}
+      data-cursor={dataCursor}
+    >
       {inner}
     </button>
   )

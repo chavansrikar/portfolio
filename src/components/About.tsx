@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { focusAreas, myBharat, profile } from '@/data/site'
 import { asset } from '@/lib/assets'
-import { AnsiNoise } from './AnsiNoise'
+import { AnsiPhoto } from './AnsiPhoto'
 import { Section } from './ui/Section'
 import { Reveal, RevealGroup, RevealItem } from './ui/Reveal'
 import { Counter } from './ui/Counter'
@@ -202,11 +202,19 @@ export function About() {
             className="group relative block h-full overflow-hidden rounded-2xl border border-white/10 bg-black"
           >
             <div className="relative aspect-[4/5] w-full overflow-hidden">
+              {/* Certificate (default) */}
               <img
                 src={asset('/my-bharat-post.jpg')}
                 alt="Viksit Bharat Young Leaders Dialogue 2026 — state championship participation certificate"
                 loading="lazy"
-                className="h-full w-full object-cover object-center transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+                className="absolute inset-0 h-full w-full object-cover object-center transition-all duration-700 group-hover:scale-[1.04] group-hover:opacity-0"
+              />
+              {/* The event — revealed on hover */}
+              <img
+                src={asset('/my-bharat-event.jpg')}
+                alt="VBYLD 2026 state championship venue with fellow participants"
+                loading="lazy"
+                className="absolute inset-0 h-full w-full scale-105 object-cover object-center opacity-0 transition-all duration-700 group-hover:scale-100 group-hover:opacity-100"
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-void via-void/25 to-transparent" />
 
@@ -234,6 +242,9 @@ export function About() {
                 <p className="mt-1 font-mono text-[10px] text-mist/80">
                   Govt. of Telangana · Dept. of Youth Services
                 </p>
+                <span className="ascii mt-2 inline-block rounded border border-white/10 bg-void/80 px-1.5 py-0.5 text-[8px] text-mist/70 opacity-0 transition-opacity duration-400 group-hover:opacity-100">
+                  hover → venue photo
+                </span>
               </div>
             </div>
 
@@ -244,17 +255,18 @@ export function About() {
           </a>
         </RevealItem>
 
-        {/* ANSI noise art — the flag photo, rendered as characters */}
+        {/* Flag photo — becomes ANSI art on hover */}
         <RevealItem className="lg:col-span-4">
-          <div className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-black">
+          <div className="relative h-full overflow-hidden rounded-2xl border border-white/10 bg-black">
             <div className="relative aspect-[4/5] w-full sm:aspect-auto sm:h-full">
-              <AnsiNoise
+              <AnsiPhoto
                 src={asset('/portrait-alt.jpg')}
+                alt={`${profile.name} with the Indian flag in Bhongir`}
                 cols={72}
-                speed={0.9}
-                className="h-full w-full"
               />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-void via-void/20 to-transparent" />
+
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-void via-void/25 to-transparent" />
+
               <div className="absolute inset-x-0 bottom-0 p-4">
                 <div className="mb-1.5 flex items-center gap-2">
                   <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-pink-300">
@@ -266,7 +278,7 @@ export function About() {
                   Rendered, not photographed
                 </h3>
                 <p className="mt-1 font-mono text-[10px] text-mist/80">
-                  every pixel is a character
+                  hover to dissolve into characters
                 </p>
               </div>
             </div>

@@ -24,6 +24,10 @@ type Props = {
   cols?: number
   /** Seconds per full noise cycle. */
   speed?: number
+  /** Only render the ANSI layer while the element is active (hover/tap). */
+  hoverOnly?: boolean
+  /** True while the element is hovered / tapped. */
+  active?: boolean
 }
 
 /**
@@ -38,9 +42,37 @@ type Props = {
  * and blitted each frame; only a moving band of cells is re-dithered, so
  * the cost stays flat regardless of grid size.
  */
-export function AnsiNoise({ src, className = '', cols = 96, speed = 1 }: Props) {
+export function AnsiNoise({
+  src,
+  className = '',
+  cols = 96,
+  speed = 1,
+  hoverOnly = false,
+  active = true,
+}: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const reduced = usePrefersReducedMotion()
+
+  // Fade the ASCII layer in and out with anime.js.
+  useEffect(() => {
+    if (!hoverOnly) return
+    let cancelled = false
+    const run = async () => {
+      const { animate } = await import('animejs')
+      if (cancelled) return
+      const canvas = canvasRef.current
+      if (!canvas) return
+      animate(canvas, {
+        opacity: active ? 1 : 0,
+        duration: active ? 650 : 420,
+        ease: active ? 'outExpo' : 'inOutQuad',
+      })
+    }
+    run()
+    return () => {
+      cancelled = true
+    }
+  }, [active, hoverOnly])
 
   useEffect(() => {
     if (reduced) return
@@ -257,6 +289,7 @@ export function AnsiNoise({ src, className = '', cols = 96, speed = 1 }: Props) 
       ref={canvasRef}
       aria-hidden
       className={`pointer-events-none h-full w-full ${className}`}
+      style={hoverOnly ? { opacity: active ? 1 : 0 } : undefined}
     />
   )
 }
