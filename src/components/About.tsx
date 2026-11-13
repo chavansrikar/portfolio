@@ -74,6 +74,34 @@ export function About() {
               depending on what the project needs.
             </p>
 
+            {/* Mission — the education arc + the why */}
+            <div className="relative overflow-hidden rounded-2xl border border-purple-400/20 bg-gradient-to-br from-purple-400/[0.07] via-transparent to-violet-600/[0.08] p-5">
+              <div className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-purple-500/15 blur-2xl" />
+              <div className="relative">
+                <div className="mb-2 flex items-center gap-2">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.26em] text-purple-300/90">
+                    The arc
+                  </span>
+                  <span className="h-px flex-1 bg-gradient-to-r from-purple-400/40 to-transparent" />
+                </div>
+                <p className="text-[13.5px] leading-relaxed text-mist sm:text-sm">
+                  {profile.mission}
+                </p>
+                <div className="mt-4 flex flex-wrap items-center gap-2">
+                  <span className="ascii rounded-lg border border-purple-400/25 bg-purple-400/[0.07] px-2.5 py-1 text-[10px] text-purple-200">
+                    diploma · AIML ✓
+                  </span>
+                  <span className="ascii text-mist/40">→</span>
+                  <span className="ascii rounded-lg border border-violet-400/25 bg-violet-400/[0.07] px-2.5 py-1 text-[10px] text-violet-200">
+                    btech · CSE (lateral)
+                  </span>
+                  <span className="ascii rounded-lg border border-teal-400/25 bg-teal-400/[0.07] px-2.5 py-1 text-[10px] text-teal-200">
+                    TG ECET · rank 1965
+                  </span>
+                </div>
+              </div>
+            </div>
+
             <blockquote className="mt-2 rounded-2xl border-l-2 border-cyan-400/60 bg-gradient-to-r from-cyan-400/[0.07] to-transparent px-5 py-4">
               <p className="font-display text-base font-medium leading-relaxed text-chalk sm:text-lg">
                 “For a well-scoped problem where the models, APIs or data already
@@ -90,8 +118,8 @@ export function About() {
                 return (
                   <RevealItem key={area.title}>
                     <div className="group glass card-hover shine h-full rounded-xl p-4">
-                      <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-amber-400/20 to-coral-500/20 ring-1 ring-white/10 transition-transform duration-500 group-hover:scale-110">
-                        <Icon className="h-4.5 w-4.5 text-amber-300" />
+                      <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-purple-400/20 to-teal-500/20 ring-1 ring-white/10 transition-transform duration-500 group-hover:scale-110">
+                        <Icon className="h-4.5 w-4.5 text-purple-300" />
                       </div>
                       <h3 className="mb-1.5 font-display text-sm font-semibold tracking-tight text-chalk">
                         {area.title}
@@ -105,19 +133,30 @@ export function About() {
               })}
             </RevealGroup>
 
-            {/* Outdoor shot */}
+            {/* Outdoor shot — blurred backdrop keeps the whole photo visible */}
             <Reveal delay={0.18}>
-              <figure className="group relative mt-4 overflow-hidden rounded-2xl border border-white/8">
-                <img
-                  src={asset('/portrait-alt.jpg')}
-                  alt={`${profile.name} outdoors in Bhongir`}
-                  loading="lazy"
-                  className="h-56 w-full object-cover object-top transition-transform duration-[1200ms] ease-out group-hover:scale-105 sm:h-64"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent" />
-                <figcaption className="absolute bottom-3 left-4 font-mono text-[10px] uppercase tracking-[0.18em] text-mist/80">
-                  Bhongir, Telangana
-                </figcaption>
+              <figure className="group relative mt-4 overflow-hidden rounded-2xl border border-white/8 bg-void/50">
+                <div className="relative aspect-[16/11] w-full sm:aspect-[16/9]">
+                  {/* Blurred fill so the frame is never empty */}
+                  <img
+                    src={asset('/portrait-alt.jpg')}
+                    alt=""
+                    aria-hidden
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full scale-110 object-cover object-center opacity-70 blur-xl saturate-150"
+                  />
+                  {/* The complete photo, always fully visible */}
+                  <img
+                    src={asset('/portrait-alt.jpg')}
+                    alt={`${profile.name} outdoors in Bhongir`}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-contain object-center transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-void via-void/10 to-transparent" />
+                  <figcaption className="absolute bottom-3 left-4 font-mono text-[10px] uppercase tracking-[0.18em] text-mist/80">
+                    Bhongir, Telangana
+                  </figcaption>
+                </div>
               </figure>
             </Reveal>
           </div>

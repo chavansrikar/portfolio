@@ -44,8 +44,7 @@ export function Section({
               <p className="max-w-2xl text-base leading-relaxed text-mist sm:text-lg">
                 {description}
               </p>
-            )}
-          </div>
+            )}          </div>
         </Reveal>
         {children}
       </div>

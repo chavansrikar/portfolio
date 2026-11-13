@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useInteractive } from '@/hooks/useInteractive'
 
 type Props = {
   art: string
@@ -18,9 +19,10 @@ type Props = {
  */
 export function AsciiHoverPanel({ art, className = '', label }: Props) {
   const ref = useRef<HTMLDivElement>(null)
-  const [hovered, setHovered] = useState(false)
   const [display, setDisplay] = useState(art)
   const raf = useRef(0)
+  const touch = useInteractive({ duration: 2600 })
+  const hovered = touch.active
 
   useEffect(() => {
     if (!hovered) {
@@ -69,7 +71,7 @@ export function AsciiHoverPanel({ art, className = '', label }: Props) {
       if (!el) return
       animate(el, {
         boxShadow: hovered
-          ? '0 0 0 1px rgba(251,191,36,0.35), 0 0 60px -14px rgba(251,191,36,0.7)'
+          ? '0 0 0 1px rgba(168,85,247,0.4), 0 0 60px -14px rgba(45,212,191,0.5)'
           : '0 0 0 1px rgba(255,255,255,0.06), 0 0 0px -14px rgba(0,0,0,0)',
         duration: 700,
         ease: 'outExpo',
@@ -84,9 +86,8 @@ export function AsciiHoverPanel({ art, className = '', label }: Props) {
   return (
     <div
       ref={ref}
-      onPointerEnter={() => setHovered(true)}
-      onPointerLeave={() => setHovered(false)}
-      data-cursor={hovered ? 'GLITCH' : undefined}
+      {...touch.handlers}
+      data-cursor="none"
       className={`group relative overflow-hidden rounded-2xl border border-white/10 bg-void/60 ${className}`}
     >
       {/* Corner frame */}
@@ -97,7 +98,7 @@ export function AsciiHoverPanel({ art, className = '', label }: Props) {
           'left-0 bottom-0 border-l border-b',
           'right-0 bottom-0 border-r border-b',
         ].map((c) => (
-          <span key={c} className={`absolute h-4 w-4 border-amber-400/70 ${c}`} />
+          <span key={c} className={`absolute h-4 w-4 border-purple-400/70 ${c}`} />
         ))}
       </div>
 
@@ -106,13 +107,13 @@ export function AsciiHoverPanel({ art, className = '', label }: Props) {
         className="pointer-events-none absolute inset-x-0 h-20 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         style={{
           background:
-            'linear-gradient(180deg, transparent, rgba(251,191,36,0.07), transparent)',
+            'linear-gradient(180deg, transparent, rgba(168,85,247,0.09), transparent)',
           animation: 'scan 3.4s linear infinite',
         }}
       />
 
       <pre
-        className="ascii relative overflow-x-auto px-5 py-6 text-[8px] leading-[1.15] text-amber-300/80 transition-all duration-500 group-hover:text-amber-200 sm:text-[10px]"
+        className="ascii relative overflow-x-auto px-5 py-6 text-[8px] leading-[1.15] text-purple-300/80 transition-all duration-500 group-hover:text-purple-200 sm:text-[10px]"
         style={{
           textShadow: hovered ? '0 0 14px rgba(251,191,36,0.55)' : 'none',
         }}
@@ -121,7 +122,7 @@ export function AsciiHoverPanel({ art, className = '', label }: Props) {
       </pre>
 
       {label && (
-        <div className="absolute bottom-3 right-4 font-mono text-[9px] uppercase tracking-[0.2em] text-mist/45 transition-colors duration-500 group-hover:text-amber-300/80">
+        <div className="absolute bottom-3 right-4 font-mono text-[9px] uppercase tracking-[0.2em] text-mist/45 transition-colors duration-500 group-hover:text-purple-300/80">
           {label}
         </div>
       )}

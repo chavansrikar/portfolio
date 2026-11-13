@@ -61,7 +61,7 @@ export function Footer() {
         className="border-y border-white/6 py-3"
       />
 
-      <div className="mx-auto w-full max-w-7xl px-5 py-14 sm:px-8">
+      <div className="mx-auto w-full max-w-7xl px-5 pb-[calc(2.5rem+env(safe-area-inset-bottom))] pt-14 sm:px-8">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           {/* Brand */}
           <div>

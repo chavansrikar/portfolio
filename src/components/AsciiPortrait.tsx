@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
+import { useInteractive } from '@/hooks/useInteractive'
 
 /** Luminance ramp — dark → light. */
 const RAMP = ' .,:;irsXA253hMHGS#9B&@'
@@ -30,8 +31,9 @@ export function AsciiPortrait({ src, alt, className = '', cols = 56 }: Props) {
   const hoverRef = useRef(false)
   const pointerRef = useRef({ x: -999, y: -999 })
   const trailRef = useRef<Trail[]>([])
-  const [hovered, setHovered] = useState(false)
   const [loaded, setLoaded] = useState(false)
+  const touch = useInteractive({ duration: 3400 })
+  const isActive = touch.active
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -125,7 +127,7 @@ export function AsciiPortrait({ src, alt, className = '', cols = 56 }: Props) {
           const alpha = a * (0.34 + glow * 0.66)
 
           if (glow > 0.45) {
-            ctx.fillStyle = `rgba(253,224,71,${alpha})` // amber-300
+            ctx.fillStyle = `rgba(253,224,71,${alpha})` // purple-300
           } else {
             ctx.fillStyle = `rgba(${cell.r},${cell.g},${cell.b},${alpha * 0.92})`
           }
@@ -141,9 +143,9 @@ export function AsciiPortrait({ src, alt, className = '', cols = 56 }: Props) {
           0,
           (sweep + 1.8) * cellH
         )
-        grad.addColorStop(0, 'rgba(251,191,36,0)')
-        grad.addColorStop(0.5, 'rgba(251,191,36,0.42)')
-        grad.addColorStop(1, 'rgba(251,191,36,0)')
+        grad.addColorStop(0, 'rgba(168,85,247,0)')
+        grad.addColorStop(0.5, 'rgba(168,85,247,0.45)')
+        grad.addColorStop(1, 'rgba(168,85,247,0)')
         ctx.fillStyle = grad
         ctx.fillRect(0, (sweep - 1.2) * cellH, w, cellH * 3)
       }
@@ -175,7 +177,7 @@ export function AsciiPortrait({ src, alt, className = '', cols = 56 }: Props) {
         }
         const row = grid[t.y]
         if (!row || !row[t.x]) continue
-        ctx.fillStyle = `rgba(253,224,71,${t.life * 0.95})`
+        ctx.fillStyle = `rgba(94,234,212,${t.life * 0.95})`
         ctx.fillText(t.ch, t.x * cellW, t.y * cellH)
       }
     }
@@ -202,7 +204,7 @@ export function AsciiPortrait({ src, alt, className = '', cols = 56 }: Props) {
 
   // anime.js drives the cross-fade between photo and ASCII
   useEffect(() => {
-    hoverRef.current = hovered
+    hoverRef.current = isActive
     let cancelled = false
     const run = async () => {
       const { animate } = await import('animejs')
@@ -210,16 +212,16 @@ export function AsciiPortrait({ src, alt, className = '', cols = 56 }: Props) {
       const canvas = canvasRef.current
       if (!canvas) return
       animate(canvas, {
-        opacity: hovered ? 1 : 0,
-        duration: hovered ? 700 : 550,
-        ease: hovered ? 'outExpo' : 'inOutQuad',
+        opacity: isActive ? 1 : 0,
+        duration: isActive ? 700 : 550,
+        ease: isActive ? 'outExpo' : 'inOutQuad',
       })
     }
     run()
     return () => {
       cancelled = true
     }
-  }, [hovered])
+  }, [isActive])
 
   const handleMove = (e: React.PointerEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -228,8 +230,7 @@ export function AsciiPortrait({ src, alt, className = '', cols = 56 }: Props) {
 
   return (
     <div
-      onPointerEnter={() => setHovered(true)}
-      onPointerLeave={() => setHovered(false)}
+      {...touch.handlers}
       onPointerMove={handleMove}
       className={`group relative overflow-hidden ${className}`}
       data-cursor="none"
@@ -240,7 +241,7 @@ export function AsciiPortrait({ src, alt, className = '', cols = 56 }: Props) {
         alt={alt}
         initial={{ filter: 'grayscale(0.1) contrast(1.05) brightness(0.96)' }}
         animate={{
-          filter: hovered
+          filter: isActive
             ? 'grayscale(1) contrast(1.6) brightness(0.4)'
             : 'grayscale(0.1) contrast(1.05) brightness(0.96)',
         }}
@@ -258,7 +259,7 @@ export function AsciiPortrait({ src, alt, className = '', cols = 56 }: Props) {
       <div
         className="pointer-events-none absolute inset-0 transition-opacity duration-500"
         style={{
-          opacity: hovered ? 1 : 0,
+          opacity: isActive ? 1 : 0,
           background:
             'repeating-linear-gradient(0deg, rgba(0,0,0,0.26) 0px, rgba(0,0,0,0.26) 1px, transparent 1px, transparent 3px)',
         }}
@@ -274,8 +275,8 @@ export function AsciiPortrait({ src, alt, className = '', cols = 56 }: Props) {
         ].map((c) => (
           <span
             key={c}
-            className={`absolute h-5 w-5 border-amber-400/80 transition-all duration-500 ${c}`}
-            style={{ opacity: hovered ? 1 : 0 }}
+            className={`absolute h-5 w-5 border-purple-400/80 transition-all duration-500 ${c}`}
+            style={{ opacity: isActive ? 1 : 0 }}
           />
         ))}
       </div>
@@ -283,9 +284,9 @@ export function AsciiPortrait({ src, alt, className = '', cols = 56 }: Props) {
       {/* Hover readout */}
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between p-3 transition-opacity duration-400"
-        style={{ opacity: hovered ? 1 : 0 }}
+        style={{ opacity: isActive ? 1 : 0 }}
       >
-        <span className="ascii rounded-md border border-amber-400/40 bg-void/85 px-2 py-1 text-[9px] text-amber-300 backdrop-blur-sm">
+        <span className="ascii rounded-md border border-purple-400/40 bg-void/85 px-2 py-1 text-[9px] text-purple-300 backdrop-blur-sm">
           ▓▒░ ASCII MODE ░▒▓
         </span>
         <span className="ascii rounded-md border border-white/12 bg-void/85 px-2 py-1 text-[9px] text-mist backdrop-blur-sm">

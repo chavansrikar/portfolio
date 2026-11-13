@@ -19,11 +19,11 @@ const base =
 
 const variants: Record<Variant, string> = {
   primary:
-    'bg-gradient-to-r from-cyan-400 via-indigo-400 to-violet-500 text-void shadow-[0_10px_40px_-12px_rgba(34,211,238,0.6)] hover:shadow-[0_16px_54px_-10px_rgba(34,211,238,0.8)] hover:-translate-y-0.5',
+    'bg-purple-500 text-black shadow-[0_10px_40px_-12px_rgba(168,85,247,0.75)] hover:bg-purple-400 hover:shadow-[0_16px_54px_-10px_rgba(168,85,247,0.9)] hover:-translate-y-0.5',
   ghost:
-    'border border-white/12 bg-white/[0.04] text-chalk backdrop-blur-md hover:border-white/25 hover:bg-white/[0.08] hover:-translate-y-0.5',
+    'border border-white/12 bg-white/[0.04] text-chalk backdrop-blur-md hover:border-purple-400/50 hover:bg-purple-500/10 hover:-translate-y-0.5',
   outline:
-    'border border-cyan-400/40 text-cyan-300 hover:border-cyan-300 hover:bg-cyan-400/10 hover:-translate-y-0.5',
+    'border border-teal-400/50 text-teal-300 hover:border-teal-300 hover:bg-teal-400/10 hover:-translate-y-0.5',
 }
 
 export function Button({

@@ -41,7 +41,7 @@ export function Navbar() {
     <>
       {/* Scroll progress */}
       <motion.div
-        className="fixed left-0 top-0 z-[120] h-[2px] w-full origin-left bg-gradient-to-r from-amber-400 via-coral-400 to-violet-500"
+        className="fixed left-0 top-0 z-[120] h-[2px] w-full origin-left bg-gradient-to-r from-purple-400 via-teal-400 to-violet-500"
         style={{ scaleX: progress }}
       />
 
@@ -59,9 +59,11 @@ export function Navbar() {
             className="group flex items-center gap-3"
             aria-label="Back to top"
           >
-            <span className="relative grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-amber-400/20 to-violet-500/20 ring-1 ring-white/10">
-              <span className="font-mono text-sm font-bold text-amber-300">CS</span>
-              <span className="absolute inset-0 rounded-xl opacity-0 ring-2 ring-amber-400/60 transition-opacity duration-300 group-hover:opacity-100" />
+            <span className="relative grid h-9 w-9 place-items-center rounded-lg bg-purple-500/15 ring-1 ring-purple-400/30">
+              <span className="ascii ascii-3d-sm font-mono text-sm font-bold text-purple-300">
+                CS
+              </span>
+              <span className="absolute inset-0 rounded-lg opacity-0 ring-2 ring-teal-400/50 transition-opacity duration-300 group-hover:opacity-100" />
             </span>
             <span className="hidden text-left leading-tight sm:block">
               <span className="block font-display text-sm font-bold tracking-tight text-chalk">
@@ -89,7 +91,7 @@ export function Navbar() {
                   {active === link.id && (
                     <motion.span
                       layoutId="nav-dot"
-                      className="absolute -bottom-0.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-amber-400"
+                      className="absolute -bottom-0.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-purple-400"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -105,7 +107,7 @@ export function Navbar() {
                 target="_blank"
                 rel="noreferrer noopener"
                 aria-label="GitHub profile"
-                className="hidden h-9 w-9 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-mist transition-colors duration-300 hover:border-amber-400/45 hover:text-amber-300 sm:grid"
+                className="hidden h-11 w-11 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-mist transition-colors duration-300 hover:border-purple-400/45 hover:text-purple-300 sm:grid"
               >
                 <GithubIcon className="h-4 w-4" />
               </a>
@@ -117,7 +119,7 @@ export function Navbar() {
                 target="_blank"
                 rel="noreferrer noopener"
                 aria-label="LinkedIn profile"
-                className="hidden h-9 w-9 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-mist transition-colors duration-300 hover:border-coral-400/45 hover:text-coral-300 sm:grid"
+                className="hidden h-11 w-11 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-mist transition-colors duration-300 hover:border-teal-400/45 hover:text-teal-300 sm:grid"
               >
                 <LinkedinIcon className="h-4 w-4" />
               </a>
@@ -127,7 +129,7 @@ export function Navbar() {
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? 'Close menu' : 'Open menu'}
               aria-expanded={open}
-              className="grid h-9 w-9 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-chalk lg:hidden"
+              className="grid h-11 w-11 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-chalk lg:hidden"
             >
               {open ? <CloseIcon className="h-4.5 w-4.5" /> : <MenuIcon className="h-4.5 w-4.5" />}
             </button>
@@ -147,7 +149,7 @@ export function Navbar() {
               onClick={() => setOpen(false)}
             />
             <motion.nav
-              className="fixed right-0 top-0 z-[108] flex h-full w-[min(20rem,86vw)] flex-col border-l border-white/10 bg-abyss/95 backdrop-blur-2xl lg:hidden"
+              className="fixed right-0 top-0 z-[108] flex h-full w-[min(20rem,86vw)] flex-col border-l border-white/10 bg-abyss/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-2xl lg:hidden"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -160,7 +162,7 @@ export function Navbar() {
                 <button
                   onClick={() => setOpen(false)}
                   aria-label="Close menu"
-                  className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 text-mist"
+                  className="grid h-10 w-10 place-items-center rounded-lg border border-white/10 text-mist"
                 >
                   <CloseIcon className="h-4 w-4" />
                 </button>
@@ -178,17 +180,17 @@ export function Navbar() {
                       onClick={() => go(link.id)}
                       className="group flex w-full items-center gap-4 rounded-xl px-4 py-3.5 text-left transition-colors duration-300 hover:bg-white/[0.05]"
                     >
-                      <span className="font-mono text-[10px] text-amber-400/60">
+                      <span className="font-mono text-[10px] text-purple-400/60">
                         0{i + 1}
                       </span>
                       <span
                         className={`font-display text-lg font-semibold tracking-tight transition-colors ${
-                          active === link.id ? 'text-amber-300' : 'text-chalk'
+                          active === link.id ? 'text-purple-300' : 'text-chalk'
                         }`}
                       >
                         {link.label}
                       </span>
-                      <span className="ml-auto h-px w-0 bg-gradient-to-r from-amber-400 to-transparent transition-all duration-300 group-hover:w-10" />
+                      <span className="ml-auto h-px w-0 bg-gradient-to-r from-purple-400 to-transparent transition-all duration-300 group-hover:w-10" />
                     </button>
                   </motion.li>
                 ))}
@@ -203,7 +205,7 @@ export function Navbar() {
                     href={profile.links.github}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-mist transition-colors hover:text-amber-300"
+                    className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-mist transition-colors hover:text-purple-300"
                     aria-label="GitHub"
                   >
                     <GithubIcon className="h-4 w-4" />

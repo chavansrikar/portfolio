@@ -35,7 +35,10 @@ export function ParticleField() {
       canvas.height = h * dpr
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-      const count = Math.min(110, Math.floor((w * h) / 16000))
+      const count = Math.min(
+        window.innerWidth < 768 ? 42 : 110,
+        Math.floor((w * h) / (window.innerWidth < 768 ? 11000 : 16000))
+      )
       nodes = Array.from({ length: count }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
@@ -75,16 +78,17 @@ export function ParticleField() {
       }
 
       // Connection lines
+      const maxLink = window.innerWidth < 768 ? 92 : 128
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const a = nodes[i]
           const b = nodes[j]
           const d = Math.hypot(a.x - b.x, a.y - b.y)
-          if (d < 128) {
+          if (d < maxLink) {
             ctx.beginPath()
             ctx.moveTo(a.x, a.y)
             ctx.lineTo(b.x, b.y)
-            ctx.strokeStyle = `rgba(99,140,248,${(1 - d / 128) * 0.16})`
+            ctx.strokeStyle = `rgba(139,92,246,${(1 - d / maxLink) * 0.18})`
             ctx.lineWidth = 0.7
             ctx.stroke()
           }

@@ -48,7 +48,7 @@ function Typewriter({ words }: { words: readonly string[] }) {
   return (
     <span className="text-gradient-static">
       {text}
-      <span className="ml-0.5 inline-block animate-blink text-amber-400">▊</span>
+      <span className="ml-0.5 inline-block animate-blink text-purple-400">▊</span>
     </span>
   )
 }
@@ -73,19 +73,19 @@ export function Hero() {
       {/* Background layers */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-void" />
-        <div className="absolute inset-0 grid-bg opacity-40 [mask-image:radial-gradient(ellipse_at_center,#000_10%,transparent_72%)]" />
+        <div className="absolute inset-0 grid-bg opacity-70 [mask-image:radial-gradient(ellipse_at_center,#000_10%,transparent_72%)]" />
         <motion.div
           style={{ y: artY }}
-          className="absolute -left-32 top-[-10%] h-[34rem] w-[34rem] rounded-full bg-amber-500/16 blur-[130px]"
+          className="absolute -left-32 top-[-10%] h-[34rem] w-[34rem] rounded-full bg-purple-600/20 blur-[130px]"
         />
         <motion.div
           style={{ y: artY }}
-          className="absolute -right-24 top-[18%] h-[30rem] w-[30rem] rounded-full bg-violet-600/25 blur-[130px]"
+          className="absolute -right-24 top-[18%] h-[30rem] w-[30rem] rounded-full bg-teal-500/14 blur-[130px]"
         />
-        <div className="absolute bottom-[-12%] left-1/3 h-[26rem] w-[26rem] rounded-full bg-coral-500/14 blur-[130px]" />
+        <div className="absolute bottom-[-12%] left-1/3 h-[26rem] w-[26rem] rounded-full bg-violet-600/16 blur-[130px]" />
         <ParticleField />
         <AsciiRain />
-        <div className="absolute inset-0 noise opacity-[0.16] mix-blend-overlay" />
+        <div className="absolute inset-0 noise opacity-[0.14] mix-blend-overlay" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-void" />
       </div>
 
@@ -99,13 +99,13 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-amber-400/30 bg-amber-400/[0.07] px-4 py-2"
+            className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-purple-400/30 bg-purple-400/[0.07] px-4 py-2"
           >
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-pulse-ring rounded-full bg-amber-400" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-400" />
+              <span className="absolute inline-flex h-full w-full animate-pulse-ring rounded-full bg-purple-400" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-purple-400" />
             </span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-amber-200/90 sm:text-[11px]">
+            <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-purple-200/90 sm:text-[11px]">
               Available for collaborations
             </span>
           </motion.div>
@@ -115,7 +115,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.9 }}
-            className="ascii mb-6 w-full text-amber-300/90 [text-shadow:0_0_20px_rgba(251,191,36,0.5)]"
+            className="ascii ascii-3d mb-6 w-full text-purple-400"
           >
             <AsciiName text={profile.name} max={13} min={2.4} />
           </motion.div>
@@ -130,7 +130,7 @@ export function Hero() {
             <span className="relative inline-block">
               <span className="text-gradient">working prototypes</span>
               <motion.span
-                className="absolute -bottom-1 left-0 h-[3px] rounded-full bg-gradient-to-r from-amber-400 via-coral-400 to-violet-500"
+                className="absolute -bottom-1 left-0 h-[3px] rounded-full bg-gradient-to-r from-purple-400 via-teal-400 to-violet-500"
                 initial={{ width: 0 }}
                 animate={{ width: '100%' }}
                 transition={{ delay: 1.1, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
@@ -195,7 +195,7 @@ export function Hero() {
             className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-[0.16em] text-mist/80"
           >
             <span className="flex items-center gap-2">
-              <LocationIcon className="h-3.5 w-3.5 text-amber-400/70" />
+              <LocationIcon className="h-3.5 w-3.5 text-purple-400/70" />
               {profile.location}
             </span>
             <span className="flex items-center gap-2">
@@ -261,7 +261,7 @@ export function Hero() {
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           className="h-9 w-[22px] rounded-full border border-white/20 p-1"
         >
-          <span className="block h-1.5 w-1.5 rounded-full bg-amber-400" />
+          <span className="block h-1.5 w-1.5 rounded-full bg-purple-400" />
         </motion.div>
       </motion.div>
     </section>
@@ -289,7 +289,7 @@ function FloatTag({
       <motion.div
         animate={{ y: drift }}
         transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
-        className="ascii rounded-lg border border-white/10 bg-abyss/85 px-3 py-1.5 text-[10px] text-amber-300/90 shadow-[0_8px_30px_-10px_rgba(0,0,0,0.9)] backdrop-blur-md"
+        className="ascii rounded-lg border border-white/10 bg-abyss/85 px-3 py-1.5 text-[10px] text-purple-300/90 shadow-[0_8px_30px_-10px_rgba(0,0,0,0.9)] backdrop-blur-md"
       >
         {text}
       </motion.div>
@@ -326,15 +326,15 @@ function TerminalCard() {
             transition={{ delay: 0.9 + i * 0.18, duration: 0.4 }}
             className="flex flex-wrap gap-x-2"
           >
-            <span className="text-amber-400/80">{l.p}</span>
-            <span className="text-coral-300/90">{l.t}</span>
+            <span className="text-purple-400/80">{l.p}</span>
+            <span className="text-teal-300/90">{l.t}</span>
             <span className="text-mist/40">→</span>
             <span className="text-chalk/85">{l.o}</span>
           </motion.div>
         ))}
         <div className="flex gap-2 pt-1">
-          <span className="text-amber-400">❯</span>
-          <span className="inline-block h-4 w-2 animate-blink bg-amber-300/80" />
+          <span className="text-purple-400">❯</span>
+          <span className="inline-block h-4 w-2 animate-blink bg-purple-300/80" />
         </div>
       </div>
     </div>

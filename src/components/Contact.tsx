@@ -48,8 +48,8 @@ const SOCIALS = [
     name: 'Hugging Face',
     href: profile.links.huggingface,
     icon: HuggingFaceIcon,
-    color: 'hover:text-amber-300',
-    ring: 'hover:border-amber-400/50',
+    color: 'hover:text-purple-300',
+    ring: 'hover:border-purple-400/50',
     glow: 'rgba(251,191,36,0.35)',
   },
 ]
@@ -103,7 +103,7 @@ export function Contact() {
   }
 
   const field =
-    'w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-sm text-chalk placeholder:text-mist/50 outline-none transition-all duration-300 focus:border-cyan-400/50 focus:bg-cyan-400/[0.04] focus:shadow-[0_0_0_3px_rgba(34,211,238,0.1)]'
+    'w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-base text-chalk placeholder:text-mist/50 outline-none transition-all duration-300 focus:border-purple-400/60 focus:bg-purple-500/[0.05] focus:shadow-[0_0_0_3px_rgba(168,85,247,0.15)] sm:text-sm'
 
   return (
     <Section

@@ -36,13 +36,13 @@ export function ProfileCard() {
   return (
     <div className="relative mx-auto w-full max-w-[18rem] sm:max-w-[19rem] lg:max-w-[21rem]">
       {/* Glow halo */}
-      <div className="pointer-events-none absolute -inset-8 rounded-full bg-gradient-to-br from-amber-500/25 via-coral-500/15 to-violet-600/20 blur-3xl" />
+      <div className="pointer-events-none absolute -inset-8 rounded-full bg-gradient-to-br from-purple-500/25 via-teal-500/15 to-violet-600/20 blur-3xl" />
 
       {/* Orbit ring */}
-      <div className="pointer-events-none absolute -inset-4 rounded-[2rem] border border-dashed border-amber-300/15 animate-spin-slower" />
+      <div className="pointer-events-none absolute -inset-4 rounded-[2rem] border border-dashed border-purple-300/15 animate-spin-slower" />
 
       {/* Orbiting recognition tags */}
-      <OrbitTag className="-top-4 left-1/2 -translate-x-1/2" text="my bharat · state level" delay={0} />
+      <OrbitTag className="-top-4 left-1/2 -translate-x-1/2" text="my bharat · idea submitted" delay={0} />
       <OrbitTag className="-right-3 top-[26%]" text="team lead" delay={0.6} />
       <OrbitTag className="-bottom-4 left-1/2 -translate-x-1/2" text="budget quest 2026" delay={1.2} />
       <OrbitTag className="-left-3 top-[26%]" text="AIML Dashers" delay={1.8} />
@@ -78,7 +78,7 @@ export function ProfileCard() {
             <h2 className="font-display text-lg font-bold leading-tight tracking-tight text-chalk">
               {profile.name}
             </h2>
-            <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.16em] text-amber-300/90">
+            <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.16em] text-purple-300/90">
               {profile.role}
             </p>
           </div>
@@ -113,7 +113,7 @@ export function ProfileCard() {
       {/* Location tag */}
       <div className="pointer-events-none absolute -left-4 top-1/2 hidden -translate-y-1/2 lg:block">
         <div className="ascii flex items-center gap-1.5 rounded-lg border border-white/10 bg-abyss/90 px-2.5 py-1.5 text-[9px] text-mist shadow-lg backdrop-blur-md">
-          <LocationIcon className="h-3 w-3 text-amber-400/70" />
+          <LocationIcon className="h-3 w-3 text-purple-400/70" />
           19.0790°N
         </div>
       </div>
@@ -132,7 +132,7 @@ function OrbitTag({ className, text, delay }: { className: string; text: string;
       <motion.div
         animate={{ y: [0, -7, 0] }}
         transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut', delay }}
-        className="ascii whitespace-nowrap rounded-lg border border-amber-400/25 bg-abyss/95 px-2.5 py-1 text-[9px] text-amber-200/90 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.95)] backdrop-blur-md"
+        className="ascii whitespace-nowrap rounded-lg border border-purple-400/25 bg-abyss/95 px-2.5 py-1 text-[9px] text-purple-200/90 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.95)] backdrop-blur-md"
       >
         {text}
       </motion.div>

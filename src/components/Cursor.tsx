@@ -98,7 +98,7 @@ export function Cursor() {
     >
       <div
         ref={dotRef}
-        className="absolute left-0 top-0 h-1.5 w-1.5 rounded-full bg-amber-300"
+        className="absolute left-0 top-0 h-1.5 w-1.5 rounded-full bg-purple-300"
         style={{
           opacity: visible ? 1 : 0,
           transition: 'opacity 0.25s',
@@ -125,7 +125,7 @@ export function Cursor() {
       {label && (
         <div
           ref={labelRef}
-          className="absolute left-0 top-0 whitespace-nowrap rounded-md border border-amber-400/40 bg-void/95 px-2 py-[3px] font-mono text-[9px] uppercase tracking-[0.18em] text-amber-200 shadow-[0_8px_24px_-10px_rgba(0,0,0,0.95)] backdrop-blur-sm"
+          className="absolute left-0 top-0 whitespace-nowrap rounded-md border border-purple-400/40 bg-void/95 px-2 py-[3px] font-mono text-[9px] uppercase tracking-[0.18em] text-purple-200 shadow-[0_8px_24px_-10px_rgba(0,0,0,0.95)] backdrop-blur-sm"
         >
           {label}
         </div>

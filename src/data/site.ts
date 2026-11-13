@@ -20,6 +20,11 @@ export const profile = {
   summary: `Most of my work follows the same loop: get something running fast enough to see if
     the idea holds up, then go back and do it properly — real preprocessing, model tuning,
     proper outputs, a UI someone else could actually use.`,
+  mission: `I finished the AI & ML diploma, then took the lateral entry seat into B.Tech CSE
+    at ACE Engineering College (TG ECET, rank 1965) — because after living inside the model
+    layer I wanted to understand the hardware architecture and infrastructure underneath it.
+    The goal is simple: build things that hold up, and put them to work for Bharat and
+    Viksit Bharat 2047.`,
   links: {
     github: 'https://github.com/chavansrikar',
     linkedin: 'https://www.linkedin.com/in/chavansrikar/',
@@ -295,7 +300,7 @@ export const projects: Project[] = [
     url: 'https://github.com/chavansrikar/Nostromo-Guard-AI-Powered-DeFi-Risk-Optimizer',
     stars: 0,
     ascii: '🛡️',
-    accent: 'from-amber-500/25 to-orange-600/10',
+    accent: 'from-purple-500/25 to-orange-600/10',
     metrics: [
       { label: 'Risk score', value: '0-100' },
       { label: 'TVL horizon', value: '30d' },
@@ -370,7 +375,7 @@ export const projects: Project[] = [
     url: 'https://github.com/chavansrikar/Automated-Wheat-Disease-Detection',
     stars: 0,
     ascii: '🌾',
-    accent: 'from-yellow-500/25 to-amber-600/10',
+    accent: 'from-yellow-500/25 to-purple-600/10',
     metrics: [
       { label: 'Input', value: '1 photo' },
       { label: 'Output', value: 'Disease' },
@@ -441,28 +446,29 @@ export type TimelineEntry = {
 export const timeline: TimelineEntry[] = [
   {
     period: '2026 — Present',
-    title: 'AI & ML Diploma — Final Year',
-    org: 'Samskruti College, Ghatkesar',
+    title: 'B.Tech — Computer Science & Engineering (Lateral Entry)',
+    org: 'ACE Engineering College',
     location: 'Hyderabad, India',
     points: [
-      'Final-year project: NGPME, a video-based gait analysis blueprint for prosthetic users.',
-      'Core track: computer vision, deep learning, model tuning and applied ML engineering.',
-      'Published the Bharat Health Detective Care healthcare operations platform as the capstone build.',
+      'Entered through the lateral entry route after finishing the AI & ML diploma.',
+      'Rank 1965 in the TG ECET (CBT) entrance exam — ACE Engineering College, Hyderabad.',
+      'Chose CSE to get past the model layer and understand the hardware architecture and infrastructure underneath it.',
+      'Building towards solutions that contribute to Viksit Bharat 2047.',
     ],
     type: 'education',
     current: true,
   },
   {
-    period: '2026 — Present',
-    title: 'ACE Engineering College',
-    org: 'B.Tech — Computer Science & Engineering',
+    period: '2023 — 2026',
+    title: 'AI & ML Diploma',
+    org: 'Samskruti College, Ghatkesar',
     location: 'Hyderabad, India',
     points: [
-      'Core coursework across data structures, software engineering, databases and web systems.',
-      'Lab work spans Java, Node.js and React, with a Node/React lab manual built for the department.',
+      'Completed the AI & Machine Learning diploma — computer vision, deep learning, model tuning and applied ML engineering.',
+      'Final-year project: NGPME, a video-based gait analysis blueprint for prosthetic users.',
+      'Published the Bharat Health Detective Care healthcare operations platform as the capstone build.',
     ],
     type: 'education',
-    current: true,
   },
   {
     period: '2025 — 2026',
@@ -509,13 +515,24 @@ export const timeline: TimelineEntry[] = [
   },
   {
     period: '2026',
+    title: 'TG ECET — Rank 1965',
+    org: 'Telangana Common Entrance Test (CBT)',
+    location: 'Telangana, India',
+    points: [
+      'Ranked 1965 in the computer-based entrance exam that secured the lateral entry seat at ACE Engineering College.',
+    ],
+    type: 'achievement',
+  },
+  {
+    period: '2026',
     title: 'My Bharat — Hack for Social Cause (VBYLD 2027)',
     org: 'Team AIML Dashers — Team Lead',
-    location: 'Telangana · MoYAS + IIT Bombay',
+    location: 'Telangana · Ministry of Youth Affairs & Sports',
     points: [
       'Team ID HSEITS100059 — thematic area: Healthcare & Wellbeing.',
-      'Selected the team for the state-level stage of the Hack for Social Cause track.',
-      'Team: Chavan Srikar (lead), Bodagay Karthik, Gorramula Manideep.',
+      'Submitted the project idea for Hack for Social Cause 2027, organised by the Ministry of Youth Affairs & Sports under the Viksit Bharat Young Leaders Dialogue (VBYLD) 2027.',
+      'Selection is still pending — the entry is in the running for the state-level stage.',
+      'Team: Chavan Srikar (lead), Badugu Karthik, Gorramula Manideep.',
     ],
     type: 'achievement',
   },
@@ -551,7 +568,7 @@ export type Achievement = {
 export const achievements: Achievement[] = [
   {
     title: 'My Bharat — Hack for Social Cause',
-    detail: 'State level · Team Lead · VBYLD 2027',
+    detail: 'State-level entry · Team Lead · VBYLD 2027',
     emoji: '🇮🇳',
   },
   {
@@ -561,7 +578,7 @@ export const achievements: Achievement[] = [
   },
   {
     title: 'AIML Dashers — Team Lead',
-    detail: 'Healthcare & Wellbeing · MoYAS + IIT Bombay',
+    detail: 'Idea submitted · Team Lead · VBYLD 2027',
     emoji: '🏅',
   },
   {
@@ -608,6 +625,16 @@ export type Post = {
 
 /** Where the LinkedIn post lives. */
 const POST_URL = 'https://www.linkedin.com/in/chavansrikar/recent-activity/all/'
+
+/** Verified permalinks for individual posts. */
+const POST_LINKS: Record<string, string> = {
+  'My Bharat Budget Quest 2026':
+    'https://www.linkedin.com/posts/chavansrikar_learningneverstops-mybharat-budget2026-activity-7424484938600615936-MoEO',
+  'Moving from Localhost to the Cloud':
+    'https://www.linkedin.com/posts/chavansrikar_geeksforgeeks-gfgconnect-awslambda-activity-7415405898216443905-EqSX',
+  'Infosys Springboard — Deep Learning':
+    'https://www.linkedin.com/posts/chavan-srikar-b394732bb_course-completion-certificate-from-infosys-activity-7334961888876736512-sK01',
+}
 
 /** ASCII illustration per post, shown in the feed panel. */
 export const postArt: Record<string, string[]> = {
@@ -684,7 +711,7 @@ export const posts: Post[] = [
     tags: ['#MyBharatBudget2026', '#LearningNeverStops', '#Budget2026'],
     platform: 'LinkedIn',
     date: '2026',
-    url: 'https://lnkd.in/p5VwF7Dm',
+    url: POST_LINKS['My Bharat Budget Quest 2026'],
   },
   {
     title: 'Moving from Localhost to the Cloud',
@@ -693,7 +720,7 @@ export const posts: Post[] = [
     tags: ['#GeeksForGeeks', '#GfGConnect', '#AWSLambda', '#CloudComputing', '#AIML'],
     platform: 'LinkedIn',
     date: '2026',
-    url: POST_URL,
+    url: POST_LINKS['Moving from Localhost to the Cloud'],
   },
   {
     title: 'Infosys Springboard — Deep Learning',
@@ -702,7 +729,7 @@ export const posts: Post[] = [
     tags: ['#DeepLearning', '#InfosysSpringboard', '#NeuralNetworks', '#Internship2025'],
     platform: 'LinkedIn',
     date: '2025',
-    url: POST_URL,
+    url: POST_LINKS['Infosys Springboard — Deep Learning'],
   },
   {
     title: 'Infosys Foundation SkillUp — Centum Foundation',
@@ -740,9 +767,11 @@ export const myBharat = {
   state: 'Telangana',
   theme: 'Healthcare & Wellbeing',
   role: 'Team Lead',
-  partners: 'Ministry of Youth Affairs & Sports + IIT Bombay',
+  status: 'Idea submitted · selection pending',
   programme: 'Hack for Social Cause — VBYLD 2027',
-  team: ['Chavan Srikar', 'Bodagay Karthik', 'Gorramula Manideep'],
+  organiser: 'Ministry of Youth Affairs & Sports, Government of India',
+  initiative: 'Viksit Bharat Young Leaders Dialogue (VBYLD) 2027',
+  team: ['Chavan Srikar', 'Badugu Karthik', 'Gorramula Manideep'],
   link: 'https://www.linkedin.com/in/chavansrikar/',
 } as const
 

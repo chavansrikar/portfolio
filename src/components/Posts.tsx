@@ -39,14 +39,14 @@ export function Posts() {
                   onMouseEnter={() => setActive(i)}
                   className={`group relative flex w-full items-center gap-3.5 rounded-xl border px-4 py-3 text-left transition-all duration-400 ${
                     active === i
-                      ? 'border-amber-400/35 bg-amber-400/[0.05]'
+                      ? 'border-purple-400/35 bg-purple-400/[0.05]'
                       : 'border-white/[0.07] bg-white/[0.02] hover:border-white/15'
                   }`}
                 >                  {/* Mini ASCII mark */}
                   <span
                     className={`ascii grid h-11 w-12 shrink-0 place-items-center overflow-hidden rounded-lg border text-[15px] leading-none transition-all duration-400 ${
                       active === i
-                        ? 'border-amber-400/40 bg-amber-400/[0.08] text-amber-200'
+                        ? 'border-purple-400/40 bg-purple-400/[0.08] text-purple-200'
                         : 'border-white/10 bg-white/[0.03] text-mist/60 group-hover:text-mist'
                     }`}
                   >
@@ -68,7 +68,7 @@ export function Posts() {
                   <ArrowUpRightIcon
                     className={`h-3.5 w-3.5 shrink-0 transition-all duration-300 ${
                       active === i
-                        ? 'text-amber-300'
+                        ? 'text-purple-300'
                         : 'text-mist/25 group-hover:text-mist/60'
                     }`}
                   />
@@ -78,7 +78,7 @@ export function Posts() {
                 {i < posts.length - 1 && (
                   <div
                     aria-hidden
-                    className="absolute -bottom-1 left-[2.35rem] h-1.5 w-px bg-gradient-to-b from-amber-400/50 to-transparent"
+                    className="absolute -bottom-1 left-[2.35rem] h-1.5 w-px bg-gradient-to-b from-purple-400/50 to-transparent"
                   />
                 )}
               </li>
@@ -90,7 +90,7 @@ export function Posts() {
         <Reveal delay={0.08}>
           <div className="glass glow-ring scanline relative flex h-full min-h-[21rem] flex-col overflow-hidden rounded-2xl">
             {/* Warm glow */}
-            <div className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full bg-amber-500/12 blur-3xl" />
+            <div className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full bg-purple-500/12 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-16 -left-10 h-44 w-44 rounded-full bg-violet-600/12 blur-3xl" />
 
             {/* Animated ASCII art */}
@@ -120,7 +120,7 @@ export function Posts() {
                     art={art}
                     trigger={active}
                     fontSize={10}
-                    className="text-center text-amber-300/85 drop-shadow-[0_0_16px_rgba(251,191,36,0.4)] transition-colors duration-300 hover:text-amber-200"
+                    className="text-center text-purple-300/85 drop-shadow-[0_0_16px_rgba(251,191,36,0.4)] transition-colors duration-300 hover:text-purple-200"
                   />
                 </motion.div>
               </AnimatePresence>
@@ -134,7 +134,7 @@ export function Posts() {
               ].map((c) => (
                 <span
                   key={c}
-                  className={`pointer-events-none absolute h-3.5 w-3.5 border-amber-400/35 ${c}`}
+                  className={`pointer-events-none absolute h-3.5 w-3.5 border-purple-400/35 ${c}`}
                 />
               ))}
 

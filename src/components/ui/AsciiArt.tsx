@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useInteractive } from '@/hooks/useInteractive'
 
 type Props = {
   art: string[]
@@ -26,6 +27,8 @@ export function AsciiArt({
   const [display, setDisplay] = useState(art)
   const [hovered, setHovered] = useState(false)
   const raf = useRef(0)
+  const touch = useInteractive({ duration: 2400 })
+  const isActive = hovered || touch.active
 
   useEffect(() => {
     let frame = 0
@@ -61,9 +64,9 @@ export function AsciiArt({
     }
   }, [art, trigger])
 
-  // Idle shimmer while hovered.
+  // Idle shimmer while hovered or tapped.
   useEffect(() => {
-    if (!hovered) return
+    if (!isActive) return
     let raf = 0
     const tick = () => {
       setDisplay(
@@ -82,10 +85,11 @@ export function AsciiArt({
     }
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [hovered, art])
+  }, [isActive, art])
 
   return (
     <pre
+      {...touch.handlers}
       onPointerEnter={() => setHovered(true)}
       onPointerLeave={() => setHovered(false)}
       className={`ascii whitespace-pre leading-[1.1] ${className}`}

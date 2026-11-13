@@ -44,7 +44,7 @@ export function Skills() {
               {cat === c && (
                 <motion.span
                   layoutId="skill-underline"
-                  className="absolute -bottom-1 left-0 h-px w-full bg-gradient-to-r from-amber-400 to-coral-400"
+                  className="absolute -bottom-1 left-0 h-px w-full bg-gradient-to-r from-purple-400 to-teal-400"
                   transition={{ type: 'spring', stiffness: 380, damping: 32 }}
                 />
               )}

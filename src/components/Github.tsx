@@ -80,12 +80,12 @@ export function Github() {
             className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] ${
               live
                 ? 'border-lime-400/25 bg-lime-400/[0.07] text-lime-300'
-                : 'border-amber-400/25 bg-amber-400/[0.07] text-amber-300'
+                : 'border-purple-400/25 bg-purple-400/[0.07] text-purple-300'
             }`}
           >
             <span
               className={`h-1.5 w-1.5 rounded-full ${
-                live ? 'bg-lime-400 glow-dot' : 'bg-amber-400'
+                live ? 'bg-lime-400 glow-dot' : 'bg-purple-400'
               }`}
             />
             {loading ? 'Syncing' : live ? 'Live API' : 'Cached snapshot'}

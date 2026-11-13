@@ -41,7 +41,9 @@ export function AsciiRain() {
 
     const draw = (time: number) => {
       raf = requestAnimationFrame(draw)
-      if (time - last < 55) return
+      // Slower refresh on small screens to save battery.
+      const interval = width < 640 ? 110 : 55
+      if (time - last < interval) return
       last = time
 
       ctx.clearRect(0, 0, width, height)
@@ -55,11 +57,11 @@ export function AsciiRain() {
         if (y > 0 && y < height) {
           const ch = RAIN_CHARS[(Math.random() * RAIN_CHARS.length) | 0]
           const fade = Math.min(1, (height - y) / (height * 0.5))
-          ctx.fillStyle = `rgba(34,211,238,${0.05 + fade * 0.16})`
+          ctx.fillStyle = `rgba(192,132,252,${0.05 + fade * 0.16})`
           ctx.fillText(ch, x, y)
 
           // Bright head glyph
-          ctx.fillStyle = `rgba(165,243,252,${0.25 + fade * 0.4})`
+          ctx.fillStyle = `rgba(45,212,191,${0.25 + fade * 0.4})`
           ctx.fillText(ch, x, y - fontSize)
         }
 

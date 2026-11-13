@@ -16,7 +16,7 @@ const TYPE_META: Record<
 > = {
   work: { icon: BriefcaseIcon, color: 'text-cyan-300', label: 'Experience' },
   education: { icon: GraduationIcon, color: 'text-indigo-300', label: 'Education' },
-  certification: { icon: AwardIcon, color: 'text-amber-300', label: 'Certification' },
+  certification: { icon: AwardIcon, color: 'text-purple-300', label: 'Certification' },
   achievement: { icon: SparklesIcon, color: 'text-lime-300', label: 'Achievement' },
 }
 
