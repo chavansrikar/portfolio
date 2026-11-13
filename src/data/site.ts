@@ -524,6 +524,19 @@ export const timeline: TimelineEntry[] = [
     type: 'achievement',
   },
   {
+    period: '2025 — 2026',
+    title: 'VBYLD 2026 — Viksit Bharat Young Leaders Dialogue',
+    org: 'Government of Telangana · Dept. of Youth Services',
+    location: 'Vidyas Nagar, Hyderabad',
+    points: [
+      'Participation certificate for the Viksit Bharat Challenge — State Championship, 19–20 December 2025.',
+      'Represented Yadadri Bhuvanagiri at the state level with the theme #AatmanirbharBharat — how AI and ML can solve real-world challenges.',
+      'Pitched the idea to a panel and was selected as Team Leader; 8 of 13 participants in the theme advanced to the final interview round.',
+      'Awaiting the national selection round in New Delhi.',
+    ],
+    type: 'achievement',
+  },
+  {
     period: '2026',
     title: 'My Bharat — Hack for Social Cause (VBYLD 2027)',
     org: 'Team AIML Dashers — Team Lead',
@@ -567,8 +580,14 @@ export type Achievement = {
 
 export const achievements: Achievement[] = [
   {
+    title: 'VBYLD 2026 — State Championship',
+    detail: 'Viksit Bharat Young Leaders Dialogue · Team Leader',
+    emoji: '🏆',
+    href: 'https://lnkd.in/p/d5VwF7Dm',
+  },
+  {
     title: 'My Bharat — Hack for Social Cause',
-    detail: 'State-level entry · Team Lead · VBYLD 2027',
+    detail: 'Idea submitted · Team Lead · VBYLD 2027',
     emoji: '🇮🇳',
   },
   {
@@ -578,7 +597,7 @@ export const achievements: Achievement[] = [
   },
   {
     title: 'AIML Dashers — Team Lead',
-    detail: 'Idea submitted · Team Lead · VBYLD 2027',
+    detail: 'Healthcare & Wellbeing · MoYAS',
     emoji: '🏅',
   },
   {
@@ -634,10 +653,23 @@ const POST_LINKS: Record<string, string> = {
     'https://www.linkedin.com/posts/chavansrikar_geeksforgeeks-gfgconnect-awslambda-activity-7415405898216443905-EqSX',
   'Infosys Springboard — Deep Learning':
     'https://www.linkedin.com/posts/chavan-srikar-b394732bb_course-completion-certificate-from-infosys-activity-7334961888876736512-sK01',
+  'From State-Level to National Aspirations — My VBYLD 2026 Journey':
+    'https://lnkd.in/p/d5VwF7Dm',
 }
 
 /** ASCII illustration per post, shown in the feed panel. */
 export const postArt: Record<string, string[]> = {
+  'From State-Level to National Aspirations — My VBYLD 2026 Journey': [
+    '      ╔═══════════╗',
+    '   ╔══╣  ▄▄▄▄▄▄▄▄  ╠══╗',
+    '   ║  ║  █ V B Y L D  ║  ║',
+    '   ║  ╚══╤═══════╤══╝  ║',
+    '   ║     │ 8 / 13 │     ║',
+    '   ║  ╔══╧═══════╧══╗  ║',
+    '   ╚══╣  ★  STATE  ╠══╝',
+    '      ╚═══════╤═════╝',
+    '              ▼',
+  ],
   'My Bharat Budget Quest 2026': [
     '  ╭───────╮',
     '  │ ███▓▓░ │',
@@ -687,6 +719,7 @@ export const postArt: Record<string, string[]> = {
 
 /** Small single-character mark per post, shown in the feed list. */
 export const postGlyph: Record<string, string> = {
+  'From State-Level to National Aspirations — My VBYLD 2026 Journey': '★',
   'My Bharat Budget Quest 2026': '$',
   'Moving from Localhost to the Cloud': '~',
   'Infosys Springboard — Deep Learning': '*',
@@ -695,6 +728,22 @@ export const postGlyph: Record<string, string> = {
 }
 
 export const posts: Post[] = [
+  {
+    title: 'From State-Level to National Aspirations — My VBYLD 2026 Journey',
+    excerpt:
+      'Representing Yadadri Bhuvanagiri at the Viksit Bharat Young Leaders Dialogue 2026 state championship in Hyderabad. I pitched #AatmanirbharBharat — how AI and ML can solve real-world challenges — and was selected as Team Leader, with 8 of 13 participants in my theme advancing to the final interview round. Now awaiting the national selection in New Delhi.',
+    tags: [
+      '#VBYLD2026',
+      '#AatmanirbharBharat',
+      '#ViksitBharat2047',
+      '#MyBharat',
+      '#YoungLeaders',
+      '#AIML',
+    ],
+    platform: 'LinkedIn',
+    date: '2025',
+    url: POST_LINKS['From State-Level to National Aspirations — My VBYLD 2026 Journey'],
+  },
   {
     title: 'My Bharat Budget Quest 2026',
     excerpt:
