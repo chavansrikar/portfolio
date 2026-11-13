@@ -135,35 +135,8 @@ export function About() {
               })}
             </RevealGroup>
 
-            {/* Outdoor shot — blurred backdrop keeps the whole photo visible */}
-            <Reveal delay={0.18}>
-              <figure className="group relative mt-4 overflow-hidden rounded-2xl border border-white/8 bg-void/50">
-                <div className="relative aspect-[16/11] w-full sm:aspect-[16/9]">
-                  {/* Blurred fill so the frame is never empty */}
-                  <img
-                    src={asset('/portrait-alt.jpg')}
-                    alt=""
-                    aria-hidden
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full scale-110 object-cover object-center opacity-70 blur-xl saturate-150"
-                  />
-                  {/* The complete photo, always fully visible */}
-                  <img
-                    src={asset('/portrait-alt.jpg')}
-                    alt={`${profile.name} outdoors in Bhongir`}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-contain object-center transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-void via-void/10 to-transparent" />
-                  <figcaption className="absolute bottom-3 left-4 font-mono text-[10px] uppercase tracking-[0.18em] text-mist/80">
-                    Bhongir, Telangana
-                  </figcaption>
-                </div>
-              </figure>
-            </Reveal>
           </div>
         </Reveal>
-
         {/* Build loop */}
         <Reveal delay={0.1}>
           <div className="relative">
@@ -256,7 +229,7 @@ export function About() {
                   <span className="h-px flex-1 bg-gradient-to-r from-amber-400/50 to-transparent" />
                 </div>
                 <h3 className="font-display text-sm font-bold leading-tight tracking-tight text-chalk">
-                  State Championship — Team Leader
+                  State Championship — Solo Participant
                 </h3>
                 <p className="mt-1 font-mono text-[10px] text-mist/80">
                   Govt. of Telangana · Dept. of Youth Services
@@ -271,12 +244,12 @@ export function About() {
           </a>
         </RevealItem>
 
-        {/* ANSI noise art */}
+        {/* ANSI noise art — the flag photo, rendered as characters */}
         <RevealItem className="lg:col-span-4">
           <div className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-black">
             <div className="relative aspect-[4/5] w-full sm:aspect-auto sm:h-full">
               <AnsiNoise
-                src={asset('/profile-full.jpg')}
+                src={asset('/portrait-alt.jpg')}
                 cols={72}
                 speed={0.9}
                 className="h-full w-full"
@@ -300,7 +273,7 @@ export function About() {
           </div>
         </RevealItem>
 
-        {/* My Bharat / VBYLD details */}
+        {/* VBYLD 2026 — state level, solo */}
         <RevealItem className="lg:col-span-4">
           <div className="glass relative flex h-full flex-col overflow-hidden rounded-2xl p-6">
             <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-amber-500/12 blur-3xl" />
@@ -310,19 +283,20 @@ export function About() {
                 {myBharat.programme}
               </span>
               <h3 className="mt-1.5 font-display text-lg font-bold tracking-tight text-chalk">
-                {myBharat.teamName}
+                {myBharat.theme}
               </h3>
               <p className="mt-0.5 font-mono text-[10px] text-mist/70">
-                Team ID {myBharat.teamId} · {myBharat.state}
+                State Level Championship · Hyderabad
               </p>
             </div>
 
             <div className="relative space-y-2.5">
               {[
-                { k: 'Theme', v: myBharat.theme },
-                { k: 'Role', v: myBharat.role },
+                { k: 'Theme', v: '#AatmanirbharBharat' },
+                { k: 'Entry', v: 'Individual — solo participant' },
+                { k: 'District', v: myBharat.district },
                 { k: 'Organiser', v: myBharat.organiser },
-                { k: 'Status', v: myBharat.status },
+                { k: 'Status', v: 'Awaiting national selection' },
               ].map((row) => (
                 <div
                   key={row.k}
@@ -338,20 +312,11 @@ export function About() {
               ))}
             </div>
 
-            <div className="relative mt-4 flex flex-wrap gap-1.5">
-              {myBharat.team.map((m, i) => (
-                <span
-                  key={m}
-                  className={`rounded-lg border px-2 py-1 font-mono text-[10px] ${
-                    i === 0
-                      ? 'border-amber-400/30 bg-amber-400/[0.07] text-amber-200'
-                      : 'border-white/10 bg-white/[0.03] text-mist/80'
-                  }`}
-                >
-                  {m}
-                  {i === 0 && ' · lead'}
-                </span>
-              ))}
+            <div className="relative mt-4 rounded-xl border border-amber-400/20 bg-amber-400/[0.05] px-3.5 py-3">
+              <p className="font-mono text-[10px] leading-relaxed text-amber-100/85">
+                Pitched how AI &amp; ML can solve real-world challenges — 8 of 13
+                participants in the theme advanced to the final interview round.
+              </p>
             </div>
 
             <a

@@ -530,22 +530,9 @@ export const timeline: TimelineEntry[] = [
     location: 'Vidyas Nagar, Hyderabad',
     points: [
       'Participation certificate for the Viksit Bharat Challenge — State Championship, 19–20 December 2025.',
-      'Represented Yadadri Bhuvanagiri at the state level with the theme #AatmanirbharBharat — how AI and ML can solve real-world challenges.',
-      'Pitched the idea to a panel and was selected as Team Leader; 8 of 13 participants in the theme advanced to the final interview round.',
+      'Entered as an individual participant representing Yadadri Bhuvanagiri, with the theme #AatmanirbharBharat — how AI and ML can solve real-world challenges.',
+      'Pitched the idea to a panel and reached the final interview round — 8 of 13 participants in the theme advanced.',
       'Awaiting the national selection round in New Delhi.',
-    ],
-    type: 'achievement',
-  },
-  {
-    period: '2026',
-    title: 'My Bharat — Hack for Social Cause (VBYLD 2027)',
-    org: 'Team AIML Dashers — Team Lead',
-    location: 'Telangana · Ministry of Youth Affairs & Sports',
-    points: [
-      'Team ID HSEITS100059 — thematic area: Healthcare & Wellbeing.',
-      'Submitted the project idea for Hack for Social Cause 2027, organised by the Ministry of Youth Affairs & Sports under the Viksit Bharat Young Leaders Dialogue (VBYLD) 2027.',
-      'Selection is still pending — the entry is in the running for the state-level stage.',
-      'Team: Chavan Srikar (lead), Badugu Karthik, Gorramula Manideep.',
     ],
     type: 'achievement',
   },
@@ -581,24 +568,14 @@ export type Achievement = {
 export const achievements: Achievement[] = [
   {
     title: 'VBYLD 2026 — State Championship',
-    detail: 'Viksit Bharat Young Leaders Dialogue · Team Leader',
+    detail: 'Viksit Bharat Young Leaders Dialogue · Solo participant',
     emoji: '🏆',
     href: 'https://lnkd.in/p/d5VwF7Dm',
-  },
-  {
-    title: 'My Bharat — Hack for Social Cause',
-    detail: 'Idea submitted · Team Lead · VBYLD 2027',
-    emoji: '🇮🇳',
   },
   {
     title: 'My Bharat Budget Quest 2026',
     detail: 'National level quiz participant',
     emoji: '📊',
-  },
-  {
-    title: 'AIML Dashers — Team Lead',
-    detail: 'Healthcare & Wellbeing · MoYAS',
-    emoji: '🏅',
   },
   {
     title: 'Infosys Springboard',
@@ -666,7 +643,7 @@ export const postArt: Record<string, string[]> = {
     '   ║  ╚══╤═══════╤══╝  ║',
     '   ║     │ 8 / 13 │     ║',
     '   ║  ╔══╧═══════╧══╗  ║',
-    '   ╚══╣  ★  STATE  ╠══╝',
+    '   ╚══╣   ★ SOLO   ╠══╝',
     '      ╚═══════╤═════╝',
     '              ▼',
   ],
@@ -731,7 +708,7 @@ export const posts: Post[] = [
   {
     title: 'From State-Level to National Aspirations — My VBYLD 2026 Journey',
     excerpt:
-      'Representing Yadadri Bhuvanagiri at the Viksit Bharat Young Leaders Dialogue 2026 state championship in Hyderabad. I pitched #AatmanirbharBharat — how AI and ML can solve real-world challenges — and was selected as Team Leader, with 8 of 13 participants in my theme advancing to the final interview round. Now awaiting the national selection in New Delhi.',
+      'Representing Yadadri Bhuvanagiri at the Viksit Bharat Young Leaders Dialogue 2026 state championship in Hyderabad, as an individual participant. I pitched #AatmanirbharBharat — how AI and ML can solve real-world challenges — and reached the final interview round, with 8 of 13 participants in my theme advancing. Now awaiting the national selection in New Delhi.',
     tags: [
       '#VBYLD2026',
       '#AatmanirbharBharat',
@@ -791,19 +768,16 @@ export const posts: Post[] = [
   },
 ]
 
-/** My Bharat submission details. */
+/** VBYLD 2026 — state championship details. */
 export const myBharat = {
-  teamId: 'HSEITS100059',
-  teamName: 'AIML Dashers',
-  state: 'Telangana',
   theme: 'Healthcare & Wellbeing',
-  role: 'Team Lead',
-  status: 'Idea submitted · selection pending',
-  programme: 'Hack for Social Cause — VBYLD 2027',
-  organiser: 'Ministry of Youth Affairs & Sports, Government of India',
-  initiative: 'Viksit Bharat Young Leaders Dialogue (VBYLD) 2027',
-  team: ['Chavan Srikar', 'Badugu Karthik', 'Gorramula Manideep'],
-  link: 'https://www.linkedin.com/in/chavansrikar/',
+  role: 'Individual — solo participant',
+  status: 'Awaiting national selection',
+  programme: 'VBYLD 2026 — State Level Championship',
+  organiser: 'Government of Telangana · Dept. of Youth Services',
+  initiative: 'Viksit Bharat Young Leaders Dialogue (VBYLD) 2026',
+  district: 'Yadadri Bhuvanagiri',
+  link: 'https://lnkd.in/p/d5VwF7Dm',
 } as const
 
 export type GitHubRepo = {

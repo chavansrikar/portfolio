@@ -42,8 +42,8 @@ export function ProfileCard() {
       <div className="pointer-events-none absolute -inset-4 rounded-[2rem] border border-dashed border-purple-300/15 animate-spin-slower" />
 
       {/* Orbiting recognition tags */}
-      <OrbitTag className="-top-4 left-1/2 -translate-x-1/2" text="my bharat · idea submitted" delay={0} />
-      <OrbitTag className="-right-3 top-[26%]" text="team lead" delay={0.6} />
+      <OrbitTag className="-top-4 left-1/2 -translate-x-1/2" text="VBYLD 2026 · state level" delay={0} />
+      <OrbitTag className="-right-3 top-[26%]" text="omnix · team lead" delay={0.6} />
       <OrbitTag className="-bottom-4 left-1/2 -translate-x-1/2" text="budget quest 2026" delay={1.2} />
       <OrbitTag className="-left-3 top-[26%]" text="AIML Dashers" delay={1.8} />
 
