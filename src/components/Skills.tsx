@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { skillArt, skillCategories, skills } from '@/data/site'
+import { skillCategories, skills } from '@/data/site'
 import { Section } from './ui/Section'
 import { Reveal } from './ui/Reveal'
 import { SkillTile } from './ui/SkillTile'
@@ -60,15 +60,13 @@ export function Skills() {
       {/* Minimal tile grid */}
       <motion.div
         layout
-        className="flex flex-wrap justify-start gap-x-3 gap-y-7 sm:gap-x-5 sm:gap-y-9"
+        className="flex flex-wrap justify-start gap-x-2.5 gap-y-6 sm:gap-x-4 sm:gap-y-8"
       >
         <AnimatePresence mode="popLayout">
           {filtered.map((s, i) => (
             <SkillTile
               key={s.name}
-              art={skillArt[s.name] ?? ['•']}
               label={s.name}
-              percent={s.level}
               category={s.category}
               index={i}
             />

@@ -90,48 +90,6 @@ export const skillCategories = [
   'DevOps',
 ] as const
 
-/**
- * Compact ASCII illustrations for every technology.
- * These render inside the skill tiles and glitch on hover.
- */
-export const skillArt: Record<string, string[]> = {
-  Python: ['╔═╗', '║ ║', '╚═╝'],
-  'TensorFlow / Keras': ['●──●', '│╲ │', '●─●─●'],
-  PyTorch: [' ▄█ ', ' ███ ', '█▀█▀█', ' ▀▀▀ '],
-  'scikit-learn': ['╭───╮', '│◉◉◉│', '╰───╯'],
-  'LSTM / Time-Series': ['╭─╮ ╭─', '│ │ │ ╰', '╰─╯ ╰─'],
-  'Isolation Forest': ['  ╱╲  ', ' ╱▓▓╲ ', '╱▓▓▓▓╲'],
-  'Pandas / NumPy': ['┌─┬─┐', '├─┼─┤', '└─┴─┘'],
-  'LLM Tool Orchestration': ['╭────╮', '│••••│', '╰──┬─╯'],
-  OpenCV: [' ╭──╮ ', '╱ ◉◉ ╲', ' ╰──╯ '],
-  'MediaPipe Pose': ['  ●  ', ' ╱│╲ ', '● ● ●', '  │  '],
-  YOLOv8: ['┌─────┐', '│  ●  │', '└─────┘'],
-  'Image Processing': ['▲   ▲', '▲▲ ▲ ▲', '───────'],
-  'ffmpeg / Video IO': ['┌─┬─┬─┐', '│ │ │ │', '└─┴─┴─┘'],
-  JavaScript: ['╔═╗', '║J║', '╚═╝'],
-  Java: ['( (', ' ) )', '‿‿'],
-  TypeScript: ['╔═╗', '║T║', '╚═╝'],
-  SQL: ['╭──╮', '│▓▓│', '╰──╯'],
-  'C / C++': ['$_', ' |', '‾'],
-  'React / Next.js': [' ╭╮ ', '─╯╰─', ' ╰╯ '],
-  'Tailwind CSS': ['≈≈≈≈', '~~~~'],
-  Gradio: ['●─●─●', ' │ ║ │', ' ●─●─●'],
-  Streamlit: ['▁▂▃▅▇', '▁▂▃▅▇'],
-  'HTML / CSS': ['</', ' >', '   '],
-  'Framer Motion': ['→ →', '  →', '→ →'],
-  'Node.js / Express': ['╱╲', '╱ ╲', '╲ ╱'],
-  SQLite: ['═══', '▓▓▓', '═══'],
-  SQLAlchemy: ['╔═╗', '║║║', '╚═╝'],
-  Pydantic: ['╱▔▔╲', '╲__╱'],
-  'Plotly / Matplotlib': ['•  •', '   ••'],
-  'REST APIs': ['→  →', '←  ←'],
-  'Git / GitHub': ['╭─╮', '│ ╰╮', '╰─╯'],
-  Docker: ['▄▄▄▄▄', '▟█████', '▔▔▔▔▔'],
-  'Hugging Face Spaces': [' ◕‿◕ ', ' ‾‿‾ '],
-  'Vercel / Render': [' ▲ ', '▲▲▲'],
-  'Linux / Bash': ['$_', ' ║ '],
-}
-
 export const skills: Skill[] = [
   // AI / ML
   { name: 'Python', level: 92, category: 'AI / ML' },

@@ -713,6 +713,34 @@
   scrollbar-width: none;
 }
 
+/* ============================================================
+   SKILL TILES — real logos, quiet until the pointer arrives
+   ============================================================ */
+.skill-tile {
+  border-color: rgb(255 255 255 / 0.08);
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgb(255 255 255 / 0.045), transparent 68%),
+    rgb(255 255 255 / 0.018);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease,
+    background 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.skill-tile:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in oklab, var(--brand) 46%, transparent);
+  background:
+    radial-gradient(120% 100% at 50% 0%, color-mix(in oklab, var(--brand) 12%, transparent), transparent 70%),
+    color-mix(in oklab, var(--brand) 5%, #06060a);
+  box-shadow: 0 16px 38px -20px color-mix(in oklab, var(--brand) 75%, transparent);
+}
+
+.skill-tile:active {
+  transform: scale(0.96);
+}
+
 /* Custom cursor is desktop-only */
 @media (hover: none), (pointer: coarse) {
   .cursor-none,
