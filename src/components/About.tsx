@@ -190,9 +190,9 @@ export function About() {
       </div>
 
       {/* Row 2 — visual / recognition band */}
-      <RevealGroup className="mt-16 grid grid-cols-1 gap-4 lg:grid-cols-12">
+      <RevealGroup className="mt-16 grid grid-cols-1 gap-4 lg:grid-cols-2">
         {/* VBYLD certificate */}
-        <RevealItem className="lg:col-span-4">
+        <RevealItem className="lg:col-span-1">
           <a
             href="https://lnkd.in/p/d5VwF7Dm"
             target="_blank"
@@ -255,9 +255,9 @@ export function About() {
         </RevealItem>
 
         {/* Flag photo — becomes ANSI art on hover */}
-        <RevealItem className="lg:col-span-4">
+        <RevealItem className="lg:col-span-1">
           <div className="relative h-full overflow-hidden rounded-2xl border border-white/10 bg-black">
-            <div className="relative aspect-[4/5] w-full sm:aspect-auto sm:h-full">
+            <div className="relative aspect-[4/5] w-full">
               <AnsiPhoto
                 src={asset('/portrait-alt.jpg')}
                 alt={`${profile.name} with the Indian flag in Bhongir`}
@@ -284,56 +284,6 @@ export function About() {
           </div>
         </RevealItem>
 
-        {/* VBYLD 2026 — event photo */}
-        <RevealItem className="lg:col-span-4">
-          <a
-            href="https://lnkd.in/p/d5VwF7Dm"
-            target="_blank"
-            rel="noreferrer noopener"
-            data-cursor="OPEN"
-            className="group relative block h-full overflow-hidden rounded-2xl border border-white/10 bg-black"
-          >
-            <div className="relative aspect-[4/5] w-full overflow-hidden">
-              <img
-                src={asset('/my-bharat-event.jpg')}
-                alt="VBYLD 2026 Viksit Bharat Youth Leaders Dialogue — state championship venue"
-                loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-void via-void/30 to-transparent" />
-
-              {/* Scanline */}
-              <div className="pointer-events-none absolute inset-0 opacity-40 mix-blend-overlay">
-                <div
-                  className="h-full w-full"
-                  style={{
-                    background:
-                      'repeating-linear-gradient(0deg, rgba(0,0,0,0.35) 0px, rgba(0,0,0,0.35) 1px, transparent 1px, transparent 3px)',
-                  }}
-                />
-              </div>
-
-              <div className="absolute inset-x-0 bottom-0 p-4">
-                <div className="mb-1.5 flex items-center gap-2">
-                  <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-amber-300">
-                    VBYLD 2026
-                  </span>
-                  <span className="h-px flex-1 bg-gradient-to-r from-amber-400/50 to-transparent" />
-                </div>
-                <h3 className="font-display text-sm font-bold leading-tight tracking-tight text-chalk">
-                  Viksit Bharat Youth Leaders Dialogue
-                </h3>
-                <p className="mt-1 font-mono text-[10px] text-mist/80">
-                  Vidyas Nagar · Hyderabad · Telangana
-                </p>
-              </div>
-            </div>
-
-            <span className="ascii pointer-events-none absolute left-3 top-3 text-[10px] text-amber-300/70">
-              ╔══╗
-            </span>
-          </a>
-        </RevealItem>
       </RevealGroup>
 
       {/* Stats strip */}
