@@ -79,23 +79,23 @@ export function SkillTile({ label, category, index }: Props) {
     const spawn = (x: number, y: number, count: number, burst = false) => {
       for (let i = 0; i < count; i++) {
         const angle = burst ? (Math.PI * 2 * i) / count + Math.random() * 0.5 : Math.random() * Math.PI * 2
-        const speed = burst ? 34 + Math.random() * 46 : 16 + Math.random() * 40
+        const speed = burst ? 34 + Math.random() * 46 : 20 + Math.random() * 44
         particles.current.push({
-          x,
-          y,
+          x: x + (burst ? 0 : (Math.random() - 0.5) * 34),
+          y: y + (burst ? 0 : (Math.random() - 0.5) * 34),
           vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed - 10,
+          vy: Math.sin(angle) * speed - 12,
           life: 0,
-          ttl: 0.65 + Math.random() * 0.55,
+          ttl: 0.8 + Math.random() * 0.6,
           char: GLYPHS[(Math.random() * GLYPHS.length) | 0],
-          bright: Math.random() < 0.3,
+          bright: Math.random() < 0.32,
         })
       }
       if (particles.current.length > 80) particles.current.splice(0, particles.current.length - 80)
     }
 
     const p = pointer.current
-    if (!reduced) spawn(p.x || w / 2, p.y || h / 2, 12, true)
+    if (!reduced) spawn(p.x || w / 2, p.y || h / 2, 16, true)
 
     let raf = 0
     let last = performance.now()
@@ -168,7 +168,7 @@ export function SkillTile({ label, category, index }: Props) {
         const dy = p.y - lastMove.current.y
         const dist = Math.hypot(dx, dy)
         if (dist > 1) {
-          spawn(p.x, p.y, dist > 18 ? 3 : dist > 7 ? 2 : 1)
+          spawn(p.x, p.y, dist > 18 ? 4 : dist > 7 ? 3 : 2)
           lastMove.current = { x: p.x, y: p.y }
         }
       }
