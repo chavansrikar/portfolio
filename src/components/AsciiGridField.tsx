@@ -2,17 +2,31 @@ import { useEffect, useRef } from 'react'
 import { usePrefersReducedMotion } from '@/hooks/useMediaQuery'
 
 type Trail = { x: number; y: number; life: number }
+type Mote = {
+  x: number
+  y: number
+  vx: number
+  vy: number
+  phase: number
+  speed: number
+  size: number
+  glyph: string
+}
+
+const AMBIENT = ['·', '+', '*', ':', '×', '░', '▒']
 
 /**
  * ASCII Motion's signature background.
  *
- * A field of `·` characters sits on a canvas. Wherever the cursor goes,
- * the dots bloom into brighter `+` and `*` glyphs that decay back to dots,
- * leaving a luminous trail in the character's wake.
+ * A field of `·` characters sits on a canvas. Ambient glyphs drift slowly
+ * across it like dust in a terminal, and wherever the cursor goes the dots
+ * bloom into brighter `+` and `*` glyphs that decay back — leaving a
+ * luminous trail in the character's wake.
  *
- * Performance: the static dot field is rendered once to an offscreen
- * canvas and blitted each frame, so only the handful of live cells near
- * the cursor are ever re-drawn.
+ * Performance:
+ *  - the static dot field is rendered once to an offscreen canvas and blitted;
+ *  - only the cells near the cursor are redrawn live;
+ *  - 30fps cap, DPR capped at 1.5, paused when off-screen or hidden.
  */
 export function AsciiGridField() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -25,8 +39,9 @@ export function AsciiGridField() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const CELL = 17
-    const RADIUS = 165
+    const mobile = window.matchMedia('(max-width: 767px)').matches
+    const CELL = mobile ? 20 : 17
+    const RADIUS = mobile ? 130 : 170
     const TRAIL_MAX = 26
 
     let w = 0
@@ -35,9 +50,12 @@ export function AsciiGridField() {
     let rows = 0
     let raf = 0
     let last = 0
+    let visible = true
+    let running = true
 
     const mouse = { x: -9999, y: -9999, active: false }
     const trail: Trail[] = []
+    let motes: Mote[] = []
 
     // Offscreen layer holding the static dot field.
     const base = document.createElement('canvas')
@@ -45,7 +63,7 @@ export function AsciiGridField() {
 
     const buildBase = () => {
       if (!bctx) return
-      const dpr = Math.min(window.devicePixelRatio || 1, 2)
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
       base.width = w * dpr
       base.height = h * dpr
       bctx.setTransform(dpr, 0, 0, dpr, 0, 0)
@@ -53,7 +71,7 @@ export function AsciiGridField() {
       bctx.font = `${CELL - 3}px 'JetBrains Mono', monospace`
       bctx.textBaseline = 'middle'
       bctx.textAlign = 'center'
-      bctx.fillStyle = 'rgba(167,139,250,0.30)'
+      bctx.fillStyle = 'rgba(167,139,250,0.24)'
       for (let y = 0; y < rows; y++) {
         for (let x = 0; x < cols; x++) {
           bctx.fillText('·', x * CELL + CELL / 2, y * CELL + CELL / 2)
@@ -61,8 +79,22 @@ export function AsciiGridField() {
       }
     }
 
+    const buildMotes = () => {
+      const count = Math.min(mobile ? 14 : 28, Math.floor((w * h) / 34000))
+      motes = Array.from({ length: count }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.18,
+        vy: (Math.random() - 0.5) * 0.18,
+        phase: Math.random() * Math.PI * 2,
+        speed: 0.4 + Math.random() * 0.8,
+        size: 8 + Math.random() * 5,
+        glyph: AMBIENT[(Math.random() * AMBIENT.length) | 0],
+      }))
+    }
+
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2)
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
       const rect = canvas.getBoundingClientRect()
       if (rect.width === 0 || rect.height === 0) return
       w = rect.width
@@ -73,19 +105,40 @@ export function AsciiGridField() {
       cols = Math.ceil(w / CELL)
       rows = Math.ceil(h / CELL)
       buildBase()
+      buildMotes()
     }
 
     const draw = (time: number) => {
       raf = requestAnimationFrame(draw)
+      if (!visible || !running) return
       if (time - last < 33) return
+      const dt = Math.min(48, time - last)
       last = time
 
       ctx.clearRect(0, 0, w, h)
       if (base.width) ctx.drawImage(base, 0, 0, w, h)
 
-      ctx.font = `${CELL - 3}px 'JetBrains Mono', monospace`
+      // --- ambient drifting glyphs ---
       ctx.textBaseline = 'middle'
       ctx.textAlign = 'center'
+      for (const m of motes) {
+        m.x += m.vx * (dt / 16)
+        m.y += m.vy * (dt / 16)
+        if (m.x < -20) m.x = w + 20
+        if (m.x > w + 20) m.x = -20
+        if (m.y < -20) m.y = h + 20
+        if (m.y > h + 20) m.y = -20
+
+        const pulse = 0.28 + 0.42 * (0.5 + 0.5 * Math.sin(time / 900 + m.phase))
+        ctx.font = `${m.size}px 'JetBrains Mono', monospace`
+        ctx.fillStyle =
+          m.glyph === '×' || m.glyph === '+'
+            ? `rgba(94,234,212,${pulse * 0.55})`
+            : `rgba(192,132,252,${pulse * 0.6})`
+        ctx.fillText(m.glyph, m.x, m.y)
+      }
+
+      ctx.font = `${CELL - 3}px 'JetBrains Mono', monospace`
 
       // --- live halo around the cursor ---
       if (mouse.active) {
@@ -121,6 +174,15 @@ export function AsciiGridField() {
         ctx.fillStyle = `rgba(167,139,250,${t.life * 0.75})`
         ctx.fillText('*', t.x, t.y)
       }
+
+      // --- traveling scan band ---
+      const bandY = ((time / 30) % (h + 260)) - 130
+      const grad = ctx.createLinearGradient(0, bandY, 0, bandY + 110)
+      grad.addColorStop(0, 'rgba(45,212,191,0)')
+      grad.addColorStop(0.5, 'rgba(45,212,191,0.035)')
+      grad.addColorStop(1, 'rgba(45,212,191,0)')
+      ctx.fillStyle = grad
+      ctx.fillRect(0, bandY, w, 110)
     }
 
     const onMove = (e: PointerEvent) => {
@@ -156,17 +218,38 @@ export function AsciiGridField() {
       mouse.active = false
     }
 
+    const onVisibility = () => {
+      running = !document.hidden
+    }
+
     resize()
     raf = requestAnimationFrame(draw)
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting
+      },
+      { threshold: 0.01 }
+    )
+    io.observe(canvas)
+
     window.addEventListener('resize', resize)
     window.addEventListener('pointermove', onMove, { passive: true })
     window.addEventListener('pointerleave', onLeave)
+    document.addEventListener('visibilitychange', onVisibility)
+
+    // Fonts may arrive after the first paint; rebuild the dot atlas then.
+    document.fonts?.ready.then(() => {
+      if (visible) buildBase()
+    })
 
     return () => {
       cancelAnimationFrame(raf)
+      io.disconnect()
       window.removeEventListener('resize', resize)
       window.removeEventListener('pointermove', onMove)
       window.removeEventListener('pointerleave', onLeave)
+      document.removeEventListener('visibilitychange', onVisibility)
     }
   }, [reduced])
 

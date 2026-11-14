@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#05060a" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="color-scheme" content="dark" />
     <title>Chavan Srikar — AI Generalist &amp; Full-Stack Builder</title>
     <meta
       name="description"
@@ -63,12 +64,23 @@
         ]
       }
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Fonts are self-hosted and bundled by Vite (src/fonts.css). -->
+    <link rel="preload" as="image" href="./profile-full.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="./portrait-alt.webp" fetchpriority="low" />
+    <style>
+      html { background: #000; }
+      #root:empty::before {
+        content: '▓▒░ booting ░▒▓';
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 11px;
+        letter-spacing: 0.3em;
+        color: #a855f7;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

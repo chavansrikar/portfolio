@@ -52,6 +52,13 @@ export function AnsiNoise({
 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const reduced = usePrefersReducedMotion()
+  const activeRef = useRef(active)
+  const loopRef = useRef<() => void>(() => {})
+
+  useEffect(() => {
+    activeRef.current = active
+    if (active) loopRef.current()
+  }, [active])
 
   // Fade the ASCII layer in and out with anime.js.
   useEffect(() => {
@@ -196,10 +203,14 @@ export function AnsiNoise({
     }
 
     const draw = (time: number) => {
-      raf = requestAnimationFrame(draw)
-      // Only animate while the panel is on screen.
-      if (!visible.current) return
-      if (time - last < 40) return
+      if (!visible.current || (hoverOnly && !activeRef.current)) {
+        raf = 0
+        return
+      }
+      if (time - last < 40) {
+        raf = requestAnimationFrame(draw)
+        return
+      }
       last = time
       const t = time / 1000 / speed
 
@@ -234,7 +245,14 @@ export function AnsiNoise({
           ctx.fillText(ch, x * cellW + cellW / 2, y * cellH)
         }
       }
+
+      raf = requestAnimationFrame(draw)
     }
+
+    const kick = () => {
+      if (!raf) raf = requestAnimationFrame(draw)
+    }
+    loopRef.current = kick
 
     const start = () => {
       if (src) {
@@ -261,12 +279,13 @@ export function AnsiNoise({
     }
 
     start()
-    raf = requestAnimationFrame(draw)
+    kick()
 
     // Pause the loop when the panel scrolls out of view.
     const io = new IntersectionObserver(
       ([entry]) => {
         visible.current = entry.isIntersecting
+        if (entry.isIntersecting) kick()
       },
       { threshold: 0.02 }
     )
@@ -276,10 +295,11 @@ export function AnsiNoise({
 
     return () => {
       cancelAnimationFrame(raf)
+      raf = 0
       io.disconnect()
       window.removeEventListener('resize', onResize)
     }
-  }, [src, cols, speed, reduced])
+  }, [src, cols, speed, reduced, hoverOnly])
 
   if (reduced) {
     return (

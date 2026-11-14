@@ -39,9 +39,31 @@ export function Github() {
           { headers: { Accept: 'application/vnd.github+json' } }
         )
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
-        const data = (await res.json()) as GitHubRepo[]
+        // The REST API uses stargazers_count / forks_count; normalize to the
+        // shape the UI and the bundled fallback both speak.
+        type ApiRepo = {
+          name: string
+          description: string | null
+          language: string | null
+          stargazers_count: number
+          forks_count: number
+          html_url: string
+          updated_at: string
+        }
+        const data = (await res.json()) as ApiRepo[]
         if (!cancelled && Array.isArray(data) && data.length) {
-          setRepos(data)
+          const snapshot = new Map(repoFallback.map((r) => [r.name, r]))
+          setRepos(
+            data.map((r) => ({
+              name: r.name,
+              description: r.description ?? snapshot.get(r.name)?.description ?? '',
+              language: r.language ?? 'None',
+              stars: r.stargazers_count ?? 0,
+              forks: r.forks_count ?? 0,
+              html_url: r.html_url,
+              updated_at: r.updated_at,
+            }))
+          )
           setLive(true)
         }
       } catch {

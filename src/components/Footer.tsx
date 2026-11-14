@@ -79,7 +79,7 @@ export function Footer() {
               </div>
             </div>
             <p className="max-w-sm text-[13px] leading-relaxed text-mist/80">
-              AI generalist and full-stack builder working across computer vision,
+              Aspiring entrepreneur and AI generalist working across computer vision,
               deep learning and LLM tooling — shipping prototypes fast and products
               properly.
             </p>

@@ -27,7 +27,7 @@ export function Projects() {
           Things I&apos;ve <span className="text-gradient-static">built and shipped</span>.
         </>
       }
-      description="Nine of nineteen public repos, with the ones that taught me the most up front."
+      description="Nine of twenty public repos, with the ones that taught me the most up front."
     >
       {/* Filters */}
       <Reveal>

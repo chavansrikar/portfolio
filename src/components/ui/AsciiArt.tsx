@@ -52,8 +52,12 @@ export function AsciiArt({
               .join('')
           )
         )
+        raf.current = requestAnimationFrame(tick)
+      } else {
+        // Settle on the real art and stop burning frames.
+        setDisplay(art)
+        raf.current = 0
       }
-      raf.current = requestAnimationFrame(tick)
     }
 
     raf.current = requestAnimationFrame(tick)

@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './fonts.css';
 
 /* ============================================================
    DESIGN TOKENS
@@ -458,6 +459,90 @@
   }
 }
 
+/* Section rule — a bright rune sweeping along a hairline. */
+@keyframes rule-sweep {
+  0% {
+    left: -18%;
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    left: 102%;
+    opacity: 0;
+  }
+}
+.ascii-rule-sweep {
+  animation: rule-sweep 5.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+/* Boot log entrances. */
+@keyframes boot-log {
+  from {
+    opacity: 0;
+    transform: translateX(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.boot-log {
+  animation: boot-log 0.22s ease-out both;
+}
+
+/* Letters dropping in from above, one after another. */
+@keyframes ascii-fall {
+  0% {
+    opacity: 0;
+    transform: translateY(var(--fall, -140%)) rotate(-3deg) scale(1.03);
+    filter: blur(4px);
+  }
+  55% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  72% {
+    opacity: 1;
+    transform: translateY(4%) rotate(0.4deg) scale(1);
+  }
+  86% {
+    transform: translateY(-1.5%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0) scale(1);
+    filter: blur(0);
+  }
+}
+.ascii-fall {
+  animation: ascii-fall 0.42s cubic-bezier(0.2, 0.85, 0.25, 1) both;
+}
+
+/* Vertical ASCII spine text. */
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* Slow pulse for ASCII frame glyphs. */
+@keyframes glyph-pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+.glyph-pulse {
+  animation: glyph-pulse 3.4s ease-in-out infinite;
+}
+
 /* ============================================================
    COMPONENT STYLES
    ============================================================ */
@@ -565,6 +650,36 @@
   animation: var(--animate-scan);
   pointer-events: none;
   z-index: 2;
+}
+
+/* Slow CRT band drifting down the hero. */
+@keyframes hero-scan {
+  0% {
+    transform: translateY(-30vh);
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh);
+    opacity: 0;
+  }
+}
+.hero-scan {
+  top: 0;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgb(45 212 191 / 0.045) 45%,
+    rgb(192 132 252 / 0.05) 55%,
+    transparent
+  );
+  animation: hero-scan 11s linear infinite;
+  pointer-events: none;
 }
 
 .perspective {

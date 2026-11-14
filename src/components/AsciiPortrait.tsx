@@ -31,6 +31,8 @@ export function AsciiPortrait({ src, alt, className = '', cols = 56 }: Props) {
   const hoverRef = useRef(false)
   const pointerRef = useRef({ x: -999, y: -999 })
   const trailRef = useRef<Trail[]>([])
+  const loopRef = useRef<() => void>(() => {})
+  const visibleRef = useRef(true)
   const [loaded, setLoaded] = useState(false)
   const touch = useInteractive({ duration: 3400 })
   const isActive = touch.active
@@ -92,8 +94,10 @@ export function AsciiPortrait({ src, alt, className = '', cols = 56 }: Props) {
     }
 
     const draw = () => {
-      raf = requestAnimationFrame(draw)
-      if (!grid.length) return
+      if (!grid.length || !visibleRef.current) {
+        raf = 0
+        return
+      }
 
       const dpr = Math.min(window.devicePixelRatio || 1, 2)
       const w = canvas.width / dpr
@@ -180,23 +184,50 @@ export function AsciiPortrait({ src, alt, className = '', cols = 56 }: Props) {
         ctx.fillStyle = `rgba(94,234,212,${t.life * 0.95})`
         ctx.fillText(t.ch, t.x * cellW, t.y * cellH)
       }
+
+      // Keep running only while the effect is actually visible.
+      if (hoverRef.current || progress > 0.012 || trailRef.current.length > 0) {
+        raf = requestAnimationFrame(draw)
+      } else {
+        raf = 0
+      }
     }
+
+    const kick = () => {
+      if (!raf) raf = requestAnimationFrame(draw)
+    }
+    loopRef.current = kick
 
     const onLoad = () => {
       buildGrid()
       setLoaded(true)
+      kick()
     }
     const onResize = () => {
-      if (img.complete && img.naturalWidth > 0) buildGrid()
+      if (img.complete && img.naturalWidth > 0) {
+        buildGrid()
+        kick()
+      }
     }
 
     if (img.complete && img.naturalWidth > 0) onLoad()
     else img.addEventListener('load', onLoad)
     window.addEventListener('resize', onResize)
-    raf = requestAnimationFrame(draw)
+    kick()
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        visibleRef.current = entry.isIntersecting
+        if (entry.isIntersecting) kick()
+      },
+      { threshold: 0.01 }
+    )
+    io.observe(canvas)
 
     return () => {
       cancelAnimationFrame(raf)
+      raf = 0
+      io.disconnect()
       img.removeEventListener('load', onLoad)
       window.removeEventListener('resize', onResize)
     }
@@ -205,6 +236,7 @@ export function AsciiPortrait({ src, alt, className = '', cols = 56 }: Props) {
   // anime.js drives the cross-fade between photo and ASCII
   useEffect(() => {
     hoverRef.current = isActive
+    loopRef.current()
     let cancelled = false
     const run = async () => {
       const { animate } = await import('animejs')
@@ -239,6 +271,9 @@ export function AsciiPortrait({ src, alt, className = '', cols = 56 }: Props) {
         ref={imgRef}
         src={src}
         alt={alt}
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
         initial={{ filter: 'grayscale(0.1) contrast(1.05) brightness(0.96)' }}
         animate={{
           filter: isActive

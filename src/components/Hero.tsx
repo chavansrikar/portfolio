@@ -5,7 +5,6 @@ import { asciiArt } from '@/lib/ascii'
 import { AsciiName } from './ui/AsciiName'
 import { AsciiHoverPanel } from './AsciiHoverPanel'
 import { AsciiGridField } from './AsciiGridField'
-import { ParticleField } from './ParticleField'
 import { ProfileCard } from './ProfileCard'
 import { Button } from './ui/Button'
 import { Magnetic } from './ui/Magnetic'
@@ -53,7 +52,7 @@ function Typewriter({ words }: { words: readonly string[] }) {
   )
 }
 
-export function Hero() {
+export function Hero({ ready = true }: { ready?: boolean }) {
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -83,8 +82,31 @@ export function Hero() {
           className="absolute -right-24 top-[18%] h-[30rem] w-[30rem] rounded-full bg-teal-500/12 blur-[130px]"
         />
         <div className="absolute bottom-[-12%] left-1/3 h-[26rem] w-[26rem] rounded-full bg-violet-600/16 blur-[130px]" />
-        <ParticleField />
         <div className="absolute inset-0 noise opacity-[0.12] mix-blend-overlay" />
+
+        {/* Ambient ASCII constellation — desktop only, very low contrast */}
+        <div
+          aria-hidden
+          className="absolute right-[2%] top-[8%] hidden select-none opacity-[0.07] xl:block"
+        >
+          <pre className="ascii text-[10px] leading-[1.1] text-purple-300">
+            {asciiArt.neural.split('\n').map((line, i) => (
+              <span
+                key={i}
+                className="block"
+                style={{
+                  animation: `ascii-wave ${3.4 + (i % 4) * 0.4}s ease-in-out ${i * 0.2}s infinite`,
+                }}
+              >
+                {line}
+              </span>
+            ))}
+          </pre>
+        </div>
+
+        {/* Periodic CRT scan band */}
+        <div className="hero-scan absolute inset-x-0 h-28" />
+
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-void" />
       </div>
 
@@ -109,15 +131,17 @@ export function Hero() {
             </span>
           </motion.div>
 
-          {/* ASCII name */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.9 }}
-            className="ascii ascii-3d ascii-glitch mb-6 w-full text-purple-400"
-          >
-            <AsciiName text={profile.name} max={13} min={2.4} />
-          </motion.div>
+          {/* ASCII name — each letter drops in after the boot screen clears */}
+          <div className="ascii ascii-3d ascii-glitch mb-6 w-full text-purple-400">
+            <AsciiName
+              text={profile.name}
+              max={13}
+              min={2.4}
+              stagger={0.03}
+              delay={0.04}
+              play={ready}
+            />
+          </div>
 
           <motion.h1
             initial={{ opacity: 0, y: 26 }}
@@ -144,7 +168,7 @@ export function Hero() {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="mt-6 max-w-xl text-base leading-relaxed text-mist sm:text-lg"
           >
-            AI generalist and full-stack builder working across{' '}
+            Aspiring entrepreneur and AI generalist working across{' '}
             <span className="text-chalk">computer vision</span>,{' '}
             <span className="text-chalk">deep learning</span> and{' '}
             <span className="text-chalk">LLM tooling</span> — shipping real products,
@@ -300,7 +324,7 @@ function TerminalCard() {
   const lines = [
     { p: '~', t: 'whoami', o: 'chavan-srikar' },
     { p: '~', t: 'cat focus.txt', o: 'computer-vision | deep-learning | llm-tooling' },
-    { p: '~', t: 'ls ./projects', o: '19 repos · 11 stars' },
+    { p: '~', t: 'ls ./projects', o: '20 repos · 12 stars' },
     { p: '~', t: 'echo $STACK', o: 'Python · TypeScript · Java · Node.js' },
     { p: '~', t: 'python build.py --fast', o: '✔ prototype ready in 7m 42s' },
   ]

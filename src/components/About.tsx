@@ -203,14 +203,14 @@ export function About() {
             <div className="relative aspect-[4/5] w-full overflow-hidden">
               {/* Certificate (default) */}
               <img
-                src={asset('/my-bharat-post.jpg')}
+                src={asset('/my-bharat-post.webp')}
                 alt="Viksit Bharat Young Leaders Dialogue 2026 — state championship participation certificate"
                 loading="lazy"
                 className="absolute inset-0 h-full w-full object-cover object-center transition-all duration-700 group-hover:scale-[1.04] group-hover:opacity-0"
               />
               {/* The event — revealed on hover */}
               <img
-                src={asset('/my-bharat-event.jpg')}
+                src={asset('/my-bharat-event.webp')}
                 alt="VBYLD 2026 state championship venue with fellow participants"
                 loading="lazy"
                 className="absolute inset-0 h-full w-full scale-105 object-cover object-center opacity-0 transition-all duration-700 group-hover:scale-100 group-hover:opacity-100"
@@ -259,7 +259,7 @@ export function About() {
           <div className="relative h-full overflow-hidden rounded-2xl border border-white/10 bg-black">
             <div className="relative aspect-[4/5] w-full">
               <AnsiPhoto
-                src={asset('/portrait-alt.jpg')}
+                src={asset('/portrait-alt.webp')}
                 alt={`${profile.name} with the Indian flag in Bhongir`}
                 cols={72}
               />
@@ -289,8 +289,8 @@ export function About() {
       {/* Stats strip */}
       <RevealGroup className="mt-16 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         {[
-          { v: 19, s: '', l: 'Public repos', sub: 'shipped & public' },
-          { v: 11, s: '', l: 'GitHub stars', sub: 'earned on open source' },
+          { v: 20, s: '', l: 'Public repos', sub: 'shipped & public' },
+          { v: 12, s: '', l: 'GitHub stars', sub: 'earned on open source' },
           { v: 35, s: '+', l: 'Hackathon tools', sub: 'curated & shared' },
           { v: 17, s: '', l: 'Health modules', sub: 'in one platform' },
         ].map((stat) => (

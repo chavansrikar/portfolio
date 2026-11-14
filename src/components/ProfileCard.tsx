@@ -3,11 +3,11 @@ import { motion } from 'framer-motion'
 import { profile } from '@/data/site'
 import { asset } from '@/lib/assets'
 import { AsciiPortrait } from './AsciiPortrait'
-import { GithubIcon, LinkedinIcon, LocationIcon } from './ui/icons'
+import { GithubIcon, LinkedinIcon } from './ui/icons'
 
 /**
  * The profile card: a live photo that turns into ASCII art on hover,
- * ringed by an animated orbit of tech tags and a status readout.
+ * with a quiet status readout beneath it.
  */
 export function ProfileCard() {
   const ref = useRef<HTMLDivElement>(null)
@@ -41,12 +41,6 @@ export function ProfileCard() {
       {/* Orbit ring */}
       <div className="pointer-events-none absolute -inset-4 rounded-[2rem] border border-dashed border-purple-300/15 animate-spin-slower" />
 
-      {/* Orbiting recognition tags */}
-      <OrbitTag className="-top-4 left-1/2 -translate-x-1/2" text="VBYLD 2026 · state level" delay={0} />
-      <OrbitTag className="-right-3 top-[26%]" text="omnix · team lead" delay={0.6} />
-      <OrbitTag className="-bottom-4 left-1/2 -translate-x-1/2" text="budget quest 2026" delay={1.2} />
-      <OrbitTag className="-left-3 top-[26%]" text="AIML Dashers" delay={1.8} />
-
       <motion.div
         ref={ref}
         animate={{ rotateX: tilt.x, rotateY: tilt.y }}
@@ -56,7 +50,7 @@ export function ProfileCard() {
         <div className="preserve-3d relative overflow-hidden rounded-[1.75rem] border border-white/12 bg-abyss shadow-[0_40px_90px_-30px_rgba(0,0,0,0.95)]">
           {/* Photo with ASCII hover */}
           <AsciiPortrait
-            src={asset('/profile-full.jpg')}
+            src={asset('/profile-full.webp')}
             alt={`${profile.name}, AI generalist and full-stack builder`}
             className="aspect-[3/4] w-full"
             cols={48}
@@ -109,33 +103,6 @@ export function ProfileCard() {
           </a>
         </div>
       </motion.div>
-
-      {/* Location tag */}
-      <div className="pointer-events-none absolute -left-4 top-1/2 hidden -translate-y-1/2 lg:block">
-        <div className="ascii flex items-center gap-1.5 rounded-lg border border-white/10 bg-abyss/90 px-2.5 py-1.5 text-[9px] text-mist shadow-lg backdrop-blur-md">
-          <LocationIcon className="h-3 w-3 text-purple-400/70" />
-          19.0790°N
-        </div>
-      </div>
     </div>
-  )
-}
-
-function OrbitTag({ className, text, delay }: { className: string; text: string; delay: number }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.6 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: delay + 0.6, duration: 0.5 }}
-      className={`pointer-events-none absolute z-20 ${className}`}
-    >
-      <motion.div
-        animate={{ y: [0, -7, 0] }}
-        transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut', delay }}
-        className="ascii whitespace-nowrap rounded-lg border border-purple-400/25 bg-abyss/95 px-2.5 py-1 text-[9px] text-purple-200/90 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.95)] backdrop-blur-md"
-      >
-        {text}
-      </motion.div>
-    </motion.div>
   )
 }
