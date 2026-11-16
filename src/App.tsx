@@ -3,6 +3,7 @@ import Lenis from 'lenis'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { AsciiBoot } from './components/AsciiBoot'
+import { ClickBurst } from './components/ClickBurst'
 import { Cursor } from './components/Cursor'
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
@@ -88,6 +89,7 @@ export default function App() {
       </AnimatePresence>
 
       <Cursor />
+      <ClickBurst />
       <Navbar />
 
       <main>
