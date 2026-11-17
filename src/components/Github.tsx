@@ -94,7 +94,7 @@ export function Github() {
           the API.
         </>
       }
-      description={`${repos.length} public repositories and ${totalStars} stars. This list is fetched live from the GitHub API when you load this page.`}
+      description={`${repos.length} public repositories and ${totalStars} stars. Fetched live from the GitHub API, with a cached snapshot as fallback.`}
     >
       <Reveal>
         <div className="mb-8 flex flex-wrap items-center gap-3">
@@ -148,7 +148,7 @@ export function Github() {
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex min-w-0 items-center gap-2">
                       <GithubIcon className="h-3.5 w-3.5 shrink-0 text-mist/50 transition-colors group-hover:text-cyan-300" />
-                      <span className="truncate font-mono text-[12px] text-chalk transition-colors group-hover:text-cyan-200">
+                      <span className="line-clamp-3 break-words font-mono text-[12px] leading-snug text-chalk transition-colors group-hover:text-cyan-200">
                         {repo.name}
                       </span>
                     </div>

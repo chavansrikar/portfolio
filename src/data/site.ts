@@ -9,14 +9,14 @@ export const profile = {
   lastName: 'Srikar',
   handle: 'chavansrikar',
   role: 'AI Generalist & Full-Stack Builder',
-  tagline: 'I turn ideas into working prototypes in 5–10 minutes.',
+  tagline: 'I turn ideas into prototypes.',
   location: 'Bhongir, Telangana, India',
   company: 'AIML Dashers',
   email: 'chavansrikar@gmail.com',
   bio: `Aspiring entrepreneur and AI generalist based in India. I work across computer
     vision, deep learning, LLM tooling and scalable systems, and I lean heavily on
     "vibe coding" — for a well-scoped problem with the right data or APIs already
-    available, I can get a working prototype up in 5–10 minutes, then spend the real
+    available, I can get a working prototype up fast, then spend the real
     time making it accurate and robust. I'm also building toward impactful
     e-commerce products that solve everyday problems.`,
   summary: `Most of my work follows the same loop: get something running fast enough to see if
@@ -371,13 +371,13 @@ export const projects: Project[] = [
   {
     slug: 'tools-for-hackathon',
     title: 'Tools-For-Hackathon',
-    tagline: 'The 35+ toolkit behind the 5-minute build',
+    tagline: 'The 35+ toolkit behind fast builds',
     description:
       'A curated, battle-tested list of 35+ tools, websites and frameworks for winning hackathons — from pitch decks and prototyping to deployment, AI tooling and backend shortcuts.',
     problem: 'Under a hackathon deadline, discovering the right tool is itself a bottleneck.',
     built:
       'A carefully organised reference across pitching, UI/UX, AI and LLM frameworks, datasets and models, backend APIs and databases, deployment and hosting, and development tooling.',
-    why: 'The exact toolkit I use to hit 5–10 minute prototype speed — shared so others can move just as fast.',
+    why: 'The exact toolkit I use to go from idea to working prototype fast — shared so others can move just as fast.',
     stack: ['Markdown', 'Open Source', 'Community'],
     category: 'DevTools',
     featured: false,
@@ -753,6 +753,15 @@ export type GitHubRepo = {
 
 /** Fallback snapshot of the GitHub repos API, used if the live request fails. */
 export const repoFallback: GitHubRepo[] = [
+  {
+    name: "Be-An-Earth-System-Trend-Detective-Team-Ace-Azael",
+    description: "",
+    language: "TypeScript",
+    stars: 0,
+    forks: 0,
+    html_url: "https://github.com/chavansrikar/Be-An-Earth-System-Trend-Detective-Team-Ace-Azael",
+    updated_at: "2026-11-14",
+  },
   {
     name: "portfolio",
     description: "The animated portfolio itself \u2014 React 19, Three-free ASCII motion engine.",

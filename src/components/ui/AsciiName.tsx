@@ -5,8 +5,6 @@ import { toAscii } from '@/lib/ascii'
 type Props = {
   text: string
   className?: string
-  /** JetBrains Mono advance width is exactly 0.6em. */
-  charWidthRatio?: number
   min?: number
   max?: number
   /** Seconds between consecutive letters dropping in. */
@@ -38,7 +36,6 @@ type Props = {
 export function AsciiName({
   text,
   className = '',
-  charWidthRatio = 0.63,
   min = 2.2,
   max = 14,
   stagger = 0.04,
@@ -51,9 +48,11 @@ export function AsciiName({
   play = true,
 }: Props) {
   const wrapRef = useRef<HTMLDivElement>(null)
+  const rulerRef = useRef<HTMLSpanElement>(null)
+  const rowRef = useRef<HTMLDivElement>(null)
   const [size, setSize] = useState(min)
+  const [fitTick, setFitTick] = useState(0)
   const lines = toAscii(text)
-  const charCount = Math.max(...lines.map((l) => l.length), 1)
 
   // toAscii emits 6 columns per character (5 glyph columns + 1 spacer).
   const letters = text
@@ -64,27 +63,74 @@ export function AsciiName({
   useLayoutEffect(() => {
     if (fontSize != null) return
     const el = wrapRef.current
-    if (!el) return
+    const ruler = rulerRef.current
+    if (!el || !ruler) return
 
     const measure = () => {
       const w = el.clientWidth
-      if (!w) return
-      const next = Math.min(max, Math.max(min, w / (charCount * charWidthRatio)))
+      // Measure one full row of glyphs at 100px so the real font metrics
+      // decide the fit. A hard-coded advance ratio overflows on fallback fonts.
+      const unit = ruler.getBoundingClientRect().width / 100
+      if (!w || !unit) return
+      const next = Math.min(max, Math.max(min, (w * 0.985) / unit))
       setSize(Math.floor(next * 100) / 100)
+      setFitTick((t) => t + 1)
     }
 
     measure()
     const ro = new ResizeObserver(measure)
-    ro.observe(el)
-    return () => ro.disconnect()
-  }, [charCount, charWidthRatio, max, min, fontSize])
+    // The ruler is fixed at 100px, so its box only changes when the font loads.
+    ro.observe(ruler)
+    window.addEventListener('resize', measure)
+
+    // Re-measure once the mono font swaps in — the fallback advance differs.
+    const fonts = document.fonts
+    fonts?.ready.then(measure).catch(() => {})
+    fonts?.addEventListener?.('loadingdone', measure)
+    return () => {
+      ro.disconnect()
+      window.removeEventListener('resize', measure)
+      fonts?.removeEventListener?.('loadingdone', measure)
+    }
+  }, [max, min, fontSize])
+
+  // Fonts round each glyph cell to a subpixel grid, so the calculated size can
+  // still overflow by a few pixels on very narrow screens. Measure the real row
+  // and shrink once more until it fits.
+  useLayoutEffect(() => {
+    if (fontSize != null) return
+    const el = wrapRef.current
+    const row = rowRef.current
+    if (!el || !row) return
+    const w = el.clientWidth
+    const actual = row.scrollWidth
+    if (!w || actual <= w + 0.5) return
+    const next = Math.max(min, (size * w * 0.97) / actual)
+    if (next < size - 0.05) setSize(Math.floor(next * 100) / 100)
+  }, [size, min, fontSize, fitTick])
 
   return (
     <div
       ref={wrapRef}
-      className={`w-full ${clip ? 'overflow-hidden' : ''} ${className}`}
+      className={`relative w-full ${clip ? 'overflow-hidden' : ''} ${className}`}
     >
+      {/* Invisible metric ruler — one full glyph row at 100px. */}
+      {fontSize == null && (
+        <span
+          aria-hidden
+          className="pointer-events-none invisible absolute left-0 top-0 block h-px w-px overflow-hidden"
+        >
+          <span
+            ref={rulerRef}
+            className="ascii block w-max whitespace-pre leading-none"
+            style={{ fontSize: '100px' }}
+          >
+            {lines[0]}
+          </span>
+        </span>
+      )}
       <div
+        ref={rowRef}
         className={`ascii flex leading-[1.05] ${center ? 'justify-center' : ''}`}
         style={{ fontSize: fontSize ?? `${size}px` }}
         aria-hidden

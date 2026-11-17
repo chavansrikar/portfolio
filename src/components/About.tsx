@@ -106,9 +106,9 @@ export function About() {
             <blockquote className="mt-2 rounded-2xl border-l-2 border-cyan-400/60 bg-gradient-to-r from-cyan-400/[0.07] to-transparent px-5 py-4">
               <p className="font-display text-base font-medium leading-relaxed text-chalk sm:text-lg">
                 “For a well-scoped problem where the models, APIs or data already
-                exist, I can go from concept to a clickable, working prototype in{' '}
-                <span className="text-gradient-static">5–10 minutes</span>. From
-                there, I iterate toward accuracy, robustness and production quality.”
+                exist, I can take it from concept to a clickable, working prototype
+                fast — then iterate toward accuracy, robustness and a solution that
+                holds up in the real world.”
               </p>
             </blockquote>
 

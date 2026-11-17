@@ -84,11 +84,11 @@ export function Posts() {
                   <div className="relative min-w-0 flex-1">
                     <div className="flex items-center gap-1.5">
                       <LinkedinIcon className="h-3 w-3 shrink-0 text-indigo-400/70" />
-                      <span className="truncate font-display text-[13.5px] font-semibold tracking-tight text-chalk transition-colors duration-300 group-hover:text-purple-100">
+                      <span className="break-words font-display text-[13px] font-semibold leading-snug tracking-tight text-chalk transition-colors duration-300 group-hover:text-purple-100 sm:text-[13.5px]">
                         {p.title}
                       </span>
                     </div>
-                    <div className="mt-0.5 truncate font-mono text-[9px] uppercase tracking-[0.14em] text-mist/50">
+                    <div className="mt-0.5 break-words font-mono text-[9px] uppercase tracking-[0.14em] text-mist/50">
                       {p.date} · {p.tags[0]}
                     </div>
                   </div>

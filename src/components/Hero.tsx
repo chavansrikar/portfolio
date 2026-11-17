@@ -151,15 +151,15 @@ export function Hero({ ready = true }: { ready?: boolean }) {
           >
             I turn ideas into{' '}
             <span className="relative inline-block">
-              <span className="text-gradient">working prototypes</span>
+              <span className="text-gradient">prototypes</span>
               <motion.span
                 className="absolute -bottom-1 left-0 h-[3px] rounded-full bg-gradient-to-r from-purple-400 via-teal-400 to-violet-500"
                 initial={{ width: 0 }}
                 animate={{ width: '100%' }}
                 transition={{ delay: 1.1, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
               />
-            </span>{' '}
-            in 5–10 minutes.
+            </span>
+            .
           </motion.h1>
 
           <motion.p
@@ -168,10 +168,11 @@ export function Hero({ ready = true }: { ready?: boolean }) {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="mt-6 max-w-xl text-base leading-relaxed text-mist sm:text-lg"
           >
-            Aspiring entrepreneur and AI generalist working across{' '}
-            <span className="text-chalk">computer vision</span>,{' '}
+            Aspiring entrepreneur and AI generalist turning{' '}
+            <span className="text-chalk">real-world problems</span> into working
+            products across <span className="text-chalk">computer vision</span>,{' '}
             <span className="text-chalk">deep learning</span> and{' '}
-            <span className="text-chalk">LLM tooling</span> — shipping real products,
+            <span className="text-chalk">LLM tooling</span> — shipping solutions,
             not slideware.
           </motion.p>
 
@@ -324,9 +325,9 @@ function TerminalCard() {
   const lines = [
     { p: '~', t: 'whoami', o: 'chavan-srikar' },
     { p: '~', t: 'cat focus.txt', o: 'computer-vision | deep-learning | llm-tooling' },
-    { p: '~', t: 'ls ./projects', o: '20 repos · 12 stars' },
+    { p: '~', t: 'ls ./projects', o: '21 repos · 12 stars' },
     { p: '~', t: 'echo $STACK', o: 'Python · TypeScript · Java · Node.js' },
-    { p: '~', t: 'python build.py --fast', o: '✔ prototype ready in 7m 42s' },
+    { p: '~', t: 'python build.py --fast', o: '✔ prototype shipped' },
   ]
 
   return (

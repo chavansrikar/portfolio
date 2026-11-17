@@ -333,7 +333,7 @@ export function SkillTile({ label, category, index }: Props) {
 
       {/* Label — wraps inside the tile width so rows stay aligned */}
       <div className="mt-2.5 flex w-full flex-col items-center">
-        <span className="line-clamp-2 min-h-[1.6rem] w-full break-words text-center font-mono text-[9px] leading-[1.2] text-mist/70 transition-colors duration-300 group-hover:text-chalk sm:text-[10.5px]">
+        <span className="line-clamp-3 min-h-[2.4rem] w-full break-words text-center font-mono text-[9px] leading-[1.2] text-mist/80 transition-colors duration-300 group-hover:text-chalk sm:text-[10px]">
           {label}
         </span>
         <span className="mt-0.5 h-2.5 font-mono text-[8px] uppercase tracking-[0.14em] text-mist/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100">

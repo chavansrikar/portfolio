@@ -143,10 +143,10 @@ export function Journey() {
                   {a.emoji}
                 </span>
                 <div className="min-w-0">
-                  <div className="truncate font-display text-[13.5px] font-semibold tracking-tight text-chalk">
+                  <div className="break-words font-display text-[13.5px] font-semibold leading-snug tracking-tight text-chalk">
                     {a.title}
                   </div>
-                  <div className="truncate font-mono text-[10px] text-mist/70">
+                  <div className="mt-0.5 break-words font-mono text-[10px] leading-snug text-mist/70">
                     {a.detail}
                   </div>
                 </div>

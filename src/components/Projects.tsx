@@ -27,7 +27,7 @@ export function Projects() {
           Things I&apos;ve <span className="text-gradient-static">built and shipped</span>.
         </>
       }
-      description="Nine of twenty public repos, with the ones that taught me the most up front."
+      description="Nine of 21 public repos, with the ones that taught me the most up front."
     >
       {/* Filters */}
       <Reveal>
@@ -104,7 +104,7 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
                 <span className="h-1 w-1 rounded-full bg-mist/40" />
                 <span className="font-mono text-[9px] text-mist/60">{project.year}</span>
               </div>
-              <h3 className="mt-0.5 truncate font-display text-[15px] font-bold leading-tight tracking-tight text-chalk">
+              <h3 className="mt-0.5 line-clamp-2 break-words font-display text-[15px] font-bold leading-tight tracking-tight text-chalk">
                 {project.title}
               </h3>
             </div>

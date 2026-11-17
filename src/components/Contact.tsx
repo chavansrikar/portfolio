@@ -116,7 +116,7 @@ export function Contact() {
           <span className="text-gradient-static">Let&apos;s build it.</span>
         </>
       }
-      description="Open to collaborations on AI/CV projects, hackathons, or anything that needs a fast prototype to prove it's worth building."
+      description="Open to collaborations on AI/CV projects, hackathons, or anything that needs a working prototype to prove it's worth building."
     >
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.15fr] lg:gap-10">
         {/* Left — contact details */}
@@ -156,7 +156,7 @@ export function Contact() {
               <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.24em] text-mist">
                 Find me online
               </p>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {SOCIALS.map((s, i) => {
                   const Icon = s.icon
                   return (
@@ -199,7 +199,7 @@ export function Contact() {
                   {[
                     '  ┌────────────────────────────┐',
                     '  │  got a problem worth       │',
-                    '  │  solving? give me 5-10 min  │',
+                    '  │  solving? let\'s build it.  │',
                     '  │  and i\'ll show you it\'s    │',
                     '  │  possible.                 │',
                     '  └────────────────────────────┘',
