@@ -18,7 +18,8 @@ export const profile = {
     "vibe coding" — for a well-scoped problem with the right data or APIs already
     available, I can get a working prototype up fast, then spend the real
     time making it accurate and robust. I'm also building toward impactful
-    e-commerce products that solve everyday problems.`,
+    e-commerce products that solve everyday problems. First place at the NASA
+    Space Apps Challenge 2026 Warangal local event with ATLAS Earth.`,
   summary: `Most of my work follows the same loop: get something running fast enough to see if
     the idea holds up, then go back and do it properly — real preprocessing, model tuning,
     proper outputs, a UI someone else could actually use.`,
@@ -36,6 +37,23 @@ export const profile = {
   },
 } as const
 
+/** NASA Space Apps 2026 — first place at the Warangal local event. */
+export const nasaAward = {
+  event: 'NASA Space Apps Challenge 2026',
+  eventLong: 'NASA Space Apps Challenge 2026 — Warangal Local Event',
+  date: '14–15 November 2026',
+  place: 'Warangal, Telangana',
+  team: 'Ace Azael',
+  project: 'ATLAS Earth — Be An Earth System Trend Detective',
+  summary:
+    'Won first place at the NASA Space Apps Challenge 2026 Warangal local event with ATLAS Earth, a trend detective that turns 30 years of NASA climate data into plain-language answers.',
+  certificate: '/nasa-space-apps-2026-first-place-1600.webp',
+  certificateSmall: '/nasa-space-apps-2026-first-place-800.webp',
+  live: 'https://atlas-ace-azael.vercel.app/',
+  repo: 'https://github.com/chavansrikar/Be-An-Earth-System-Trend-Detective-Team-Ace-Azael',
+  sources: ['NASA POWER', 'NASA GIBS', 'NASA EONET', 'USGS Water', 'ECCC GeoMet'],
+} as const
+
 export const roles = [
   'AI / ML Engineer',
   'Computer Vision Dev',
@@ -47,7 +65,7 @@ export const roles = [
 ] as const
 
 export const stats = [
-  { value: 20, suffix: '', label: 'Public Repos', sub: 'on GitHub' },
+  { value: 21, suffix: '', label: 'Public Repos', sub: 'on GitHub' },
   { value: 12, suffix: '', label: 'Stars Earned', sub: 'across repos' },
   { value: 7, suffix: '', label: 'Followers', sub: 'GitHub' },
   { value: 35, suffix: '+', label: 'Hackathon Tools', sub: 'curated & shipped' },
@@ -155,6 +173,33 @@ export type Project = {
 }
 
 export const projects: Project[] = [
+  {
+    slug: 'atlas-earth',
+    title: 'ATLAS Earth — Be An Earth System Trend Detective',
+    tagline: 'NASA climate data, turned into plain-language trend answers',
+    description:
+      "First-place build at NASA Space Apps 2026 Warangal. Pick a NASA Earth variable and a place: ATLAS draws the 30-year record, measures the trend, tests whether it is real, and shows the same planet on a NASA Blue Marble globe.",
+    problem:
+      'NASA climate data is open but hard to read. Thirty-year records, dozens of variables and statistical tests stand between a person and a simple answer: what is changing here, and is it real?',
+    built:
+      "A full-stack TypeScript app over NASA POWER and NASA GIBS. It tests 25 variables at once with Benjamini–Hochberg correction, maps trends grid cell by grid cell, compares up to six places, and renders the globe with drag, zoom and monthly NASA imagery. A plain-language layer explains the rate, the significance and the limits.",
+    why:
+      'Turns open NASA data into answers a student, citizen or official can act on — what is changing, where, how much, and whether the trend survives a significance test.',
+    stack: ['TypeScript', 'React', 'Three.js', '3d-tiles-renderer', 'NASA POWER', 'NASA GIBS', 'Vercel'],
+    category: 'Full-Stack',
+    featured: true,
+    year: '2026',
+    url: nasaAward.repo,
+    demo: nasaAward.live,
+    stars: 0,
+    ascii: '🌍',
+    accent: 'from-sky-500/25 to-blue-600/10',
+    metrics: [
+      { label: 'NASA variables', value: '25' },
+      { label: 'Years of data', value: '30' },
+      { label: 'Award', value: '1st' },
+    ],
+  },
   {
     slug: 'ngpme',
     title: 'NGPME — Prosthetic Mobility Enhancer',
@@ -420,6 +465,18 @@ export const timeline: TimelineEntry[] = [
     current: true,
   },
   {
+    period: '2026',
+    title: 'NASA Space Apps Challenge 2026 — First Place',
+    org: 'NASA Space Apps · Warangal Local Event',
+    location: 'Warangal, Telangana',
+    points: [
+      'Won first place with Team Ace Azael for ATLAS Earth — Be An Earth System Trend Detective.',
+      "Built a working NASA data product across the 48-hour event: 25 NASA POWER variables, Sen's slope and Mann–Kendall significance tests, and a NASA Blue Marble globe.",
+      'Certificate of Appreciation awarded at the Warangal local event, 14–15 November 2026.',
+    ],
+    type: 'achievement',
+  },
+  {
     period: '2023 — 2026',
     title: 'AI & ML Diploma',
     org: 'Samskruti College, Ghatkesar',
@@ -492,7 +549,7 @@ export const timeline: TimelineEntry[] = [
     points: [
       'Participation certificate for the Viksit Bharat Challenge — Telangana, 19–20 December 2025.',
       'Entered as an individual participant representing Yadadri Bhuvanagiri, with the theme #AatmanirbharBharat — how AI and ML can solve real-world challenges.',
-      'Presented the pitch to a panel at the state-level championship in Hyderabad.',
+      'Presented the pitch to a panel at the state-level championship in Hyderabad; not selected for the national round.',
     ],
     type: 'achievement',
   },
@@ -526,6 +583,12 @@ export type Achievement = {
 }
 
 export const achievements: Achievement[] = [
+  {
+    title: 'NASA Space Apps 2026 — First Place',
+    detail: 'Warangal local event · ATLAS Earth',
+    emoji: '🛰️',
+    href: 'https://atlas-ace-azael.vercel.app/',
+  },
   {
     title: 'VBYLD 2026 — Participation Certificate',
     detail: 'Viksit Bharat Young Leaders Dialogue · Solo participant',
@@ -668,7 +731,7 @@ export const posts: Post[] = [
   {
     title: 'From State-Level to National Aspirations — My VBYLD 2026 Journey',
     excerpt:
-      'Representing Yadadri Bhuvanagiri at the Viksit Bharat Young Leaders Dialogue 2026 state championship in Hyderabad, as an individual participant. I pitched #AatmanirbharBharat — how AI and ML can solve real-world challenges — and am now awaiting the results for the national selection in New Delhi.',
+      'Representing Yadadri Bhuvanagiri at the Viksit Bharat Young Leaders Dialogue 2026 state championship in Hyderabad, as an individual participant. I pitched #AatmanirbharBharat — how AI and ML can solve real-world challenges. The state round was the end of the road; I was not selected for the national round in New Delhi.',
     tags: [
       '#VBYLD2026',
       '#AatmanirbharBharat',
@@ -732,7 +795,7 @@ export const posts: Post[] = [
 export const myBharat = {
   theme: 'Healthcare & Wellbeing',
   role: 'Individual — solo participant',
-  status: 'Awaiting national selection',
+  status: 'State level · not selected for the national round',
   programme: 'VBYLD 2026 — State Level Championship',
   organiser: 'Government of Telangana · Dept. of Youth Services',
   initiative: 'Viksit Bharat Young Leaders Dialogue (VBYLD) 2026',
@@ -947,6 +1010,7 @@ export const repoFallback: GitHubRepo[] = [
 export const navLinks = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
+  { id: 'nasa', label: 'NASA' },
   { id: 'skills', label: 'Skills' },
   { id: 'work', label: 'Work' },
   { id: 'journey', label: 'Journey' },

@@ -86,7 +86,7 @@ export function Github() {
   return (
     <Section
       id="github"
-      index="06"
+      index="07"
       eyebrow="Open source"
       title={
         <>

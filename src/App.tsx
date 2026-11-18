@@ -3,7 +3,6 @@ import Lenis from 'lenis'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { AsciiBoot } from './components/AsciiBoot'
-import { ClickBurst } from './components/ClickBurst'
 import { Cursor } from './components/Cursor'
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
@@ -12,6 +11,9 @@ import { AsciiDivider } from './components/ui/AsciiDivider'
 import { marqueeItems } from './data/site'
 
 const About = lazy(() => import('./components/About').then((m) => ({ default: m.About })))
+const MissionLog = lazy(() =>
+  import('./components/MissionLog').then((m) => ({ default: m.MissionLog }))
+)
 const Skills = lazy(() => import('./components/Skills').then((m) => ({ default: m.Skills })))
 const Projects = lazy(() => import('./components/Projects').then((m) => ({ default: m.Projects })))
 const Journey = lazy(() => import('./components/Journey').then((m) => ({ default: m.Journey })))
@@ -89,7 +91,6 @@ export default function App() {
       </AnimatePresence>
 
       <Cursor />
-      <ClickBurst />
       <Navbar />
 
       <main>
@@ -121,17 +122,19 @@ export default function App() {
 
         <Suspense fallback={<SectionFallback />}>
           <About />
-          <AsciiDivider index="02" label="TOOLKIT" reverse />
+          <AsciiDivider index="02" label="MISSION LOG" reverse />
+          <MissionLog />
+          <AsciiDivider index="03" label="TOOLKIT" />
           <Skills />
-          <AsciiDivider index="03" label="WORK" />
+          <AsciiDivider index="04" label="WORK" reverse />
           <Projects />
-          <AsciiDivider index="04" label="JOURNEY" reverse />
+          <AsciiDivider index="05" label="JOURNEY" />
           <Journey />
-          <AsciiDivider index="05" label="WRITING" />
+          <AsciiDivider index="06" label="WRITING" reverse />
           <Posts />
-          <AsciiDivider index="06" label="CODE" reverse />
+          <AsciiDivider index="07" label="CODE" />
           <Github />
-          <AsciiDivider index="07" label="CONTACT" />
+          <AsciiDivider index="08" label="CONTACT" reverse />
           <Contact />
         </Suspense>
       </main>

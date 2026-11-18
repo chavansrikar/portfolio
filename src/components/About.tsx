@@ -289,10 +289,10 @@ export function About() {
       {/* Stats strip */}
       <RevealGroup className="mt-16 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         {[
-          { v: 20, s: '', l: 'Public repos', sub: 'shipped & public' },
+          { v: 21, s: '', l: 'Public repos', sub: 'shipped & public' },
           { v: 12, s: '', l: 'GitHub stars', sub: 'earned on open source' },
           { v: 35, s: '+', l: 'Hackathon tools', sub: 'curated & shared' },
-          { v: 17, s: '', l: 'Health modules', sub: 'in one platform' },
+          { v: 1, s: 'st', l: 'NASA Space Apps', sub: 'Warangal · first place' },
         ].map((stat) => (
           <RevealItem key={stat.l}>
             <TiltCard max={6}>

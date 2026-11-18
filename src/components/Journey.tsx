@@ -24,7 +24,7 @@ export function Journey() {
   return (
     <Section
       id="journey"
-      index="04"
+      index="05"
       eyebrow="Journey"
       title={
         <>

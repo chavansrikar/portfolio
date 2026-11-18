@@ -35,7 +35,7 @@ export function Posts() {
   return (
     <Section
       id="posts"
-      index="05"
+      index="06"
       eyebrow="Writing"
       title={
         <>

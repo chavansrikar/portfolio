@@ -20,14 +20,14 @@ export function Projects() {
   return (
     <Section
       id="work"
-      index="03"
+      index="04"
       eyebrow="Selected work"
       title={
         <>
           Things I&apos;ve <span className="text-gradient-static">built and shipped</span>.
         </>
       }
-      description="Nine of 21 public repos, with the ones that taught me the most up front."
+      description="Ten of 21 public repos, with the ones that taught me the most up front."
     >
       {/* Filters */}
       <Reveal>
