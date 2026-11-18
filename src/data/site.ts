@@ -471,7 +471,7 @@ export const timeline: TimelineEntry[] = [
     location: 'Warangal, Telangana',
     points: [
       'Won first place with Team Ace Azael for ATLAS Earth — Be An Earth System Trend Detective.',
-      "Built a working NASA data product across the 48-hour event: 25 NASA POWER variables, Sen's slope and Mann–Kendall significance tests, and a NASA Blue Marble globe.",
+      "Built a working NASA data product for the event: 25 NASA POWER variables, Sen's slope and Mann–Kendall significance tests, and a NASA Blue Marble globe.",
       'Certificate of Appreciation awarded at the Warangal local event, 14–15 November 2026.',
     ],
     type: 'achievement',
