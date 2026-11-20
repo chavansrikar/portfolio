@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion'
+import { AnimatePresence, motion, useScroll, useSpring, useTransform } from 'framer-motion'
 import { navLinks, profile } from '@/data/site'
 import { useScrollSpy } from '@/hooks/useAnimation'
+import { usePrefersReducedMotion } from '@/hooks/useMediaQuery'
 import { CloseIcon, GithubIcon, LinkedinIcon, MenuIcon } from './ui/icons'
 import { Magnetic } from './ui/Magnetic'
 
@@ -13,6 +14,8 @@ export function Navbar() {
   const active = useScrollSpy(ids)
   const { scrollYProgress } = useScroll()
   const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 26, mass: 0.3 })
+  const reduced = usePrefersReducedMotion()
+  const runnerX = useTransform(progress, (v) => `${Math.min(100, Math.max(0, v * 100))}%`)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -44,6 +47,16 @@ export function Navbar() {
         className="fixed left-0 top-0 z-[120] h-[2px] w-full origin-left bg-gradient-to-r from-purple-400 via-teal-400 to-violet-500"
         style={{ scaleX: progress }}
       />
+      {/* A single glyph rides the progress rail — visible on every viewport. */}
+      {!reduced && (
+        <motion.span
+          aria-hidden
+          style={{ left: runnerX }}
+          className="pointer-events-none fixed top-0 z-[121] -translate-x-1/2 -translate-y-[3px] font-mono text-[10px] leading-none text-teal-300 [text-shadow:0_0_10px_rgba(45,212,191,0.85)]"
+        >
+          ◆
+        </motion.span>
+      )}
 
       <header
         className={`fixed inset-x-0 top-0 z-[110] transition-all duration-500 ${
@@ -59,7 +72,7 @@ export function Navbar() {
             className="group flex items-center gap-3"
             aria-label="Back to top"
           >
-            <span className="relative grid h-9 w-9 place-items-center rounded-lg bg-purple-500/15 ring-1 ring-purple-400/30">
+            <span className="relative grid h-11 w-11 place-items-center rounded-lg bg-purple-500/15 ring-1 ring-purple-400/30 sm:h-10 sm:w-10">
               <span className="ascii ascii-3d-sm font-mono text-sm font-bold text-purple-300">
                 CS
               </span>
@@ -82,7 +95,7 @@ export function Navbar() {
                 <button
                   onClick={() => go(link.id)}
                   data-active={active === link.id}
-                  className="link-underline relative rounded-lg px-3.5 py-2 font-mono text-[12px] uppercase tracking-[0.14em] transition-colors duration-300 hover:text-chalk"
+                  className="link-underline relative inline-flex min-h-11 items-center rounded-lg px-3.5 py-2 font-mono text-[12px] uppercase tracking-[0.14em] transition-colors duration-300 hover:text-chalk"
                   style={{
                     color: active === link.id ? '#e8eaf4' : '#8b93b0',
                   }}
@@ -162,7 +175,7 @@ export function Navbar() {
                 <button
                   onClick={() => setOpen(false)}
                   aria-label="Close menu"
-                  className="grid h-10 w-10 place-items-center rounded-lg border border-white/10 text-mist"
+                  className="grid h-11 w-11 place-items-center rounded-lg border border-white/10 text-mist"
                 >
                   <CloseIcon className="h-4 w-4" />
                 </button>
@@ -205,7 +218,7 @@ export function Navbar() {
                     href={profile.links.github}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-mist transition-colors hover:text-purple-300"
+                    className="grid h-11 w-11 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-mist transition-colors hover:text-purple-300"
                     aria-label="GitHub"
                   >
                     <GithubIcon className="h-4 w-4" />
@@ -214,7 +227,7 @@ export function Navbar() {
                     href={profile.links.linkedin}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-mist transition-colors hover:text-indigo-300"
+                    className="grid h-11 w-11 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-mist transition-colors hover:text-indigo-300"
                     aria-label="LinkedIn"
                   >
                     <LinkedinIcon className="h-4 w-4" />

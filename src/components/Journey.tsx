@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { achievements, timeline } from '@/data/site'
 import type { TimelineEntry } from '@/data/site'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { Section } from './ui/Section'
 import { Reveal } from './ui/Reveal'
 import {
@@ -21,6 +23,9 @@ const TYPE_META: Record<
 }
 
 export function Journey() {
+  const isWide = useMediaQuery('(min-width: 1024px)')
+  const [openNotes, setOpenNotes] = useState<Record<number, boolean>>({})
+
   return (
     <Section
       id="journey"
@@ -48,6 +53,7 @@ export function Journey() {
           {timeline.map((entry, i) => {
             const meta = TYPE_META[entry.type]
             const Icon = meta.icon
+            const notesOpen = isWide || !!openNotes[i]
 
             return (
               <motion.div
@@ -84,6 +90,17 @@ export function Journey() {
                         current
                       </span>
                     )}
+                    <button
+                      type="button"
+                      onClick={() => setOpenNotes((prev) => ({ ...prev, [i]: !prev[i] }))}
+                      aria-expanded={notesOpen}
+                      className="ml-auto inline-flex min-h-10 items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-2.5 font-mono text-[8px] uppercase tracking-[0.14em] text-mist/70 transition-colors hover:border-purple-400/40 hover:text-purple-200 lg:hidden"
+                    >
+                      <span aria-hidden className="ascii text-[10px] leading-none text-purple-300/80">
+                        {notesOpen ? '−' : '+'}
+                      </span>
+                      {notesOpen ? 'Hide notes' : `${entry.points.length} notes`}
+                    </button>
                   </div>
 
                   <h3 className="mt-2 font-display text-lg font-bold tracking-tight text-chalk sm:text-xl">
@@ -96,7 +113,7 @@ export function Journey() {
                     </span>
                   </p>
 
-                  <ul className="mt-3.5 space-y-2">
+                  <ul className={`mt-3.5 space-y-2 ${notesOpen ? 'block' : 'hidden'} lg:block`}>
                     {entry.points.map((p, pi) => (
                       <motion.li
                         key={p}
@@ -128,7 +145,7 @@ export function Journey() {
             <span className="h-px flex-1 bg-gradient-to-r from-cyan-400/40 to-transparent" />
           </div>
 
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-3">
             {achievements.map((a, i) => (
               <motion.div
                 key={a.title}
@@ -137,16 +154,16 @@ export function Journey() {
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ delay: i * 0.07, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                 whileHover={{ scale: 1.03, y: -4 }}
-                className="glass card-hover group flex items-center gap-3.5 rounded-xl px-4 py-3.5"
+                className="glass card-hover group flex items-center gap-3 rounded-xl px-3 py-3 sm:gap-3.5 sm:px-4 sm:py-3.5"
               >
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-white/[0.08] to-white/[0.02] text-xl ring-1 ring-white/10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-white/[0.08] to-white/[0.02] text-lg ring-1 ring-white/10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 sm:h-10 sm:w-10 sm:text-xl">
                   {a.emoji}
                 </span>
                 <div className="min-w-0">
-                  <div className="break-words font-display text-[13.5px] font-semibold leading-snug tracking-tight text-chalk">
+                  <div className="break-words font-display text-[12px] font-semibold leading-snug tracking-tight text-chalk sm:text-[13.5px]">
                     {a.title}
                   </div>
-                  <div className="mt-0.5 break-words font-mono text-[10px] leading-snug text-mist/70">
+                  <div className="mt-0.5 break-words font-mono text-[8.5px] leading-snug text-mist/70 sm:text-[10px]">
                     {a.detail}
                   </div>
                 </div>

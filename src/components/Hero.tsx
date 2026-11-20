@@ -115,7 +115,7 @@ export function Hero({ ready = true }: { ready?: boolean }) {
         className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1.35fr_1fr] lg:gap-8"
       >
         {/* Left column */}
-        <div className="flex flex-col items-start">
+        <div className="flex min-w-0 flex-col items-start">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
@@ -132,7 +132,7 @@ export function Hero({ ready = true }: { ready?: boolean }) {
           </motion.div>
 
           {/* ASCII name — each letter drops in after the boot screen clears */}
-          <div className="ascii ascii-3d ascii-glitch mb-6 w-full text-purple-400">
+          <div className="ascii ascii-3d ascii-glitch mb-6 w-full max-w-full min-w-0 text-purple-400">
             <AsciiName
               text={profile.name}
               max={13}
@@ -234,7 +234,7 @@ export function Hero({ ready = true }: { ready?: boolean }) {
           initial={{ opacity: 0, scale: 0.94, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ delay: 0.55, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mx-auto flex w-full max-w-md flex-col items-center gap-8 lg:max-w-none"
+          className="relative mx-auto flex w-full min-w-0 max-w-md flex-col items-center gap-8 lg:max-w-none"
         >
           <ProfileCard />
 
@@ -263,7 +263,7 @@ export function Hero({ ready = true }: { ready?: boolean }) {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.0, duration: 0.8 }}
-            className="w-full"
+            className="hidden w-full sm:block"
           >
             <AsciiHoverPanel art={asciiArt.cpu} label="sys.status" />
           </motion.div>

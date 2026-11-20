@@ -480,6 +480,24 @@
   animation: rule-sweep 5.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
+/* One-shot scan across the "show more" control. */
+@keyframes show-more-scan {
+  from {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  to {
+    transform: translateX(420%);
+    opacity: 0;
+  }
+}
+
 /* Boot log entrances. */
 @keyframes boot-log {
   from {

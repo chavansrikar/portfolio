@@ -142,7 +142,7 @@ export function MissionLog() {
                 href={nasaAward.live}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="group inline-flex items-center justify-center gap-2 border-2 border-[#111] bg-[#111] px-4 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-[#ffd400] shadow-[4px_4px_0_#ffd400] transition-transform hover:-translate-y-0.5 sm:text-[11px]"
+                className="group inline-flex min-h-11 items-center justify-center gap-2 border-2 border-[#111] bg-[#111] px-4 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-[#ffd400] shadow-[4px_4px_0_#ffd400] transition-transform hover:-translate-y-0.5 sm:text-[11px]"
               >
                 Open ATLAS Earth
                 <ArrowUpRightIcon className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -151,7 +151,7 @@ export function MissionLog() {
                 href={asset(nasaAward.certificate)}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex items-center justify-center gap-2 border-2 border-[#111] bg-[#fbf9f2] px-4 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-[#111] shadow-[4px_4px_0_#111] transition-transform hover:-translate-y-0.5 sm:text-[11px]"
+                className="inline-flex min-h-11 items-center justify-center gap-2 border-2 border-[#111] bg-[#fbf9f2] px-4 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-[#111] shadow-[4px_4px_0_#111] transition-transform hover:-translate-y-0.5 sm:text-[11px]"
               >
                 View certificate
                 <ArrowUpRightIcon className="h-3.5 w-3.5" />
@@ -160,7 +160,7 @@ export function MissionLog() {
                 href={nasaAward.repo}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex items-center justify-center gap-2 border-2 border-[#111] bg-[#fbf9f2] px-4 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-[#111] shadow-[4px_4px_0_#111] transition-transform hover:-translate-y-0.5 sm:text-[11px]"
+                className="inline-flex min-h-11 items-center justify-center gap-2 border-2 border-[#111] bg-[#fbf9f2] px-4 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-[#111] shadow-[4px_4px_0_#111] transition-transform hover:-translate-y-0.5 sm:text-[11px]"
               >
                 <GithubIcon className="h-3.5 w-3.5" />
                 Source

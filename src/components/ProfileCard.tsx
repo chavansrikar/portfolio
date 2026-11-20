@@ -88,7 +88,7 @@ export function ProfileCard() {
             target="_blank"
             rel="noreferrer noopener"
             aria-label="GitHub"
-            className="grid h-10 w-10 place-items-center rounded-xl border border-white/12 bg-abyss/95 text-mist shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/50 hover:text-cyan-300"
+            className="grid h-11 w-11 place-items-center rounded-xl border border-white/12 bg-abyss/95 text-mist shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/50 hover:text-cyan-300"
           >
             <GithubIcon className="h-4 w-4" />
           </a>
@@ -97,7 +97,7 @@ export function ProfileCard() {
             target="_blank"
             rel="noreferrer noopener"
             aria-label="LinkedIn"
-            className="grid h-10 w-10 place-items-center rounded-xl border border-white/12 bg-abyss/95 text-mist shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-indigo-400/50 hover:text-indigo-300"
+            className="grid h-11 w-11 place-items-center rounded-xl border border-white/12 bg-abyss/95 text-mist shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-indigo-400/50 hover:text-indigo-300"
           >
             <LinkedinIcon className="h-4 w-4" />
           </a>

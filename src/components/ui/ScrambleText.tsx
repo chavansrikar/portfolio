@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useInView } from 'framer-motion'
+import { usePrefersReducedMotion } from '@/hooks/useMediaQuery'
 
 const GLYPHS = '!<>-_\\/[]{}—=+*^?#░▒▓█▄▀ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 
@@ -26,10 +27,15 @@ export function ScrambleText({
 }: Props) {
   const ref = useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
+  const reduced = usePrefersReducedMotion()
   const [display, setDisplay] = useState(text)
 
   useEffect(() => {
     if (!inView) return
+    if (reduced) {
+      setDisplay(text)
+      return
+    }
     let raf = 0
     let frame = 0
     const start = performance.now()
@@ -61,7 +67,7 @@ export function ScrambleText({
 
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [inView, text, duration, trigger])
+  }, [inView, text, duration, trigger, reduced])
 
   return (
     <span ref={ref} className={className}>

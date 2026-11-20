@@ -113,7 +113,7 @@ export function About() {
             </blockquote>
 
             {/* Focus areas */}
-            <RevealGroup className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <RevealGroup className="mt-4 grid grid-cols-1 gap-3 min-[380px]:grid-cols-2">
               {focusAreas.map((area) => {
                 const Icon = ICONS[area.icon as keyof typeof ICONS]
                 return (
@@ -190,9 +190,9 @@ export function About() {
       </div>
 
       {/* Row 2 — visual / recognition band */}
-      <RevealGroup className="mt-16 grid grid-cols-1 gap-4 lg:grid-cols-2">
+      <RevealGroup className="no-scrollbar -mx-5 mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 sm:-mx-8 sm:mt-16 sm:px-8 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0">
         {/* VBYLD certificate */}
-        <RevealItem className="lg:col-span-1">
+        <RevealItem className="w-[84%] shrink-0 snap-center sm:w-[62%] md:w-auto">
           <a
             href="https://lnkd.in/p/d5VwF7Dm"
             target="_blank"
@@ -255,7 +255,7 @@ export function About() {
         </RevealItem>
 
         {/* Flag photo — becomes ANSI art on hover */}
-        <RevealItem className="lg:col-span-1">
+        <RevealItem className="w-[84%] shrink-0 snap-center sm:w-[62%] md:w-auto">
           <div className="relative h-full overflow-hidden rounded-2xl border border-white/10 bg-black">
             <div className="relative aspect-[4/5] w-full">
               <AnsiPhoto
@@ -285,6 +285,11 @@ export function About() {
         </RevealItem>
 
       </RevealGroup>
+      <p className="mt-2 flex items-center justify-center gap-2 font-mono text-[9px] uppercase tracking-[0.18em] text-mist/45 md:hidden">
+        <span aria-hidden className="ascii text-teal-300/50">←</span>
+        swipe
+        <span aria-hidden className="ascii text-teal-300/50">→</span>
+      </p>
 
       {/* Stats strip */}
       <RevealGroup className="mt-16 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">

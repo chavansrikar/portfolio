@@ -538,7 +538,7 @@ export function Globe({ className = '' }: Props) {
           type="button"
           onClick={() => resetRef.current()}
           aria-label="Reset globe rotation"
-          className="absolute right-2.5 top-2.5 z-10 border border-white/20 bg-black/40 px-2 py-1 font-mono text-[8px] uppercase tracking-[0.18em] text-white/60 backdrop-blur-sm transition-colors hover:border-[#ffd400]/60 hover:text-[#ffd400]"
+          className="absolute right-2.5 top-2.5 z-10 inline-flex min-h-10 min-w-10 items-center justify-center border border-white/20 bg-black/40 px-3 py-2 font-mono text-[9px] uppercase tracking-[0.18em] text-white/60 backdrop-blur-sm transition-colors hover:border-[#ffd400]/60 hover:text-[#ffd400]"
         >
           Reset ↺
         </button>

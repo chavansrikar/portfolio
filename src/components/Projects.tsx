@@ -2,20 +2,27 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { projects } from '@/data/site'
 import type { Project } from '@/data/site'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { Section } from './ui/Section'
 import { Reveal } from './ui/Reveal'
 import { TiltCard } from './ui/TiltCard'
 import { Button } from './ui/Button'
+import { ShowMore } from './ui/ShowMore'
 import { ArrowUpRightIcon, ExternalLinkIcon, GithubIcon } from './ui/icons'
 
 const FILTERS = ['All', 'AI / ML', 'Computer Vision', 'Full-Stack', 'Blockchain', 'DevTools'] as const
+const INITIAL_VISIBLE = 6
 
 export function Projects() {
   const [filter, setFilter] = useState<string>('All')
   const [open, setOpen] = useState<Project | null>(null)
+  const [showAll, setShowAll] = useState(false)
+  const isWide = useMediaQuery('(min-width: 1280px)')
 
   const filtered =
     filter === 'All' ? projects : projects.filter((p) => p.category === filter)
+  const visible = isWide || showAll ? filtered : filtered.slice(0, INITIAL_VISIBLE)
+  const remaining = filtered.length - visible.length
 
   return (
     <Section
@@ -35,8 +42,12 @@ export function Projects() {
           {FILTERS.map((f) => (
             <button
               key={f}
-              onClick={() => setFilter(f)}
-              className={`relative shrink-0 rounded-full px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors duration-300 ${
+              onClick={() => {
+                setFilter(f)
+                setShowAll(false)
+              }}
+              aria-pressed={filter === f}
+              className={`relative inline-flex min-h-10 shrink-0 items-center justify-center rounded-full px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors duration-300 ${
                 filter === f ? 'text-void' : 'text-mist hover:text-chalk'
               }`}
             >
@@ -58,7 +69,7 @@ export function Projects() {
 
       {/* Grid */}
       <motion.div layout className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {filtered.map((p, i) => (
+        {visible.map((p, i) => (
           <motion.div
             key={p.slug}
             layout
@@ -72,6 +83,14 @@ export function Projects() {
         ))}
       </motion.div>
 
+      {remaining > 0 && (
+        <ShowMore
+          remaining={remaining}
+          label="projects"
+          onClick={() => setShowAll(true)}
+        />
+      )}
+
       {open && <ProjectModal project={open} onClose={() => setOpen(null)} />}
     </Section>
   )
@@ -83,8 +102,18 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
       <article
         onClick={onOpen}
         data-cursor="VIEW"
-        className="glass card-hover shine group relative flex h-full flex-col overflow-hidden rounded-2xl"
+        className="glass card-hover shine group relative flex h-full flex-col overflow-hidden rounded-2xl active:scale-[0.99]"
       >
+        {/* ASCII corner frame — fades in with the pointer */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-2.5 z-20 font-mono text-[10px] leading-none text-purple-300/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        >
+          <span className="absolute left-0 top-0">┌</span>
+          <span className="absolute right-0 top-0">┐</span>
+          <span className="absolute bottom-0 left-0">└</span>
+          <span className="absolute bottom-0 right-0">┘</span>
+        </div>
         {/* Gradient wash */}
         <div
           className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${project.accent} opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
@@ -118,7 +147,7 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
         </p>
 
         {/* Description */}
-        <p className="relative mt-3 flex-1 px-5 text-[13px] leading-relaxed text-mist/90">
+        <p className="relative mt-3 line-clamp-3 flex-1 px-5 text-[13px] leading-relaxed text-mist/90 sm:line-clamp-none">
           {project.description}
         </p>
 
@@ -168,7 +197,7 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
                 rel="noreferrer noopener"
                 onClick={(e) => e.stopPropagation()}
                 aria-label={`Open live demo of ${project.title}`}
-                className="grid h-7 w-7 place-items-center rounded-lg border border-white/10 text-mist transition-all duration-300 hover:border-lime-400/40 hover:text-lime-300"
+                className="grid h-10 w-10 place-items-center rounded-lg border border-white/10 text-mist transition-all duration-300 hover:border-lime-400/40 hover:text-lime-300"
               >
                 <ExternalLinkIcon className="h-3.5 w-3.5" />
               </a>
@@ -180,7 +209,7 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
                 rel="noreferrer noopener"
                 onClick={(e) => e.stopPropagation()}
                 aria-label={`Open GitHub repo for ${project.title}`}
-                className="grid h-7 w-7 place-items-center rounded-lg border border-white/10 text-mist transition-all duration-300 hover:border-cyan-400/40 hover:text-cyan-300"
+                className="grid h-10 w-10 place-items-center rounded-lg border border-white/10 text-mist transition-all duration-300 hover:border-cyan-400/40 hover:text-cyan-300"
               >
                 <GithubIcon className="h-3.5 w-3.5" />
               </a>
@@ -247,7 +276,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           <button
             onClick={onClose}
             aria-label="Close"
-            className="grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-white/10 text-mist transition-colors hover:bg-white/10 hover:text-chalk"
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-white/10 text-mist transition-colors hover:bg-white/10 hover:text-chalk"
           >
             ✕
           </button>

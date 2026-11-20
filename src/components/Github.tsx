@@ -2,15 +2,21 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { profile, repoFallback } from '@/data/site'
 import type { GitHubRepo } from '@/data/site'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { Section } from './ui/Section'
 import { Reveal } from './ui/Reveal'
 import { Button } from './ui/Button'
+import { ShowMore } from './ui/ShowMore'
 import {
   ArrowUpRightIcon,
   ForkIcon,
   GithubIcon,
   StarIcon,
 } from './ui/icons'
+
+const INITIAL_VISIBLE = 6
+const CACHE_KEY = 'srikar:gh-repos:v1'
+const CACHE_TTL = 6 * 60 * 60 * 1000
 
 const LANG_COLORS: Record<string, string> = {
   Python: '#3572A5',
@@ -28,9 +34,33 @@ export function Github() {
   const [repos, setRepos] = useState<GitHubRepo[]>(repoFallback)
   const [loading, setLoading] = useState(true)
   const [live, setLive] = useState(false)
+  const [showAll, setShowAll] = useState(false)
+  const isWide = useMediaQuery('(min-width: 1024px)')
 
   useEffect(() => {
     let cancelled = false
+
+    // Reuse a recent snapshot so repeat visits don't hit the unauthenticated
+    // GitHub rate limit (or flash a 403 in the console behind the fallback).
+    try {
+      const raw = localStorage.getItem(CACHE_KEY)
+      if (raw) {
+        const cached = JSON.parse(raw) as { at?: number; repos?: GitHubRepo[] }
+        if (
+          Array.isArray(cached.repos) &&
+          cached.repos.length &&
+          typeof cached.at === 'number' &&
+          Date.now() - cached.at < CACHE_TTL
+        ) {
+          setRepos(cached.repos)
+          setLive(true)
+          setLoading(false)
+          return
+        }
+      }
+    } catch {
+      /* storage unavailable */
+    }
 
     const load = async () => {
       try {
@@ -53,18 +83,25 @@ export function Github() {
         const data = (await res.json()) as ApiRepo[]
         if (!cancelled && Array.isArray(data) && data.length) {
           const snapshot = new Map(repoFallback.map((r) => [r.name, r]))
-          setRepos(
-            data.map((r) => ({
-              name: r.name,
-              description: r.description ?? snapshot.get(r.name)?.description ?? '',
-              language: r.language ?? 'None',
-              stars: r.stargazers_count ?? 0,
-              forks: r.forks_count ?? 0,
-              html_url: r.html_url,
-              updated_at: r.updated_at,
-            }))
-          )
+          const mapped = data.map((r) => ({
+            name: r.name,
+            description: r.description ?? snapshot.get(r.name)?.description ?? '',
+            language: r.language ?? 'None',
+            stars: r.stargazers_count ?? 0,
+            forks: r.forks_count ?? 0,
+            html_url: r.html_url,
+            updated_at: r.updated_at,
+          }))
+          setRepos(mapped)
           setLive(true)
+          try {
+            localStorage.setItem(
+              CACHE_KEY,
+              JSON.stringify({ at: Date.now(), repos: mapped })
+            )
+          } catch {
+            /* storage unavailable */
+          }
         }
       } catch {
         // Keep the bundled snapshot if the network is unavailable.
@@ -81,7 +118,9 @@ export function Github() {
   }, [])
 
   const totalStars = repos.reduce((s, r) => s + (r.stars ?? 0), 0)
-  const visible = repos.slice(0, 12)
+  const capped = repos.slice(0, 12)
+  const visible = isWide || showAll ? capped : capped.slice(0, INITIAL_VISIBLE)
+  const remaining = capped.length - visible.length
 
   return (
     <Section
@@ -118,7 +157,7 @@ export function Github() {
             target="_blank"
             rel="noreferrer noopener"
             variant="ghost"
-            className="!px-4 !py-2 !text-[12px]"
+            className="!min-h-10 !px-4 !py-2 !text-[12px]"
           >
             <GithubIcon className="h-3.5 w-3.5" />
             Open @chavansrikar
@@ -143,7 +182,7 @@ export function Github() {
                   transition={{ delay: i * 0.035, duration: 0.45 }}
                   whileHover={{ y: -4 }}
                   data-cursor="REPO"
-                  className="glass card-hover group flex flex-col rounded-xl p-4"
+                  className="glass card-hover group flex flex-col rounded-xl p-4 active:scale-[0.99]"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex min-w-0 items-center gap-2">
@@ -184,6 +223,10 @@ export function Github() {
               ))}
         </AnimatePresence>
       </div>
+
+      {remaining > 0 && (
+        <ShowMore remaining={remaining} label="repos" onClick={() => setShowAll(true)} />
+      )}
 
       <Reveal delay={0.15}>
         <div className="mt-8 overflow-x-auto">

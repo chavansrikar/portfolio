@@ -129,9 +129,9 @@ export function Contact() {
               </p>
               <button
                 onClick={copyEmail}
-                className="group mt-1 flex w-full items-center gap-3 text-left"
+                className="group mt-1 flex min-h-11 w-full items-center gap-3 text-left"
               >
-                <span className="font-display text-lg font-bold tracking-tight text-chalk transition-colors group-hover:text-cyan-300 sm:text-xl">
+                <span className="min-w-0 break-words font-display text-lg font-bold tracking-tight text-chalk transition-colors group-hover:text-cyan-300 sm:text-xl">
                   {profile.email}
                 </span>
                 <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-white/10 text-mist transition-all duration-300 group-hover:border-cyan-400/40 group-hover:text-cyan-300">

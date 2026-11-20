@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { toAscii } from '@/lib/ascii'
 
@@ -72,7 +72,20 @@ export function AsciiName({
       // decide the fit. A hard-coded advance ratio overflows on fallback fonts.
       const unit = ruler.getBoundingClientRect().width / 100
       if (!w || !unit) return
-      const next = Math.min(max, Math.max(min, (w * 0.985) / unit))
+      const cells = Math.max(1, lines[0]?.length ?? 1)
+      const advance = unit / cells
+      let next = Math.min(max, Math.max(min, (w * 0.985) / unit))
+      // Chrome rounds each glyph advance to a whole pixel at small sizes.
+      // Step down until even that rounded row still fits the container.
+      for (let i = 0; i < 24; i++) {
+        if (cells * Math.round(advance * next) <= w) break
+        const lower = Math.round((next - 0.05) * 100) / 100
+        if (lower <= min) {
+          next = min
+          break
+        }
+        next = lower
+      }
       setSize(Math.floor(next * 100) / 100)
       setFitTick((t) => t + 1)
     }
@@ -95,24 +108,32 @@ export function AsciiName({
   }, [max, min, fontSize])
 
   // Fonts round each glyph cell to a subpixel grid, so the calculated size can
-  // still overflow by a few pixels on very narrow screens. Measure the real row
-  // and shrink once more until it fits.
-  useLayoutEffect(() => {
+  // still overflow by a few pixels on very narrow screens. Re-measure the real
+  // row after paint and shrink once more until it fits.
+  useEffect(() => {
     if (fontSize != null) return
     const el = wrapRef.current
     const row = rowRef.current
     if (!el || !row) return
-    const w = el.clientWidth
-    const actual = row.scrollWidth
-    if (!w || actual <= w + 0.5) return
-    const next = Math.max(min, (size * w * 0.97) / actual)
-    if (next < size - 0.05) setSize(Math.floor(next * 100) / 100)
+    let raf = requestAnimationFrame(() => {
+      raf = requestAnimationFrame(() => {
+        const w = el.clientWidth
+        if (!w) return
+        const rowRect = row.getBoundingClientRect()
+        const last = row.lastElementChild?.getBoundingClientRect()
+        const actual = Math.max(row.scrollWidth, last ? last.right - rowRect.left : 0)
+        if (actual <= w + 0.5) return
+        const next = Math.max(min, (size * w * 0.97) / actual)
+        if (next < size - 0.05) setSize(Math.floor(next * 100) / 100)
+      })
+    })
+    return () => cancelAnimationFrame(raf)
   }, [size, min, fontSize, fitTick])
 
   return (
     <div
       ref={wrapRef}
-      className={`relative w-full ${clip ? 'overflow-hidden' : ''} ${className}`}
+      className={`relative w-full max-w-full min-w-0 ${clip ? 'overflow-hidden' : ''} ${className}`}
     >
       {/* Invisible metric ruler — one full glyph row at 100px. */}
       {fontSize == null && (

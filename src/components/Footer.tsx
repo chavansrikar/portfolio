@@ -98,7 +98,7 @@ export function Footer() {
             <h3 className="mb-4 font-mono text-[10px] uppercase tracking-[0.24em] text-mist">
               Navigate
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="grid grid-cols-2 gap-x-6 gap-y-1 sm:block sm:space-y-2.5">
               {[
                 ['About', 'about'],
                 ['Skills', 'skills'],
@@ -118,7 +118,7 @@ export function Footer() {
                           behavior: 'smooth',
                         })
                     }}
-                    className="link-underline font-mono text-[12px] text-mist transition-colors hover:text-chalk"
+                    className="link-underline inline-flex min-h-10 items-center font-mono text-[12px] text-mist transition-colors hover:text-chalk"
                   >
                     {label}
                   </button>
@@ -132,7 +132,7 @@ export function Footer() {
             <h3 className="mb-4 font-mono text-[10px] uppercase tracking-[0.24em] text-mist">
               Elsewhere
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-1 sm:block sm:space-y-2.5">
               {links.map((l) => {
                 const Icon = l.icon
                 return (
@@ -141,7 +141,7 @@ export function Footer() {
                       href={l.href}
                       target={l.href.startsWith('mailto') ? undefined : '_blank'}
                       rel="noreferrer noopener"
-                      className="group inline-flex items-center gap-2 font-mono text-[12px] text-mist transition-colors hover:text-chalk"
+                      className="group inline-flex min-h-10 items-center gap-2 font-mono text-[12px] text-mist transition-colors hover:text-chalk"
                     >
                       <Icon className="h-3.5 w-3.5 transition-transform duration-300 group-hover:scale-110 group-hover:text-cyan-300" />
                       {l.name}
@@ -155,11 +155,11 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/8 pt-7 sm:flex-row">
-          <p className="font-mono text-[10px] text-mist/60">
+          <p className="text-center font-mono text-[10px] text-mist/60 sm:text-left">
             © {new Date().getFullYear()} {profile.name}. Built with React, Tailwind,
             Framer Motion &amp; anime.js.
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-4">
             <span className="font-mono text-[10px] text-mist/50">
               Made in Bhongir, India
             </span>

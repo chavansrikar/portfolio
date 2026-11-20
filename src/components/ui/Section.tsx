@@ -24,12 +24,12 @@ export function Section({
   className = '',
 }: Props) {
   return (
-    <section id={id} className={`relative scroll-mt-24 py-24 sm:py-32 ${className}`}>
+    <section id={id} className={`relative scroll-mt-24 py-16 sm:py-24 lg:py-32 ${className}`}>
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
         <Reveal>
-          <div className="relative mb-14 flex flex-col gap-5 sm:mb-20">
+          <div className="relative mb-10 flex flex-col gap-5 sm:mb-16 lg:mb-20">
             {/* ASCII corner brackets around the section header */}
-            <div aria-hidden className="pointer-events-none absolute inset-0 hidden sm:block">
+            <div aria-hidden className="pointer-events-none absolute inset-0">
               {[
                 'left-0 top-0 border-l border-t',
                 'right-0 top-0 border-r border-t',
@@ -48,7 +48,7 @@ export function Section({
                 ┌
               </span>
               <span className="font-mono text-xs tracking-[0.3em] text-purple-400/80">
-                [{index}]
+                <ScrambleText text={`[${index}]`} duration={520} />
               </span>
               <span className="ascii text-[9px] leading-none tracking-[0.1em] text-teal-300/45">
                 ▓▒░
